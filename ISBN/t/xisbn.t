@@ -1,6 +1,8 @@
-# $Id: xisbn.t,v 1.1 2004/01/28 17:26:16 comdog Exp $
+# $Id: xisbn.t,v 1.2 2004/01/28 17:41:03 comdog Exp $
 
 use Test::More;
+
+no warnings; # temporary!
 
 BEGIN {
 	require IO::Socket;
