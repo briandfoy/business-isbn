@@ -1,25 +1,26 @@
-# $Id: Makefile.PL,v 1.4 2002/10/22 16:47:21 comdog Exp $
+# $Id: Makefile.PL,v 1.5 2004/09/16 16:06:18 comdog Exp $
 use ExtUtils::MakeMaker;
 
-sub ExtUtils::MM_Any::test_via_harness
-	{
-    my($self, $perl, $tests) = @_;
+eval "use Test::Manifest";
 
-    return qq|\t$perl "-MTest::Manifest" | .
-           qq|"-e" "run_t_manifest(\$(TEST_VERBOSE), '\$(INST_LIB)', | .
-           qq|'\$(INST_ARCHLIB)')"\n|;
+unless( $@ )
+	{
+	*ExtUtils::MM_Any::test_via_harness = sub
+		{
+		my($self, $perl, $tests) = @_;
+	
+		return qq|\t$perl "-MTest::Manifest" | .
+			   qq|"-e" "run_t_manifest(\$(TEST_VERBOSE), '\$(INST_LIB)', | .
+			   qq|'\$(INST_ARCHLIB)')"\n|;
+		}
 	}
 	
 WriteMakefile(
     'NAME'  	 	=> 'Business::ISMN',
     'VERSION_FROM' 	=> 'lib/ISMN.pm', 
     'PREREQ_PM'     => {
-    	'File::Find::Rule' => '0',
     	'List::Util'       => '0',
-    	'Test::Manifest'   => '0.9',
     	'Test::More'       => '0',
-    	'Test::Pod'        => '0',
-    	'Test::Prereq'     => '0.14',
     	'Tie::Cycle'       => '0',
     	},
 	'PM'            => { 'lib/ISMN.pm' => '$(INST_LIBDIR)/ISMN.pm',
