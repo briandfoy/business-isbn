@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.2 2002/10/09 06:18:04 comdog Exp $
+# $Id: Makefile.PL,v 1.3 2002/10/09 06:25:43 comdog Exp $
 use ExtUtils::MakeMaker;
 
 my $tests = do {
@@ -15,7 +15,7 @@ WriteMakefile(
     	'Test::More'       => '0',
     	'Test::Pod'        => '0',
     	'Test::Prereq'     => '0',
-    	'Tie::Toggle'      => '0',
+    	'Tie::Cycle'       => '0',
     	},
 	'PM'            => { 'lib/ISMN.pm' => '$(INST_LIBDIR)/ISMN.pm',
                          'lib/Data.pm' => '$(INST_LIBDIR)/ISMN/Data.pm',
