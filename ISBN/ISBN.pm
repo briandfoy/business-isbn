@@ -1,5 +1,5 @@
-# $Revision: 1.78 $
-# $Id: ISBN.pm,v 1.78 2004/11/22 01:38:36 comdog Exp $
+# $Revision: 1.79 $
+# $Id: ISBN.pm,v 1.79 2004/12/14 10:58:32 comdog Exp $
 package Business::ISBN;
 use strict;
 
@@ -11,21 +11,21 @@ use subs qw( _common_format _checksum is_valid_checksum
 	BAD_ISBN
 	);
 use vars qw( $VERSION @ISA @EXPORT_OK $debug %country_data
-		$MAX_COUNTRY_CODE_LENGTH );
+		$MAX_COUNTRY_CODE_LENGTH %ERROR_TEXT );
 
 use Carp qw(carp);
 use Exporter;
 
-use Business::ISBN::Data; # now a separate module
+use Business::ISBN::Data 1.09; # now a separate module
 
 my $debug = 0;
 
 @ISA       = qw(Exporter);
 @EXPORT_OK = qw(is_valid_checksum ean_to_isbn isbn_to_ean
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
-	BAD_CHECKSUM GOOD_ISBN BAD_ISBN);
+	BAD_CHECKSUM GOOD_ISBN BAD_ISBN %ERROR_TEXT);
 
-($VERSION)   = q$Revision: 1.78 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.79 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -33,6 +33,15 @@ sub BAD_CHECKSUM           { -1 };
 sub GOOD_ISBN              {  1 };
 sub BAD_ISBN               {  0 };
 
+%ERROR_TEXT = (
+	 0 => "Bad ISBN",
+	 1 => "Good ISBN",
+	-1 => "Bad ISBN checksum",
+	-2 => "Invalid country code",
+	-3 => "Invalid publisher code",
+	);
+
+	
 sub new
 	{
 	my $class       = shift;
@@ -465,6 +474,12 @@ versions of this module which used literal values.
 	Business::ISBN::GOOD_ISBN
 	Business::ISBN::BAD_ISBN
 
+If you have one of these values and want to turn it into
+a string, you can use the %Business::ISBN::ERROR_TEXT hash,
+which is exportable by asking for it explicitly in the import
+list.
+
+	use Business::ISBN qw(%ERROR_TEXT);
 
 The string passed as the ISBN need not be a valid ISBN as
 long as it superficially looks like one.  This allows one to
