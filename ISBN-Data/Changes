@@ -1,4 +1,7 @@
-# $Id: Changes,v 1.11 2005/03/08 22:10:20 comdog Exp $
+# $Id: Changes,v 1.12 2005/03/08 22:16:43 comdog Exp $
+
+1.10 - Tue Mar  8 17:15:14 2005
+	* Doc fixup, no big whoop: no need to upgrade
 
 1.09 - Tue Mar  8 17:09:39 2005
 	* added POD coverage test and fixed up the problems it found
