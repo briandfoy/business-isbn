@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.7 2004/10/27 07:37:57 comdog Exp $
+# $Id: Makefile.PL,v 1.8 2004/11/22 01:45:19 comdog Exp $
 use ExtUtils::MakeMaker;
 
 eval "use Test::Manifest";
@@ -19,9 +19,8 @@ WriteMakefile(
     'NAME'  	 	=> 'Business::ISBN',
     'VERSION_FROM' 	=> 'ISBN.pm', 
     'PREREQ_PM'     => {
-    	'Test::Manifest'       => '0',
     	'Test::More'           => '0',
-    	'Business::ISBN::Data' => '0',
+    	'Business::ISBN::Data' => '1.08',
     	},
 	'PM'            => { 
 		'ISBN.pm' => '$(INST_LIBDIR)/ISBN.pm',
