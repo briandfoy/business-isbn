@@ -1,6 +1,6 @@
 package Business::ISBN;
-# $Revision: 1.73 $
-# $Id: ISBN.pm,v 1.73 2004/09/02 21:16:50 comdog Exp $
+# $Revision: 1.74 $
+# $Id: ISBN.pm,v 1.74 2004/09/02 22:13:06 comdog Exp $
 
 use strict;
 use subs qw( _common_format _checksum is_valid_checksum
@@ -25,7 +25,7 @@ my $debug = 0;
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN);
 
-($VERSION)   = q$Revision: 1.73 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.74 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -626,7 +626,9 @@ to the author. :)
 
 =head1 TO DO
 
-* i would like to create the bar codes with the price extension
+* i would like to create the bar codes with the price extension: 
+	for now: 
+	https://www.lightningsource.com/LSISecure/PubResources/CoverSpecsEntry.asp
 
 =head1 AUTHOR
 
@@ -634,10 +636,13 @@ brian d foy C<< <bdfoy@cpan.org> >>
 
 Copyright 2001-2004 brian d foy
 
-Thanks to Mark W. Eichin E<lt>eichin@thok.orgE<gt> for suggestions and
+Thanks to Mark W. Eichin C<< <eichin@thok.org> >> for suggestions and
 discussions on EAN support.
 
-Thanks to Andy Lester E<lt>andy@petdance.comE<gt> for lots of bug fixes
+Thanks to Andy Lester C<< <andy@petdance.com> >> for lots of bug fixes
 and testing.
+
+Ed Summers C<< <esummers@cpan.org> >> has volunteered to help with
+this module.
 
 =cut
