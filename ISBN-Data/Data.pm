@@ -1,8 +1,9 @@
-# $Id: Data.pm,v 1.7 2004/09/15 02:10:09 comdog Exp $
+# $Id: Data.pm,v 1.8 2004/10/08 20:44:21 comdog Exp $
 package Business::ISBN::Data;
+use strict;
 use vars qw($VERSION);
 
-$VERSION = sprintf "%d.%02d", q$Revision: 1.7 $ =~ m/ (\d+) \. (\d+) /xg;
+$VERSION = sprintf "%d.%02d", q$Revision: 1.8 $ =~ m/ (\d+) \. (\d+) /xg;
 
 =head1 NAME
 
@@ -46,6 +47,8 @@ brian d foy, C<< <bdfoy@cpan.org> >>
 =cut
 
 package Business::ISBN;
+
+use vars qw( %country_data $MAX_COUNTRY_CODE_LENGTH );
 
 %country_data = (
     0 => [ 'English',                   [ '00'=>19, 200=>699, 7000=>8499, 85000=>89999, 900000=>949999, 9500000=>9999999, ] ],
