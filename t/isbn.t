@@ -1,4 +1,4 @@
-# $Revision: 1.2 $
+# $Revision: 1.3 $
 
 use Test::More tests => 21;
 
@@ -11,7 +11,7 @@ my $COUNTRY            = "1";
 my $PUBLISHER          = "56592";
 my $BAD_CHECKSUM_ISBN  = "1565922572";
 my $BAD_COUNTRY_ISBN   = "9990222576";
-my $BAD_PUBLISHER_ISBN = "1456922572";
+my $BAD_PUBLISHER_ISBN = "9165022222"; # 91-650-22222-?  Sweden (stops at 649)
 my $NULL_ISBN          = undef;
 my $NO_GOOD_CHAR_ISBN  = "abcdefghij";
 my $SHORT_ISBN         = "156592";
@@ -90,8 +90,10 @@ SKIP:
 		my $isbn = Business::ISBN->new( $_ );
 		
 		my $result = $isbn->is_valid;
+		my $text   = $Business::ISBN::ERROR_TEXT{ $result };
+		
 		$bad++ unless $result eq Business::ISBN::GOOD_ISBN;
-		print STDERR "$_ is not valid? [$result]\n" 
+		print STDERR "$_ is not valid? [ $result -> $text ]\n" 
 			unless $result eq Business::ISBN::GOOD_ISBN;	
 		}
 	
