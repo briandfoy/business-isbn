@@ -1,4 +1,7 @@
-# $Id: Changes,v 1.3 2002/11/25 20:25:21 comdog Exp $
+# $Id: Changes,v 1.4 2003/11/27 14:20:55 comdog Exp $
+
+1.05 - Thu Nov 27 08:20:28 2003
+* Updated publisher ranges
 
 1.02 - Mon Nov 25 14:13:30 CST 2002
 	+ this is the first release as a separate module
