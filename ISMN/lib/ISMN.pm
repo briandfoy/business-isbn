@@ -1,4 +1,4 @@
-# $Id: ISMN.pm,v 1.3 2002/10/09 06:22:27 comdog Exp $
+# $Id: ISMN.pm,v 1.4 2002/10/22 16:45:58 comdog Exp $
 package Business::ISMN;
 use strict;
 
@@ -22,7 +22,7 @@ my $debug = 0;
 @EXPORT_OK = qw(is_valid_checksum ean_to_ismn ismn_to_ean
 	INVALID_PUBLISHER_CODE BAD_CHECKSUM GOOD_ISMN BAD_ISMN);
 
-($VERSION)   = q$Revision: 1.3 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.4 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_PUBLISHER_CODE { -3 };
 sub BAD_CHECKSUM           { -1 };
@@ -356,7 +356,7 @@ Business::ISMN - work with International Standard Music Numbers
 
 =head1 DESCRIPTION
 
-=head2 METHODS
+=head2 Methods
 
 =over 4
 
@@ -516,6 +516,16 @@ what to do.
 =head1 TO DO
 
 * i need more ISMN numbers for tests
+
+=head1 SOURCE AVAILABILITY
+
+This source is part of a SourceForge project which always has the
+latest sources in CVS, as well as all of the previous releases.
+
+	https://sourceforge.net/projects/brian-d-foy/
+	
+If, for some reason, I disappear from the world, one of the other
+members of the project can shepherd this module appropriately.
 
 =head1 AUTHOR
 
