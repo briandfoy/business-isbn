@@ -1,4 +1,4 @@
-# $Revision: 1.1 $
+# $Revision: 1.2 $
 
 use Test::More tests => 21;
 
@@ -20,10 +20,11 @@ my $SHORT_ISBN         = "156592";
 my $isbn = Business::ISBN->new( $GOOD_ISBN );
 isa_ok( $isbn, 'Business::ISBN' );
 is( $isbn->is_valid, Business::ISBN::GOOD_ISBN, "$GOOD_ISBN is valid" );
-is( $isbn->publisher_code, $PUBLISHER, "$GOOD_ISBN has right publisher");
-is( $isbn->country_code, $COUNTRY, "$GOOD_ISBN has right country");
-is( $isbn->as_string, $GOOD_ISBN_STRING, "$GOOD_ISBN stringifies correctly");
-is( $isbn->as_string([]), $GOOD_ISBN, "$GOOD_ISBN stringifies correctly");
+
+is( $isbn->publisher_code, $PUBLISHER,          "$GOOD_ISBN has right publisher");
+is( $isbn->country_code,   $COUNTRY,            "$GOOD_ISBN has right country");
+is( $isbn->as_string,      $GOOD_ISBN_STRING,   "$GOOD_ISBN stringifies correctly");
+is( $isbn->as_string([]),  $GOOD_ISBN,          "$GOOD_ISBN stringifies correctly");
 
 # and bad checksums?
 $isbn = Business::ISBN->new( $BAD_CHECKSUM_ISBN );
@@ -75,8 +76,10 @@ is( Business::ISBN::is_valid_checksum( $SHORT_ISBN ),
 
 SKIP:
 	{
-	open FILE, "isbns.txt" or 
-		skip( "Could not read $file: $!", 1, 'Need isbns.txt');
+	my $file = "isbns.txt";
+
+	open FILE, $file or 
+		skip( "Could not read $file: $!", 1, "Need $file");
 
 	print STDERR "\nChecking ISBNs... (this may take a bit)\n";
 	
