@@ -1,165 +1,178 @@
-<HTML>
-<HEAD>
-<TITLE>Business::ISBN - work with International Standard Book Numbers</TITLE>
-<LINK REV="made" HREF="mailto:root@vaio.perl.org">
-</HEAD>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Business::ISBN - work with International Standard Book Numbers</title>
+<link rev="made" href="mailto:comdog@panix.com" />
+</head>
 
-<BODY>
+<body style="background-color: white">
 
-<A NAME="__index__"></A>
+<p><a name="__index__"></a></p>
 <!-- INDEX BEGIN -->
 
-<UL>
+<ul>
 
-	<LI><A HREF="#name">NAME</A></LI>
-	<LI><A HREF="#synopsis">SYNOPSIS</A></LI>
-	<LI><A HREF="#description">DESCRIPTION</A></LI>
-	<UL>
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
 
-		<LI><A HREF="#new($isbn)"><CODE>new($isbn)</CODE></A></LI>
-		<LI><A HREF="#$obj>publisher_code"><CODE>$obj-&gt;publisher_code</CODE></A></LI>
-		<LI><A HREF="#$obj>country_code"><CODE>$obj-&gt;country_code</CODE></A></LI>
-		<LI><A HREF="#$obj>hyphen_positions"><CODE>$obj-&gt;hyphen_positions</CODE></A></LI>
-		<LI><A HREF="#$obj>as_string(), $obj>as_string([])"><CODE>$obj-&gt;as_string()</CODE>,  <CODE>$obj-&gt;as_string([])</CODE></A></LI>
-		<LI><A HREF="#$obj>is_valid()"><CODE>$obj-&gt;is_valid()</CODE></A></LI>
-		<LI><A HREF="#$obj>fix_checksum()"><CODE>$obj-&gt;fix_checksum()</CODE></A></LI>
-		<LI><A HREF="#$obj>as_ean()"><CODE>$obj-&gt;as_ean()</CODE></A></LI>
-	</UL>
+		<li><a href="#methods">METHODS</a></li>
+		<li><a href="#exportable_functions">EXPORTABLE FUNCTIONS</a></li>
+	</ul>
 
-	<LI><A HREF="#exportable functions">EXPORTABLE FUNCTIONS</A></LI>
-	<UL>
-
-		<LI><A HREF="#is_valid_checksum('1565921496')"><CODE>is_valid_checksum('1565921496')</CODE></A></LI>
-		<LI><A HREF="#isbn_to_ean('1565921496')"><CODE>isbn_to_ean('1565921496')</CODE></A></LI>
-		<LI><A HREF="#ean_to_isbn('9781565921498')"><CODE>ean_to_isbn('9781565921498')</CODE></A></LI>
-	</UL>
-
-	<LI><A HREF="#author">AUTHOR</A></LI>
-</UL>
+	<li><a href="#bugs">BUGS</a></li>
+	<li><a href="#to_do">TO DO</a></li>
+	<li><a href="#author">AUTHOR</a></li>
+</ul>
 <!-- INDEX END -->
 
-<HR>
-<P>
-<H1><A NAME="name">NAME</A></H1>
-<P>Business::ISBN - work with International Standard Book Numbers</P>
-<P>
-<HR>
-<H1><A NAME="synopsis">SYNOPSIS</A></H1>
-<PRE>
-        use Business::ISBN;
-</PRE>
-<PRE>
-
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Business::ISBN - work with International Standard Book Numbers</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+        use Business::ISBN;</pre>
+<pre>
         $isbn_object = new Business::ISBN('1565922573');
-        $isbn_object = new Business::ISBN('1-56592-257-3');</PRE>
-<PRE>
-
+        $isbn_object = new Business::ISBN('1-56592-257-3');</pre>
+<pre>
         #print the ISBN with hyphens at positions specified
         #by constructor
-        print $isbn_object-&gt;as_string;</PRE>
-<PRE>
-
+        print $isbn_object-&gt;as_string;</pre>
+<pre>
         #print the ISBN with hyphens at specified positions.
         #this not does affect the default positions
-        print $isbn_object-&gt;as_string([]);</PRE>
-<PRE>
-
+        print $isbn_object-&gt;as_string([]);</pre>
+<pre>
         #print the country code or publisher code
         print $isbn-&gt;country_code;
-        print $isbn-&gt;publisher_code;</PRE>
-<PRE>
-
+        print $isbn-&gt;publisher_code;</pre>
+<pre>
         #check to see if the ISBN is valid
-        $isbn_object-&gt;is_valid;</PRE>
-<PRE>
-
+        $isbn_object-&gt;is_valid;</pre>
+<pre>
         #fix the ISBN checksum.  BEWARE:  the error might not be
         #in the checksum!
-        $isbn_object-&gt;fix_checksum;</PRE>
-<PRE>
-        #EXPORTABLE FUNCTIONS
-</PRE>
-<PRE>
-
-        use Business::ISBN qw( is_valid_checksum 
-                isbn_to_ean ean_to_isbn );</PRE>
-<PRE>
-
+        $isbn_object-&gt;fix_checksum;</pre>
+<pre>
+        # create an EAN13 barcode in PNG format
+        $isbn_object-&gt;png_barcode;</pre>
+<pre>
+        #EXPORTABLE FUNCTIONS</pre>
+<pre>
+        use Business::ISBN qw( is_valid_checksum
+                isbn_to_ean ean_to_isbn );</pre>
+<pre>
         #verify the checksum
-        if( is_valid_checksum('0123456789') 
-                eq Business::ISBN::GOOD_ISBN ) 
-                { ... }</PRE>
-<PRE>
-
+        if( is_valid_checksum('0123456789')
+                eq Business::ISBN::GOOD_ISBN )
+                { ... }</pre>
+<pre>
         #convert to EAN (European Article Number)
-        $ean = isbn_to_ean('1565921496');</PRE>
-<PRE>
+        $ean = isbn_to_ean('1565921496');</pre>
+<pre>
         #convert from EAN (European Article Number)
-        $isbn = ean_to_isbn('9781565921498');</PRE>
-<P>
-<HR>
-<H1><A NAME="description">DESCRIPTION</A></H1>
-<P>
-<H2><A NAME="new($isbn)"><CODE>new($isbn)</CODE></A></H2>
-<P>The constructor accepts a scalar representing the ISBN.</P>
-<P>The string representing the ISBN may contain characters
-other than <CODE>[0-9xX]</CODE>, although these will be removed in the
+        $isbn = ean_to_isbn('9781565921498');</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>
+</p>
+<h2><a name="methods">METHODS</a></h2>
+<dl>
+<dt><strong><a name="item_new"><code>new($isbn)</code></a></strong><br />
+</dt>
+<dd>
+The constructor accepts a scalar representing the ISBN.
+</dd>
+<dd>
+<p>The string representing the ISBN may contain characters
+other than <code>[0-9xX]</code>, although these will be removed in the
 internal representation.  The resulting string must look
 like an ISBN - the first nine characters must be digits and
-the tenth character must be a digit, 'x', or 'X'.</P>
-<P>The constructor attempts to determine the country
+the tenth character must be a digit, 'x', or 'X'.</p>
+</dd>
+<dd>
+<p>The constructor attempts to determine the country
 code and the publisher code.  If these data cannot
-be determined, the constructor sets <CODE>$obj-&gt;is_valid</CODE>
-to something other than <CODE>GOOD_ISBN</CODE>.
+be determined, the constructor sets <a href="#item_is_valid"><code>$obj-&gt;is_valid</code></a>
+to something other than <code>GOOD_ISBN</code>.
 An object is still returned and it is up to the program
-to check <CODE>$obj-&gt;is_valid</CODE> for one of five values (which
+to check <a href="#item_is_valid"><code>$obj-&gt;is_valid</code></a> for one of five values (which
 may be exported on demand). The actual values of these
 symbolic versions are the same as those from previous
-versions of this module which used literal values.</P>
-<PRE>
+versions of this module which used literal values.</p>
+</dd>
+<dd>
+<pre>
         Business::ISBN::INVALID_PUBLISHER_CODE
         Business::ISBN::INVALID_COUNTRY_CODE
         Business::ISBN::BAD_CHECKSUM
         Business::ISBN::GOOD_ISBN
-        Business::ISBN::BAD_ISBN</PRE>
-<P>The string passed as the ISBN need not be a valid ISBN as
+        Business::ISBN::BAD_ISBN</pre>
+</dd>
+<dd>
+<p>The string passed as the ISBN need not be a valid ISBN as
 long as it superficially looks like one.  This allows one to
-use the <CODE>fix_checksum()</CODE> method.  Despite the disclaimer in
+use the <a href="#item_fix_checksum"><code>fix_checksum()</code></a> method.  Despite the disclaimer in
 the discussion of that method, the author has found it
 extremely useful.  One should check the validity of the ISBN
-with <CODE>is_valid()</CODE> rather than relying on the return value
+with <a href="#item_is_valid"><code>is_valid()</code></a> rather than relying on the return value
 of the constructor.  If all one wants to do is check the
-validity of an ISBN, one can skip the object-oriented 
-interface and use the <CODE>is_valid_checksum()</CODE> function
-which is exportable on demand.</P>
-<P>If the constructor decides it cannot create an object, it
-returns <CODE>undef</CODE>.  It may do this if the string passed as the
+validity of an ISBN, one can skip the object-oriented
+interface and use the <a href="#item_is_valid_checksum"><code>is_valid_checksum()</code></a> function
+which is exportable on demand.</p>
+</dd>
+<dd>
+<p>If the constructor decides it cannot create an object, it
+returns <code>undef</code>.  It may do this if the string passed as the
 ISBN cannot be munged to the internal format meaning that it
-does not even come close to looking like an ISBN.</P>
-<P>
-<H2><A NAME="$obj>publisher_code"><CODE>$obj-&gt;publisher_code</CODE></A></H2>
-<P>Returns the publisher code or <CODE>undef</CODE> if no publisher
-code was found.</P>
-<P>
-<H2><A NAME="$obj>country_code"><CODE>$obj-&gt;country_code</CODE></A></H2>
-<P>Returns the country code or <CODE>undef</CODE> if no country code
-was found.</P>
-<P>
-<H2><A NAME="$obj>hyphen_positions"><CODE>$obj-&gt;hyphen_positions</CODE></A></H2>
-<P>Returns the list of hyphen positions as determined from the 
-country and publisher codes.  the <CODE>as_string</CODE> method provides
+does not even come close to looking like an ISBN.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_publisher_code">publisher_code</a></strong><br />
+</dt>
+<dd>
+Returns the publisher code or <code>undef</code> if no publisher
+code was found.
+</dd>
+<p></p>
+<dt><strong><a name="item_country_code">country_code</a></strong><br />
+</dt>
+<dd>
+Returns the country code or <code>undef</code> if no country code
+was found.
+</dd>
+<p></p>
+<dt><strong><a name="item_hyphen_positions">hyphen_positions</a></strong><br />
+</dt>
+<dd>
+Returns the list of hyphen positions as determined from the
+country and publisher codes.  the <a href="#item_as_string"><code>as_string</code></a> method provides
 a way to temporarily override these positions and to even
-forego them altogether.</P>
-<P>
-<H2><A NAME="$obj>as_string(), $obj>as_string([])"><CODE>$obj-&gt;as_string()</CODE>,  <CODE>$obj-&gt;as_string([])</CODE></A></H2>
-<P>Return the ISBN as a string.  This function takes an
+forego them altogether.
+</dd>
+<p></p>
+<dt><strong><a name="item_as_string">as_string(),  <code>as_string([])</code></a></strong><br />
+</dt>
+<dd>
+Return the ISBN as a string.  This function takes an
 optional anonymous array (or array reference) that specifies
 the placement of hyphens in the string.  An empty anonymous array
-produces a string with no hyphens. An empty argument list 
+produces a string with no hyphens. An empty argument list
 automatically hyphenates the ISBN based on the discovered
-country and publisher codes.  An ISBN that is not valid may 
-produce strange results.</P>
-<P>The positions specified in the passed anonymous array
+country and publisher codes.  An ISBN that is not valid may
+produce strange results.
+</dd>
+<dd>
+<p>The positions specified in the passed anonymous array
 are only used for one method use and do not replace
 the values specified by the constructor. The method
 assumes that you know what you are doing and will attempt
@@ -167,78 +180,149 @@ to use the least three positions specified.  If you pass
 an anonymous array of several positions, the list will
 be sorted and the lowest three positions will be used.
 Positions less than 1 and greater than 9 are silently
-ignored.</P>
-<P>A terminating 'x' is changed to 'X'.</P>
-<P>
-<H2><A NAME="$obj>is_valid()"><CODE>$obj-&gt;is_valid()</CODE></A></H2>
-<P>Returns <CODE>Business::ISBN::GOOD_ISBN</CODE> if the checksum is valid and the 
-country and publisher codes are defined.</P>
-<P>Returns <CODE>Business::ISBN::BAD_CHECKSUM</CODE> if the ISBN does not pass 
+ignored.</p>
+</dd>
+<dd>
+<p>A terminating 'x' is changed to 'X'.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_is_valid">is_valid</a></strong><br />
+</dt>
+<dd>
+Returns <code>Business::ISBN::GOOD_ISBN</code> if the checksum is valid and the
+country and publisher codes are defined.
+</dd>
+<dd>
+<p>Returns <code>Business::ISBN::BAD_CHECKSUM</code> if the ISBN does not pass
 the checksum test. The constructor accepts invalid ISBN's so that
-they might be fixed with <CODE>fix_checksum</CODE>.</P>
-<P>Returns <CODE>Business::ISBN::INVALID_COUNTRY_CODE</CODE> if a country code 
-could not be determined (relies on a valid checksum).</P>
-<P>Returns <CODE>Business::ISBN::INVALID_PUBLISHER_CODE</CODE> if a publisher code 
-could not be determined (relies on a valid checksum and country code).</P>
-<P>Returns <CODE>Business::ISBN::BAD_ISBN</CODE> if the string has no hope of ever
-looking like a valid ISBN.  This might include strings such as <CODE>&quot;abc&quot;</CODE>,
-<CODE>&quot;123456&quot;</CODE>, and so on.</P>
-<P>
-<H2><A NAME="$obj>fix_checksum()"><CODE>$obj-&gt;fix_checksum()</CODE></A></H2>
-<P>Replace the tenth character with the checksum the
+they might be fixed with <a href="#item_fix_checksum"><code>fix_checksum</code></a>.</p>
+</dd>
+<dd>
+<p>Returns <code>Business::ISBN::INVALID_COUNTRY_CODE</code> if a country code
+could not be determined (relies on a valid checksum).</p>
+</dd>
+<dd>
+<p>Returns <code>Business::ISBN::INVALID_PUBLISHER_CODE</code> if a publisher code
+could not be determined (relies on a valid checksum and country code).</p>
+</dd>
+<dd>
+<p>Returns <code>Business::ISBN::BAD_ISBN</code> if the string has no hope of ever
+looking like a valid ISBN.  This might include strings such as <code>&quot;abc&quot;</code>,
+<code>&quot;123456&quot;</code>, and so on.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_fix_checksum"><code>fix_checksum()</code></a></strong><br />
+</dt>
+<dd>
+Replace the tenth character with the checksum the
 corresponds to the previous nine digits.  This does not
 guarantee that the ISBN corresponds to the product one
 thinks it does, or that the ISBN corresponds to any product
 at all.  It only produces a string that passes the checksum
 routine.  If the ISBN passed to the constructor was invalid,
-the error might have been in any of the other nine positions.</P>
-<P>
-<H2><A NAME="$obj>as_ean()"><CODE>$obj-&gt;as_ean()</CODE></A></H2>
-<P>Converts the ISBN to the equivalent EAN (European Article Number).
+the error might have been in any of the other nine positions.
+</dd>
+<p></p>
+<dt><strong><a name="item_as_ean"><code>as_ean()</code></a></strong><br />
+</dt>
+<dd>
+Converts the ISBN to the equivalent EAN (European Article Number).
 No pricing extension is added.  Returns the EAN as a string.  This
 method can also be used as an exportable function since it checks
-its argument list to determine what to do.</P>
-<P>
-<HR>
-<H1><A NAME="exportable functions">EXPORTABLE FUNCTIONS</A></H1>
-<P>Some functions can be used without the object interface.  These
-do not use object technology behind the scenes.</P>
-<P>
-<H2><A NAME="is_valid_checksum('1565921496')"><CODE>is_valid_checksum('1565921496')</CODE></A></H2>
-<P>Takes the ISBN string and runs it through the checksum
-comparison routine.  Returns <CODE>Business::ISBN::GOOD_ISBN</CODE> 
-if the ISBN is valid, <CODE>Business::ISBN::BAD_CHECKSUM</CODE> if the 
+its argument list to determine what to do.
+</dd>
+<p></p>
+<dt><strong><a name="item_png_barcode"><code>png_barcode()</code></a></strong><br />
+</dt>
+<dd>
+Creates a PNG image of the EAN13 barcode which corresponds to the
+ISBN. Returns the image as a string.
+</dd>
+<p></p>
+<dt><strong><a name="item_xisbn"><code>xisbn()</code></a></strong><br />
+</dt>
+<dd>
+Grabs related ISBNs from Online Computer Library Center (OCLC),
+<a href="http://www.oclc.org">http://www.oclc.org</a> using the xISBN project.
+</dd>
+<dd>
+<p>In list context, <a href="#item_xisbn"><code>xisbn()</code></a> returns a list of ISBNs in
+descending order based on OCLC WorldCat holdings, minus the
+object's ISBN. In scalar context, <a href="#item_xisbn"><code>xisbn()</code></a> returns an array
+reference of the same list. The ISBNs are simply strings,
+not object, for the moment.  This may change later.</p>
+</dd>
+<dd>
+<p>Terminating x's are changed to X's so they are consistent with the
+rest of the module.</p>
+</dd>
+<dd>
+<p>You must have LWP installed (it comes with perl5.8).</p>
+</dd>
+<p></p></dl>
+<p>
+</p>
+<h2><a name="exportable_functions">EXPORTABLE FUNCTIONS</a></h2>
+<p>Some functions can be used without the object interface.  These
+do not use object technology behind the scenes.</p>
+<dl>
+<dt><strong><a name="item_is_valid_checksum"><code>is_valid_checksum('1565921496')</code></a></strong><br />
+</dt>
+<dd>
+Takes the ISBN string and runs it through the checksum
+comparison routine.  Returns <code>Business::ISBN::GOOD_ISBN</code>
+if the ISBN is valid, <code>Business::ISBN::BAD_CHECKSUM</code> if the
 string looks like an ISBN but has an invalid checksum, and
-<CODE>Business::ISBN::BAD_ISBN</CODE> if the string does not look like
-an ISBN.</P>
-<P>
-<H2><A NAME="isbn_to_ean('1565921496')"><CODE>isbn_to_ean('1565921496')</CODE></A></H2>
-<P>Takes the ISBN string and converts it to the equivalent
+<code>Business::ISBN::BAD_ISBN</code> if the string does not look like
+an ISBN.
+</dd>
+<p></p>
+<dt><strong><a name="item_isbn_to_ean"><code>isbn_to_ean('1565921496')</code></a></strong><br />
+</dt>
+<dd>
+Takes the ISBN string and converts it to the equivalent
 EAN string.  This function checks for a valid ISBN and will return
 undef for invalid ISBNs, otherwise it returns the EAN as a string.
 Uses as_ean internally, which checks its arguments to determine
-what to do.</P>
-<P>
-<H2><A NAME="ean_to_isbn('9781565921498')"><CODE>ean_to_isbn('9781565921498')</CODE></A></H2>
-<P>Takes the EAN string and converts it to the equivalent
+what to do.
+</dd>
+<p></p>
+<dt><strong><a name="item_ean_to_isbn"><code>ean_to_isbn('9781565921498')</code></a></strong><br />
+</dt>
+<dd>
+Takes the EAN string and converts it to the equivalent
 ISBN string.  This function checks for a valid ISBN and will return
 undef for invalid ISBNs, otherwise it returns the EAN as a string.
 Uses as_ean internally, which checks its arguments to determine
-what to do.</P>
-<P>
-<HR>
-<H1><A NAME="author">AUTHOR</A></H1>
-<P>brian d foy &lt;<A HREF="mailto:bdfoy@cpan.org">bdfoy@cpan.org</A>&gt;</P>
-<P>Copyright 2001 brian d foy</P>
-<P>Country code and publisher code graciously provided by Steve
-Fisher &lt;<A HREF="mailto:stevef@teleord.co.uk">stevef@teleord.co.uk</A>&gt; of Whitaker (the UK ISBN folks
-and the major bibliographic data provider in the UK).
-``Whitaker - helping to link authors to readers worldwide''</P>
-<P>Thanks to Mark W. Eichin &lt;<A HREF="mailto:eichin@thok.org">eichin@thok.org</A>&gt; for suggestions and
-discussions on EAN support.</P>
-<P>Thanks to Andy Lester &lt;<A HREF="mailto:andy@petdance.org">andy@petdance.org</A>&gt; for lots of bug fixes
-and testing.</P>
+what to do.
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="bugs">BUGS</a></h1>
+<p>* The new EAN format has two prefixes for ISBNS (978, 979).  The
+isbn_to_ean doesn't know which one to use, so it just uses 978</p>
+<p>This module is on Sourceforge at <a href="http://perl-isbn.sourceforge.net/.">http://perl-isbn.sourceforge.net/.</a>
+You can download the lastest CVS source, submit bugs and patches,
+and watch the development.  Of course, you can always write directly
+to the author. :)</p>
+<p>
+</p>
+<hr />
+<h1><a name="to_do">TO DO</a></h1>
+<p>* i would like to create the bar codes with the price extension</p>
+<p>
+</p>
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<p>brian d foy <code>&lt;bdfoy@cpan.org&gt;</code></p>
+<p>Copyright 2001-2004 brian d foy</p>
+<p>Thanks to Mark W. Eichin &lt;<a href="mailto:eichin@thok.org">eichin@thok.org</a>&gt; for suggestions and
+discussions on EAN support.</p>
+<p>Thanks to Andy Lester &lt;<a href="mailto:andy@petdance.com">andy@petdance.com</a>&gt; for lots of bug fixes
+and testing.</p>
 
-</BODY>
+</body>
 
-</HTML>
+</html>
