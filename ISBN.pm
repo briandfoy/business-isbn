@@ -1,6 +1,6 @@
 package Business::ISBN;
-# $Revision: 1.67 $
-# $Id: ISBN.pm,v 1.67 2002/04/09 08:36:29 comdog Exp $
+# $Revision: 1.68 $
+# $Id: ISBN.pm,v 1.68 2002/09/04 20:52:52 comdog Exp $
 
 use strict;
 use subs qw( _common_format _checksum is_valid_checksum
@@ -24,7 +24,7 @@ my $debug = 0;
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN);
 
-($VERSION)   = q$Revision: 1.67 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.68 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -36,12 +36,12 @@ sub new
 	{
 	my $class       = shift;
 	my $common_data = _common_format shift;
-	
+
 	return unless defined $common_data;
 
 	my $self  = {};
 	bless $self, $class;
-	
+
 	$self->{'isbn'}      = $common_data;
 	$self->{'positions'} = [9];
 
@@ -52,7 +52,7 @@ sub new
 	# extract the country code
 	my $trial_country_code  = undef;  # try this to see what we get
 	my $country_code_length = 0;
-	
+
 	my $count = 1;
 	COUNTRY_CODE:
 	while( defined ($trial_country_code = 
@@ -72,7 +72,7 @@ sub new
 		# code we're pretty much stuffed.
 		return $self if $count > $MAX_COUNTRY_CODE_LENGTH;
 		}
-	
+
 	# we have a valid country code, but we don't know if we
 	# have a valid publisher code, so let's assume we don't
 	$self->{'valid'} = INVALID_PUBLISHER_CODE;
@@ -166,18 +166,18 @@ sub article_code ()     { my $self = shift; return $self->{'article_code'} }
 sub checksum ()         { my $self = shift; return $self->{'checksum'} }
 sub hyphen_positions () { my $self = shift; return @{$self->{'positions'}} }
 
-	
+
 sub fix_checksum
 	{
 	my $self = shift;
-	
+
 	my $last_char = substr($self->{'isbn'}, 9, 1);
 	my $checksum = _checksum $self->isbn;
 
 	substr($self->{'isbn'}, 9, 1) = $checksum;
-	
+
 	$self->_check_validity;
-	
+
 	return 0 if $last_char eq $checksum;
 	return 1;
 	}
@@ -186,14 +186,14 @@ sub as_string
 	{
 	my $self      = shift;
 	my $array_ref = shift;
-	
+
 	#this allows one to override the positions settings from the
 	#constructor
 	$array_ref = $self->{'positions'} unless ref $array_ref eq 'ARRAY';
-	
+
 	return unless $self->is_valid eq GOOD_ISBN;
 	my $isbn = $self->isbn;
-	
+
 	foreach my $position ( sort { $b <=> $a } @$array_ref )
 		{
 		next if $position > 9 or $position < 1;
@@ -202,57 +202,57 @@ sub as_string
 			
 	return $isbn;
 	}
-	
+
 sub as_ean
 	{
 	my $self = shift;
-	
+
 	my $isbn = ref $self ? $self->as_string([]) : _common_format $self;
-	
+
 	return unless ( defined $isbn and length $isbn == 10 );
-	
+
 	my $ean = '978' . substr($isbn, 0, 9);
-	
+
 	my $sum = 0;
 	foreach my $index ( 0, 2, 4, 6, 8, 10 )
 		{
 		$sum +=     substr($ean, $index, 1);
 		$sum += 3 * substr($ean, $index + 1, 1);
 		}
-	
+
 	#take the next higher multiple of 10 and subtract the sum.
 	#if $sum is 37, the next highest multiple of ten is 40. the
 	#check digit would be 40 - 37 => 3.
 	$ean .= ( 10 * ( int( $sum / 10 ) + 1 ) - $sum ) % 10;
-	
+
 	return $ean;
 	}
-	
+
 sub is_valid_checksum
 	{
 	my $data = _common_format shift;
-	
+
 	return BAD_ISBN unless defined $data;
 	return GOOD_ISBN if substr($data, 9, 1) eq _checksum $data;
-	
+
 	return BAD_CHECKSUM;
 	}
 
 sub ean_to_isbn
 	{
 	my $ean = shift;
-	
+
 	$ean =~ s/[^0-9]//g;
-	
+
 	return unless length $ean == 13;
-	return unless substr($ean, 0, 3) eq '978';
+	return unless substr($ean, 0, 3) =~ /97[98]/;
 		
 	my $isbn = new Business::ISBN( substr($ean, 3, 9) . '1' );
-	
+
 	$isbn->fix_checksum;
-	
+
 	return $isbn->as_string([]) if $isbn->is_valid;
-	
+
 	return;
 	}
 
@@ -260,12 +260,12 @@ sub ean_to_isbn
 sub isbn_to_ean
 	{
 	my $isbn = _common_format shift;
-	
+
 	return unless (defined $isbn and is_valid_checksum($isbn) eq GOOD_ISBN);
-	
+
 	return as_ean($isbn);
 	}	
-	
+
 sub png_barcode
 	{
 	my $self = shift;
@@ -283,7 +283,7 @@ sub png_barcode
 sub _check_validity
 	{
 	my $self = shift;
-	
+
 	if( is_valid_checksum $self->{'isbn'} eq GOOD_ISBN and 
 		defined $self->{'country_code'}
 	    and defined $self->{'publisher_code'} )
@@ -305,9 +305,9 @@ sub _check_validity
 sub _checksum
 	{
 	my $data = _common_format shift;
-	
+
 	return unless defined $data;
-	
+
 	my @digits = split //, $data;
 	my $sum    = 0;		
 
@@ -315,24 +315,24 @@ sub _checksum
 		{
 		$sum += $_ * (shift @digits);
 		}
-	
+
 	#return what the check digit should be
 	my $checksum = (11 - ($sum % 11))%11;
-	
+
 	$checksum = 'X' if $checksum == 10;
-	
+
 	return $checksum;
 	}
-	
+
 #internal function.  you don't get to use this one.
 sub _common_format
 	{
 	#we want uppercase X's
 	my $data = uc shift;
-	
+
 	#get rid of everything except decimal digits and X
 	$data =~ s/[^0-9X]//g;
-	
+
 	return $1 if $data =~ m/
 	                  ^    	#anchor at start  
 			(\d{9}[0-9X])
@@ -353,25 +353,25 @@ Business::ISBN - work with International Standard Book Numbers
 =head1 SYNOPSIS
 
 	use Business::ISBN;
-	
+
 	$isbn_object = new Business::ISBN('1565922573');
 	$isbn_object = new Business::ISBN('1-56592-257-3');
-		
+
 	#print the ISBN with hyphens at positions specified
 	#by constructor
 	print $isbn_object->as_string;
-	
+
 	#print the ISBN with hyphens at specified positions.
 	#this not does affect the default positions
 	print $isbn_object->as_string([]);
-	
+
 	#print the country code or publisher code
 	print $isbn->country_code;
 	print $isbn->publisher_code;
-	
+
 	#check to see if the ISBN is valid
 	$isbn_object->is_valid;
-	
+
 	#fix the ISBN checksum.  BEWARE:  the error might not be
 	#in the checksum!
 	$isbn_object->fix_checksum;
@@ -380,15 +380,15 @@ Business::ISBN - work with International Standard Book Numbers
 	$isbn_object->png_barcode;
 
 	#EXPORTABLE FUNCTIONS
-	
+
 	use Business::ISBN qw( is_valid_checksum 
 		isbn_to_ean ean_to_isbn );
-	
+
 	#verify the checksum
 	if( is_valid_checksum('0123456789') 
 		eq Business::ISBN::GOOD_ISBN ) 
 		{ ... }
-	
+
 	#convert to EAN (European Article Number)
 	$ean = isbn_to_ean('1565921496');
 
@@ -553,7 +553,8 @@ what to do.
 
 =head1 BUGS
 
-* none that i know about.
+* The new EAN format has two prefixes for ISBNS (978, 979).  The
+isbn_to_ean doesn't know which one to use, so it just uses 978
 
 This module is on Sourceforge at http://perl-isbn.sourceforge.net/.
 You can download the lastest CVS source, submit bugs and patches,
