@@ -1,6 +1,6 @@
 package Business::ISBN::Data;
-# $Revision: 1.5 $
-# $Id: Data.pm,v 1.5 2002/09/04 20:52:12 comdog Exp $
+# $Revision: 1.6 $
+# $Id: Data.pm,v 1.6 2004/09/25 23:51:09 comdog Exp $
 
 =head1 NAME 
 
@@ -16,7 +16,7 @@ See L<Business::ISBN>.
 
 =head1 AUTHOR
 
-brian d foy, E<lt>bdfoy@cpan.orgE<gt>
+brian d foy, C<< <bdfoy@cpan.org> >>
 
 =cut
 
