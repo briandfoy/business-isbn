@@ -1,6 +1,10 @@
+# $Id: MANIFEST,v 1.5 2002/09/04 20:53:22 comdog Exp $
 Changes
 ISBN.pm
 Data.pm
 MANIFEST
 Makefile.PL
-test.pl
+t/load.t
+t/pod.t
+t/isbn.t
+t/test_manifest
