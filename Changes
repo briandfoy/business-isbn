@@ -1,6 +1,10 @@
 Revision history for Perl extension Business::ISBN.
-$Revision: 1.7 $
-$Id: Changes,v 1.7 2004/09/02 22:18:06 comdog Exp $
+$Revision: 1.8 $
+$Id: Changes,v 1.8 2004/10/08 21:14:52 comdog Exp $
+
+1.76 - Fri Oct  8 16:12:51 2004
+* somehow this module went missing from CPAN, so here it is again
+* no need to upgrade if you have the previous version
 
 1.74 - Thu Sep  2 17:17:20 2004
 * another distro fix: some documentation cleanups, and the README is
