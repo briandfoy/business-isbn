@@ -1,4 +1,7 @@
-# $Id: Changes,v 1.6 2003/11/27 14:28:56 comdog Exp $
+# $Id: Changes,v 1.7 2004/09/15 00:53:22 comdog Exp $
+
+1.06 - Tue Sep 14 19:52:50 2004
+* small clean-ups for distribution bits---no need to upgrade
 
 1.05 - Thu Nov 27 08:28:44 2003
 	+ updated publisher codes
