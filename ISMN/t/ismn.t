@@ -1,4 +1,4 @@
-# $Revision: 1.2 $
+# $Revision: 1.3 $
 
 use Test::More tests => 18;
 
@@ -66,8 +66,9 @@ is( Business::ISMN::is_valid_checksum( $SHORT_ISMN ),
 
 SKIP:
 	{
-	open FILE, "ismns.txt" or 
-		skip( "Could not read $file: $!", 1, 'Need ismns.txt');
+	my $file = "ismns.txt";
+	open FILE, $file or 
+		skip( "Could not read $file: $!", 1, 'Need $file');
 
 	print STDERR "\nChecking ISMNs... (this may take a bit)\n";
 	
