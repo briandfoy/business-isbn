@@ -1,6 +1,13 @@
 Revision history for Perl extension Business::ISBN.
-$Revision: 1.10 $
-$Id: Changes,v 1.10 2004/11/22 01:49:06 comdog Exp $
+$Revision: 1.11 $
+$Id: Changes,v 1.11 2004/12/14 11:01:52 comdog Exp $
+
+1.79 - Tue Dec 14 05:00:37 2004
+* Updated tests for new ISBN data: previously invalid ISBNs are now
+valid.  The latest data is in Business::ISBN::Data 1.09 and is current
+as of November 2004.
+* You don't need this version of Business::ISBN if you already have it,
+although you should get the latest Business::ISBN::Data.
 
 1.78 - Sun Nov 21 19:46:40 2004
 * Require the latest version on Business::ISBN::Data, which was unbundled in 
