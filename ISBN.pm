@@ -1,6 +1,6 @@
 package Business::ISBN;
-# $Revision: 1.65 $
-# $Id: ISBN.pm,v 1.65 2001/11/20 20:44:30 comdog Exp $
+# $Revision: 1.66 $
+# $Id: ISBN.pm,v 1.66 2002/04/09 08:08:03 comdog Exp $
 
 use strict;
 use subs qw( _common_format _checksum is_valid_checksum
@@ -24,7 +24,7 @@ my $debug = 0;
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN);
 
-($VERSION)   = q$Revision: 1.65 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.66 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -107,8 +107,8 @@ sub new
 			#code is at least two digits).  we have to be careful 
 			#because perl turns 00* into 0 when used as a number
 			
-			last PAIR if 
-				$trial_publisher_code_length <  $lower_length;
+			#last PAIR if 
+			#	$trial_publisher_code_length <  $lower_length;
 			
 			next PAIR unless ( 
 				$trial_publisher_code_length >= $lower_length 
