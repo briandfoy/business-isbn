@@ -1,5 +1,5 @@
-# $Revision: 1.2 $
-# $Id: test.pl,v 1.2 2001/09/05 05:34:43 comdog Exp $
+# $Revision: 1.3 $
+# $Id: test.pl,v 1.3 2001/11/20 20:43:30 comdog Exp $
 # Before `make install' is performed this script should be runnable with
 # `make test'. After `make install' it should work as `perl test.pl'
 
@@ -160,21 +160,23 @@ print_ok;
 
 }
 
-{
-open FILE, "isbns.txt" or next;
-print STDERR "Checking ISBNs... (this may take a bit)\n";
-
-while( <FILE> )
+if( -r "isbns.txt" )
 	{
-	chomp;
-
-	my $result = Business::ISBN::is_valid_checksum( $_ );
-	$bad++ unless $result eq Business::ISBN::GOOD_ISBN;
-	print STDERR "$_ is not valid? [$result]\n" 
-		unless $result eq Business::ISBN::GOOD_ISBN;	
+	open FILE, "isbns.txt" or next;
+	print STDERR "Checking ISBNs... (this may take a bit)\n";
+	
+	while( <FILE> )
+		{
+		chomp;
+	
+		my $result = Business::ISBN::is_valid_checksum( $_ );
+		$bad++ unless $result eq Business::ISBN::GOOD_ISBN;
+		print STDERR "$_ is not valid? [$result]\n" 
+			unless $result eq Business::ISBN::GOOD_ISBN;	
+		}
+	
+	close FILE;
+	print "not " if $bad;
+	print_ok;
 	}
-
-close FILE;
-print "not " if $bad;
-print_ok;
-}
+else { print_ok; }
