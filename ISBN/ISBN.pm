@@ -1,5 +1,5 @@
-# $Revision: 1.76 $
-# $Id: ISBN.pm,v 1.76 2004/10/08 21:11:28 comdog Exp $
+# $Revision: 1.77 $
+# $Id: ISBN.pm,v 1.77 2004/10/27 07:37:57 comdog Exp $
 package Business::ISBN;
 use strict;
 
@@ -16,7 +16,7 @@ use vars qw( $VERSION @ISA @EXPORT_OK $debug %country_data
 use Carp qw(carp);
 use Exporter;
 
-use Business::ISBN::Data;
+use Business::ISBN::Data; # now a separate module
 
 my $debug = 0;
 
@@ -25,7 +25,7 @@ my $debug = 0;
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN);
 
-($VERSION)   = q$Revision: 1.76 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.77 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -156,13 +156,13 @@ sub new
 
 #it's your fault if you muck with the internals yourself
 # none of these take arguments
-sub isbn ()             { my $self = shift; return $self->{'isbn'} }
-sub is_valid ()         { my $self = shift; return $self->{'valid'} }
-sub country_code ()     { my $self = shift; return $self->{'country_code'} }
+sub isbn ()             { my $self = shift; return $self->{'isbn'}           }
+sub is_valid ()         { my $self = shift; return $self->{'valid'}          }
+sub country_code ()     { my $self = shift; return $self->{'country_code'}   }
 sub publisher_code ()   { my $self = shift; return $self->{'publisher_code'} }
-sub article_code ()     { my $self = shift; return $self->{'article_code'} }
-sub checksum ()         { my $self = shift; return $self->{'checksum'} }
-sub hyphen_positions () { my $self = shift; return @{$self->{'positions'}} }
+sub article_code ()     { my $self = shift; return $self->{'article_code'}   }
+sub checksum ()         { my $self = shift; return $self->{'checksum'}       }
+sub hyphen_positions () { my $self = shift; return @{$self->{'positions'}}   }
 
 
 sub fix_checksum
