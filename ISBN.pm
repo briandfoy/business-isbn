@@ -1,6 +1,6 @@
 package Business::ISBN;
-# $Revision: 1.71 $
-# $Id: ISBN.pm,v 1.71 2004/01/28 17:37:10 comdog Exp $
+# $Revision: 1.72 $
+# $Id: ISBN.pm,v 1.72 2004/02/11 21:06:04 comdog Exp $
 
 use strict;
 use subs qw( _common_format _checksum is_valid_checksum
@@ -25,7 +25,7 @@ my $debug = 0;
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN);
 
-($VERSION)   = q$Revision: 1.71 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.72 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -270,7 +270,12 @@ sub png_barcode
 
 	my $ean = isbn_to_ean( $self->as_string([]) );
 
-	require GD::Barcode::EAN13;
+	eval "use GD::Barcode::EAN13";
+	if( $@ )
+		{
+		carp "Need GD::Barcode::EAN13 to use png_barcode!";
+		return;
+		}
 
 	my $image = GD::Barcode::EAN13->new($ean)->plot->png;
 
