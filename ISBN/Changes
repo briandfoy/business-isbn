@@ -1,6 +1,13 @@
 Revision history for Perl extension Business::ISBN.
-$Revision: 1.8 $
-$Id: Changes,v 1.8 2004/10/08 21:14:52 comdog Exp $
+$Revision: 1.9 $
+$Id: Changes,v 1.9 2004/10/27 07:40:43 comdog Exp $
+
+1.77 - Wed Oct 27 02:39:17 2004
+* removed Business::ISBN::Data, which is now a separate module so you
+can update the data without updating the rest of the stuff.  Previously,
+CPAN.pm would install Business::ISBN::Data as a prerequisite, and this 
+distribution would come along and overwrite it with old data.  That
+was a bad thing.
 
 1.76 - Fri Oct  8 16:12:51 2004
 * somehow this module went missing from CPAN, so here it is again
