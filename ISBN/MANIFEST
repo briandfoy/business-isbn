@@ -1,4 +1,4 @@
-# $Id: MANIFEST,v 1.7 2004/01/28 17:32:59 comdog Exp $
+# $Id: MANIFEST,v 1.8 2004/02/11 21:09:05 comdog Exp $
 Changes
 ISBN.pm
 Data.pm
@@ -10,3 +10,4 @@ t/isbn.t
 t/test_manifest
 isbns.txt
 t/xisbn.t
+META.yml                                 Module meta-data (added by MakeMaker)
