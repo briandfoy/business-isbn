@@ -1,4 +1,4 @@
-# $Id: ISMN.pm,v 1.4 2002/10/22 16:45:58 comdog Exp $
+# $Id: ISMN.pm,v 1.5 2004/09/16 16:07:47 comdog Exp $
 package Business::ISMN;
 use strict;
 
@@ -12,6 +12,7 @@ use subs qw( _common_format _checksum is_valid_checksum
 use vars qw( $VERSION @ISA @EXPORT_OK $debug %country_data
 		$MAX_COUNTRY_CODE_LENGTH );
 
+use Carp qw(carp);
 use Exporter;
 use List::Util qw(sum);
 use Tie::Cycle;
@@ -22,7 +23,7 @@ my $debug = 0;
 @EXPORT_OK = qw(is_valid_checksum ean_to_ismn ismn_to_ean
 	INVALID_PUBLISHER_CODE BAD_CHECKSUM GOOD_ISMN BAD_ISMN);
 
-($VERSION)   = q$Revision: 1.4 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.5 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_PUBLISHER_CODE { -3 };
 sub BAD_CHECKSUM           { -1 };
@@ -41,7 +42,7 @@ my %Lengths = qw(
 	8 6
 	9 7
 	);
-	
+
 sub new
 	{
 	my $class       = shift;
@@ -55,35 +56,35 @@ sub new
 	$self->{'ismn'}      = $common_data;
 	$self->{'positions'} = [1,undef,9];
 
-	# we don't know if we have a valid publisher code, 
+	# we don't know if we have a valid publisher code,
 	# so let's assume we don't
 	$self->{'valid'} = INVALID_PUBLISHER_CODE;
 
 	# let's check the publisher code.
 	my $code_length = $Lengths{ substr( $self->{'ismn'}, 1, 1 ) };
-	$self->{publisher_code} = substr( 
-		$self->{'ismn'}, 
-		1, 
+	$self->{publisher_code} = substr(
+		$self->{'ismn'},
+		1,
 		$code_length
 		);
-	
+
 	my $code_end = $code_length + 1;
-	
+
 	$self->{'positions'}[1] = $code_end;
-	
+
 	return $self unless $self->is_valid_publisher_code;
 
 	# we have a good publisher code, so
 	# assume we have a bad checksum until we check
 	$self->{'valid'} = BAD_CHECKSUM;
-	
+
 	$self->{'article_code'} = substr( $self->{'ismn'}, $code_end, 9 - $code_end );
 	$self->{'checksum'}     = substr( $self->{'ismn'}, -1, 1 );
 
 	$self->{'valid'} = is_valid_checksum( $self->{'ismn'} );
 
 	return $self;
-	}	
+	}
 
 
 #it's your fault if you muck with the internals yourself
@@ -111,7 +112,7 @@ sub fix_checksum
 	return 0 if $last_char eq $checksum;
 	return 1;
 	}
-		
+
 sub as_string
 	{
 	my $self      = shift;
@@ -120,7 +121,7 @@ sub as_string
 	#this allows one to override the positions settings from the
 	#constructor
 	$array_ref = $self->{'positions'} unless ref $array_ref eq 'ARRAY';
-	
+
 	return unless $self->is_valid eq GOOD_ISMN;
 	my $ismn = $self->ismn;
 
@@ -129,7 +130,7 @@ sub as_string
 		next if $position > 9 or $position < 1;
 		substr($ismn, $position, 0) = '-';
 		}
-			
+
 	return $ismn;
 	}
 
@@ -143,7 +144,7 @@ sub as_ean
 
 	# the M becomes a zero in bookland
 	substr( $ismn, 0, 1 ) = '0';
-	
+
 	my $ean = '979' . substr($ismn, 0, 9);
 
 	my $sum = 0;
@@ -165,11 +166,12 @@ sub is_valid_publisher_code
 	{
 	my $self = shift;
 	my $code = $self->publisher_code;
-	
+
 	my $success = 0;
-	
+
 	foreach my $tuple ( @publisher_tuples )
-		{		
+		{
+		no warnings;
 		next if( defined $tuple->[2] and $code > $tuple->[2] );
 		last if $code < $tuple->[1];
 		if( $code >= $tuple->[1] and $code <= $tuple->[2] )
@@ -179,7 +181,7 @@ sub is_valid_publisher_code
 			last;
 			}
 		}
-	
+
 	return $success;
 	}
 
@@ -188,7 +190,7 @@ sub is_valid_checksum
 	my $data = _common_format shift;
 
 	return BAD_ISMN unless defined $data;
-	
+
 	return GOOD_ISMN if substr($data, 9, 1) eq _checksum $data;
 
 	return BAD_CHECKSUM;
@@ -202,7 +204,7 @@ sub ean_to_ismn
 
 	return unless length $ean == 13;
 	return unless substr($ean, 0, 3) eq 979;
-	
+
 	#XXX: fix to change leading 0 back to M
 	my $ismn = Business::ISMN->new( substr($ean, 3, 9) . '1' );
 
@@ -213,7 +215,7 @@ sub ean_to_ismn
 	return;
 	}
 
-		
+
 sub ismn_to_ean
 	{
 	my $ismn = _common_format shift;
@@ -221,7 +223,7 @@ sub ismn_to_ean
 	return unless (defined $ismn and is_valid_checksum($ismn) eq GOOD_ISMN);
 
 	return as_ean($ismn);
-	}	
+	}
 
 sub png_barcode
 	{
@@ -229,7 +231,12 @@ sub png_barcode
 
 	my $ean = ismn_to_ean( $self->as_string([]) );
 
-	require GD::Barcode::EAN13;
+	eval "use GD::Barcode::EAN13";
+	if( $@ )
+		{
+		carp "GD::Barcode::EAN13 required to make PNG barcodes";
+		return;
+		}
 
 	my $image = GD::Barcode::EAN13->new($ean)->plot->png;
 
@@ -241,7 +248,7 @@ sub _check_validity
 	{
 	my $self = shift;
 
-	if( is_valid_checksum $self->{'ismn'} eq GOOD_ISMN 
+	if( is_valid_checksum $self->{'ismn'} eq GOOD_ISMN
 	    and defined $self->{'publisher_code'} )
 	    {
 	    $self->{'valid'} = GOOD_ISMN;
@@ -259,23 +266,23 @@ sub _check_validity
 sub _checksum
 	{
 	my $data = _common_format shift;
-	
+
 	tie my $factor, 'Tie::Cycle', [ 1, 3 ];
 	return unless defined $data;
 
 	my $sum = 9;
-	
+
 	foreach my $digit ( split //, substr( $data, 1, 8 ) )
 		{
 		my $mult = $factor;
 		$sum += $digit * $mult;
 		}
-		
-		
+
+
 	#return what the check digit should be
 	# the extra mod 10 turns 10 into 0.
 	my $checksum = ( 10 - ($sum % 10) ) % 10;
-	
+
 	return $checksum;
 	}
 
@@ -290,14 +297,14 @@ sub _common_format
 	$data =~ s/[^0-9M]//g;
 
 	return $1 if $data =~ m/
-	                  ^    	
+	                  ^
 	                  (
-	                  M   
+	                  M
 			        \d{9}
 			          )
-	                  $	
+	                  $
 	                  /x;
-	                  
+
 	return;
 	}
 
@@ -340,12 +347,12 @@ Business::ISMN - work with International Standard Music Numbers
 
 	#EXPORTABLE FUNCTIONS
 
-	use Business::ISMN qw( is_valid_checksum 
+	use Business::ISMN qw( is_valid_checksum
 		ismn_to_ean ean_to_ismn );
 
 	#verify the checksum
-	if( is_valid_checksum('0123456789') 
-		eq Business::ISMN::GOOD_ISMN ) 
+	if( is_valid_checksum('0123456789')
+		eq Business::ISMN::GOOD_ISMN )
 		{ ... }
 
 	#convert to EAN (European Article Number)
@@ -367,7 +374,7 @@ The constructor accepts a scalar representing the ISMN.
 The string representing the ISMN may contain characters
 other than C<[0-9mM]>, although these will be removed in the
 internal representation.  The resulting string must look
-like an ISMN - the first character is an 'M' and the 
+like an ISMN - the first character is an 'M' and the
 following nine characters must be digits.
 
 The constructor attempts to determine the country
@@ -394,7 +401,7 @@ the discussion of that method, the author has found it
 extremely useful.  One should check the validity of the ISMN
 with C<is_valid()> rather than relying on the return value
 of the constructor.  If all one wants to do is check the
-validity of an ISMN, one can skip the object-oriented 
+validity of an ISMN, one can skip the object-oriented
 interface and use the C<is_valid_checksum()> function
 which is exportable on demand.
 
@@ -414,7 +421,7 @@ code was found.
 
 =item hyphen_positions
 
-Returns the list of hyphen positions as determined from the 
+Returns the list of hyphen positions as determined from the
 country and publisher codes.  the C<as_string> method provides
 a way to temporarily override these positions and to even
 forego them altogether.
@@ -424,10 +431,10 @@ forego them altogether.
 Return the ISMN as a string.  This function takes an
 optional anonymous array (or array reference) that specifies
 the placement of hyphens in the string.  An empty anonymous array
-produces a string with no hyphens. An empty argument list 
+produces a string with no hyphens. An empty argument list
 automatically hyphenates the ISMN based on the discovered
-publisher code.  An ISMN that is not valid may 
-produce strange results. 
+publisher code.  An ISMN that is not valid may
+produce strange results.
 
 The positions specified in the passed anonymous array
 are only used for one method use and do not replace
@@ -441,19 +448,19 @@ ignored.
 
 =item  is_valid
 
-Returns C<Business::ISMN::GOOD_ISMN> if the checksum is valid and the 
+Returns C<Business::ISMN::GOOD_ISMN> if the checksum is valid and the
 country and publisher codes are defined.
 
-Returns C<Business::ISMN::BAD_CHECKSUM> if the ISMN does not pass 
+Returns C<Business::ISMN::BAD_CHECKSUM> if the ISMN does not pass
 the checksum test. The constructor accepts invalid ISMN's so that
-they might be fixed with C<fix_checksum>.  
+they might be fixed with C<fix_checksum>.
 
-Returns C<Business::ISMN::INVALID_PUBLISHER_CODE> if a publisher code 
-could not be determined. 
+Returns C<Business::ISMN::INVALID_PUBLISHER_CODE> if a publisher code
+could not be determined.
 
 Returns C<Business::ISMN::BAD_ISMN> if the string has no hope of ever
 looking like a valid ISMN.  This might include strings such as C<"abc">,
-C<"123456">, and so on. 
+C<"123456">, and so on.
 
 =item  fix_checksum()
 
@@ -489,8 +496,8 @@ do not use object technology behind the scenes.
 =item is_valid_checksum('M021765430')
 
 Takes the ISMN string and runs it through the checksum
-comparison routine.  Returns C<Business::ISMN::GOOD_ISMN> 
-if the ISMN is valid, C<Business::ISMN::BAD_CHECKSUM> if the 
+comparison routine.  Returns C<Business::ISMN::GOOD_ISMN>
+if the ISMN is valid, C<Business::ISMN::BAD_CHECKSUM> if the
 string looks like an ISMN but has an invalid checksum, and
 C<Business::ISMN::BAD_ISMN> if the string does not look like
 an ISMN.
@@ -522,18 +529,18 @@ what to do.
 This source is part of a SourceForge project which always has the
 latest sources in CVS, as well as all of the previous releases.
 
-	https://sourceforge.net/projects/brian-d-foy/
-	
+	http://sourceforge.net/projects/brian-d-foy/
+
 If, for some reason, I disappear from the world, one of the other
 members of the project can shepherd this module appropriately.
 
 =head1 AUTHOR
 
-brian d foy E<lt>bdfoy@cpan.orgE<gt>
+brian d foy, C<< <bdfoy@cpan.org> >>
 
 =head1 COPYRIGHT
 
-Copyright 2001 brian d foy, All rights reserved
+Copyright 2001-2004 brian d foy, All rights reserved
 
 You may use this software under the same terms as Perl itself.
 

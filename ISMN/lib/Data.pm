@@ -1,9 +1,9 @@
 package Business::ISBM::Data;
 use strict;
-# $Revision: 1.1 $
-# $Id: Data.pm,v 1.1 2002/09/09 16:38:25 comdog Exp $
+# $Revision: 1.2 $
+# $Id: Data.pm,v 1.2 2004/09/16 16:07:46 comdog Exp $
 
-=head1 NAME 
+=head1 NAME
 
 Business::ISMN::Data - data pack for Business::ISMN
 
@@ -17,7 +17,7 @@ See L<Business::ISMN>.
 
 =head1 AUTHOR
 
-brian d foy, E<lt>bdfoy@cpan.orgE<gt>
+brian d foy, C<< <bdfoy@cpan.org> >>
 
 =cut
 
@@ -62,7 +62,7 @@ foreach my $key ( keys %publisher_data )
 	my @pairs = map { [ $key, @$_ ] } @{ $publisher_data{$key} };
 	push @publisher_tuples, @pairs;
 	}
-	
+
 @publisher_tuples = sort { $a->[1] <=> $b->[1] } @publisher_tuples;
 
 1;
