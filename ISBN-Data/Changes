@@ -1,4 +1,13 @@
-# $Id: Changes,v 1.9 2004/10/08 20:45:09 comdog Exp $
+# $Id: Changes,v 1.10 2004/12/14 10:46:51 comdog Exp $
+
+1.09 - Tue Dec 14 04:43:32 2004
+* updated the publisher ranges and the country prefixes for the latest
+data as of November 2004.  See http://www.isbn-international.or
+* Added the script I used to take the raw data and turn it into the
+module
+
+* I recommend this update for everyone.  Lots of publisher ranges have
+changed
 
 1.08 - Fri Oct  8 15:44:38 2004
 * no change in functionality or data: no need to upgrade
