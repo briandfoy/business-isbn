@@ -5,3 +5,5 @@ pm_to_blib
 blib
 Business-ISBN-Data-*
 META.yml
+pm_to_blib.ts
+blibdirs.ts
