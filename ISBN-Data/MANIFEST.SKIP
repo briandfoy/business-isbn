@@ -1,0 +1,9 @@
+CVS
+blib
+.cvsignore
+.releaserc
+MANIFEST.bak
+MANIFEST.SKIP
+Makefile$
+Makefile.old
+pm_to_blib
