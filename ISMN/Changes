@@ -1,4 +1,7 @@
-# $Id: Changes,v 1.1 2002/09/09 16:43:27 comdog Exp $
+# $Id: Changes,v 1.2 2002/09/09 19:55:48 uid59984 Exp $
 
-0.5 - Mon Sep  9 11:41:43 CDT 2002
+1.2 - Mon Sep  9 14:55:31 CDT 2002
+	+ fixed checksum routine
+	
+1.1 - Mon Sep  9 11:41:43 CDT 2002
 	+ first version of Business::ISMN
