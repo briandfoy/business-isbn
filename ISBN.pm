@@ -1,6 +1,6 @@
 package Business::ISBN;
-# $Revision: 1.70 $
-# $Id: ISBN.pm,v 1.70 2002/09/06 04:38:19 comdog Exp $
+# $Revision: 1.71 $
+# $Id: ISBN.pm,v 1.71 2004/01/28 17:37:10 comdog Exp $
 
 use strict;
 use subs qw( _common_format _checksum is_valid_checksum
@@ -13,6 +13,7 @@ use subs qw( _common_format _checksum is_valid_checksum
 use vars qw( $VERSION @ISA @EXPORT_OK $debug %country_data
 		$MAX_COUNTRY_CODE_LENGTH );
 
+use Carp qw(carp);
 use Exporter;
 
 use Business::ISBN::Data;
@@ -24,7 +25,7 @@ my $debug = 0;
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN);
 
-($VERSION)   = q$Revision: 1.70 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.71 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -276,6 +277,40 @@ sub png_barcode
 	return $image;
 	}
 
+sub xisbn
+	{
+	my $self = shift;
+	
+	my $data = $self->_get_xisbn;
+	$data =~ tr/x/X/;
+	
+	my @isbns = $data =~ m|<isbn>(.*?)</isbn>|ig;
+	shift @isbns;
+	wantarray ? @isbns : \@isbns;
+	}
+
+sub _get_xisbn
+	{
+	my $self = shift;
+	
+	eval "use LWP::Simple";
+	if( $@ ) { carp "You need LWP::Simple to use xisbn()"; return; }
+
+	my $data = LWP::Simple::get( $self->_xisbn_url );	
+	
+	carp "Could not fetch xISBN data" unless defined $data;
+	
+	return $data;
+	}	
+	
+sub _xisbn_url
+	{
+	my $self = shift;
+	my $isbn = $self->as_string([]);
+	
+	return "http://labs.oclc.org/xisbn/$isbn";
+	}
+	
 #internal function.  you don't get to use this one.
 sub _check_validity
 	{
@@ -500,7 +535,7 @@ Returns C<Business::ISBN::BAD_ISBN> if the string has no hope of ever
 looking like a valid ISBN.  This might include strings such as C<"abc">,
 C<"123456">, and so on. 
 
-=item  fix_checksum()
+=item fix_checksum()
 
 Replace the tenth character with the checksum the
 corresponds to the previous nine digits.  This does not
@@ -510,7 +545,7 @@ at all.  It only produces a string that passes the checksum
 routine.  If the ISBN passed to the constructor was invalid,
 the error might have been in any of the other nine positions.
 
-=item  $obj-E<gt>as_ean()
+=item as_ean()
 
 Converts the ISBN to the equivalent EAN (European Article Number).
 No pricing extension is added.  Returns the EAN as a string.  This
@@ -521,6 +556,22 @@ its argument list to determine what to do.
 
 Creates a PNG image of the EAN13 barcode which corresponds to the
 ISBN. Returns the image as a string.
+
+=item xisbn()
+
+Grabs related ISBNs from Online Computer Library Center (OCLC),
+L<http://www.oclc.org> using the xISBN project.
+
+In list context, xisbn() returns a list of ISBNs in
+descending order based on OCLC WorldCat holdings, minus the
+object's ISBN. In scalar context, xisbn() returns an array
+reference of the same list. The ISBNs are simply strings,
+not object, for the moment.  This may change later.
+
+Terminating x's are changed to X's so they are consistent with the
+rest of the module.
+
+You must have LWP installed (it comes with perl5.8).
 
 =back
 
