@@ -7,3 +7,4 @@ Business-*
 .lwpcookies
 META.yml
 *.tmp
+Data.pm
