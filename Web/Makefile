@@ -1,6 +1,6 @@
 USER=comdog
 SERVER=shell.sourceforge.net
-PROJECT=isbn-perl
+PROJECT=perl-isbn
 
 SCP=/usr/bin/scp
 PERL=/usr/bin/perl
