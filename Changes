@@ -1,6 +1,10 @@
 Revision history for Perl extension Business::ISBN.
-$Revision: 1.4 $
-$Id: Changes,v 1.4 2004/01/28 18:00:18 comdog Exp $
+$Revision: 1.5 $
+$Id: Changes,v 1.5 2004/02/11 21:15:53 comdog Exp $
+
+1.72 - Wed Feb 11 16:18:30 2004
+	* removed errant File::Find::Rule use
+	* Check for modules in png_barcode before require-ing them
 
 1.71 - Wed Jan 28 13:00:38 2004
 	* added xISBN support
