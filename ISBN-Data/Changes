@@ -1,1 +1,5 @@
-# $Id: Changes,v 1.1 2002/11/25 20:10:01 comdog Exp $
+# $Id: Changes,v 1.2 2002/11/25 20:16:26 comdog Exp $
+
+1.01 - Mon Nov 25 14:13:30 CST 2002
+	+ this is the first release as a separate module
+	+ added additional publishers (4xxx) for english countries
