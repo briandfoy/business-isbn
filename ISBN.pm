@@ -1,6 +1,6 @@
 package Business::ISBN;
-# $Revision: 1.72 $
-# $Id: ISBN.pm,v 1.72 2004/02/11 21:06:04 comdog Exp $
+# $Revision: 1.73 $
+# $Id: ISBN.pm,v 1.73 2004/09/02 21:16:50 comdog Exp $
 
 use strict;
 use subs qw( _common_format _checksum is_valid_checksum
@@ -25,7 +25,7 @@ my $debug = 0;
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN);
 
-($VERSION)   = q$Revision: 1.72 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.73 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -56,19 +56,19 @@ sub new
 
 	my $count = 1;
 	COUNTRY_CODE:
-	while( defined ($trial_country_code = 
+	while( defined ($trial_country_code =
 		substr($self->{'isbn'}, 0, $count++) ) )
 		{
 		if(defined $country_data{ $trial_country_code } )
 			{
 			$self->{'country_code'} = $trial_country_code;
-			$self->{'country'} =  
+			$self->{'country'} =
 				${$country_data{ $trial_country_code }}[0];
 			$country_code_length = length $trial_country_code;
 			${$self->{'positions'}}[2] = $country_code_length;
 			last COUNTRY_CODE;
 			}
-		
+
 		# if we've past the point of finding a country
 		# code we're pretty much stuffed.
 		return $self if $count > $MAX_COUNTRY_CODE_LENGTH;
@@ -86,46 +86,46 @@ sub new
 	$count = 1;
 
 	PUBLISHER_CODE:
-	while( defined( $trial_publisher_code = substr($self->{'isbn'}, 
+	while( defined( $trial_publisher_code = substr($self->{'isbn'},
 	                              $country_code_length,
 	                              $count) )  and
 	                              $count < $max_publisher_code_length)
 		{
 		my @pairs = @{${$country_data{ $self->{'country_code'} } }[1]};
 
-		PAIR: 
+		PAIR:
 		while( @pairs )
 			{
 			my $lower_bound  = shift @pairs;
 			my $upper_bound  = shift @pairs;
 			my $lower_length = length $lower_bound;
 			my $upper_length = length $upper_bound;
-			
+
  			#in looking for the publisher code, 00 has a different
 			#meaning than 0 (in this case means that the publisher
-			#code is at least two digits).  we have to be careful 
+			#code is at least two digits).  we have to be careful
 			#because perl turns 00* into 0 when used as a number
-			
-			#last PAIR if 
+
+			#last PAIR if
 			#	$trial_publisher_code_length <  $lower_length;
-			
-			next PAIR unless ( 
-				$count >= $lower_length 
+
+			next PAIR unless (
+				$count >= $lower_length
 					and
 			        $count <= $upper_length );
-				
+
 			if( $trial_publisher_code >= $lower_bound and
 			    $trial_publisher_code <= $upper_bound )
 			    {
 			    $self->{'publisher_code'} = $trial_publisher_code;
-				${$self->{'positions'}}[1] = 
+				${$self->{'positions'}}[1] =
 					$country_code_length + $count;
 			    last PUBLISHER_CODE;
 			    }
-			} 
-			
-		$count++; 	
-		
+			}
+
+		$count++;
+
 		}
 
 	# do we have a publisher code? if not, game over
@@ -136,8 +136,8 @@ sub new
 
 	#get the book code, which is everything between the
 	#publisher code the and the checksum
-	if ( $common_data =~ m/  
-					$self->{'country_code'} 
+	if ( $common_data =~ m/
+					$self->{'country_code'}
 					$self->{'publisher_code'}
 					(.+)
 					([\dxX])
@@ -148,10 +148,10 @@ sub new
 		$self->{'checksum'}     = $2;
 		}
 
-	$self->{'valid'} = is_valid_checksum( $self->{'isbn'} ); 
+	$self->{'valid'} = is_valid_checksum( $self->{'isbn'} );
 
 	return $self;
-	}	
+	}
 
 
 #it's your fault if you muck with the internals yourself
@@ -179,7 +179,7 @@ sub fix_checksum
 	return 0 if $last_char eq $checksum;
 	return 1;
 	}
-		
+
 sub as_string
 	{
 	my $self      = shift;
@@ -197,7 +197,7 @@ sub as_string
 		next if $position > 9 or $position < 1;
 		substr($isbn, $position, 0) = '-';
 		}
-			
+
 	return $isbn;
 	}
 
@@ -244,7 +244,7 @@ sub ean_to_isbn
 
 	return unless length $ean == 13;
 	return unless substr($ean, 0, 3) =~ /97[98]/;
-		
+
 	my $isbn = new Business::ISBN( substr($ean, 3, 9) . '1' );
 
 	$isbn->fix_checksum;
@@ -254,7 +254,7 @@ sub ean_to_isbn
 	return;
 	}
 
-		
+
 sub isbn_to_ean
 	{
 	my $isbn = _common_format shift;
@@ -262,7 +262,7 @@ sub isbn_to_ean
 	return unless (defined $isbn and is_valid_checksum($isbn) eq GOOD_ISBN);
 
 	return as_ean($isbn);
-	}	
+	}
 
 sub png_barcode
 	{
@@ -285,10 +285,10 @@ sub png_barcode
 sub xisbn
 	{
 	my $self = shift;
-	
+
 	my $data = $self->_get_xisbn;
 	$data =~ tr/x/X/;
-	
+
 	my @isbns = $data =~ m|<isbn>(.*?)</isbn>|ig;
 	shift @isbns;
 	wantarray ? @isbns : \@isbns;
@@ -297,31 +297,31 @@ sub xisbn
 sub _get_xisbn
 	{
 	my $self = shift;
-	
+
 	eval "use LWP::Simple";
 	if( $@ ) { carp "You need LWP::Simple to use xisbn()"; return; }
 
-	my $data = LWP::Simple::get( $self->_xisbn_url );	
-	
+	my $data = LWP::Simple::get( $self->_xisbn_url );
+
 	carp "Could not fetch xISBN data" unless defined $data;
-	
+
 	return $data;
-	}	
-	
+	}
+
 sub _xisbn_url
 	{
 	my $self = shift;
 	my $isbn = $self->as_string([]);
-	
+
 	return "http://labs.oclc.org/xisbn/$isbn";
 	}
-	
+
 #internal function.  you don't get to use this one.
 sub _check_validity
 	{
 	my $self = shift;
 
-	if( is_valid_checksum $self->{'isbn'} eq GOOD_ISBN and 
+	if( is_valid_checksum $self->{'isbn'} eq GOOD_ISBN and
 		defined $self->{'country_code'}
 	    and defined $self->{'publisher_code'} )
 	    {
@@ -346,7 +346,7 @@ sub _checksum
 	return unless defined $data;
 
 	my @digits = split //, $data;
-	my $sum    = 0;		
+	my $sum    = 0;
 
 	foreach( reverse 2..10 )
 		{
@@ -371,11 +371,11 @@ sub _common_format
 	$data =~ s/[^0-9X]//g;
 
 	return $1 if $data =~ m/
-	                  ^    	#anchor at start  
+	                  ^    	#anchor at start
 			(\d{9}[0-9X])
 	                  $	#anchor at end
 	                  /x;
-	                  
+
 	return;
 	}
 
@@ -418,12 +418,12 @@ Business::ISBN - work with International Standard Book Numbers
 
 	#EXPORTABLE FUNCTIONS
 
-	use Business::ISBN qw( is_valid_checksum 
+	use Business::ISBN qw( is_valid_checksum
 		isbn_to_ean ean_to_isbn );
 
 	#verify the checksum
-	if( is_valid_checksum('0123456789') 
-		eq Business::ISBN::GOOD_ISBN ) 
+	if( is_valid_checksum('0123456789')
+		eq Business::ISBN::GOOD_ISBN )
 		{ ... }
 
 	#convert to EAN (European Article Number)
@@ -473,7 +473,7 @@ the discussion of that method, the author has found it
 extremely useful.  One should check the validity of the ISBN
 with C<is_valid()> rather than relying on the return value
 of the constructor.  If all one wants to do is check the
-validity of an ISBN, one can skip the object-oriented 
+validity of an ISBN, one can skip the object-oriented
 interface and use the C<is_valid_checksum()> function
 which is exportable on demand.
 
@@ -494,7 +494,7 @@ was found.
 
 =item hyphen_positions
 
-Returns the list of hyphen positions as determined from the 
+Returns the list of hyphen positions as determined from the
 country and publisher codes.  the C<as_string> method provides
 a way to temporarily override these positions and to even
 forego them altogether.
@@ -504,10 +504,10 @@ forego them altogether.
 Return the ISBN as a string.  This function takes an
 optional anonymous array (or array reference) that specifies
 the placement of hyphens in the string.  An empty anonymous array
-produces a string with no hyphens. An empty argument list 
+produces a string with no hyphens. An empty argument list
 automatically hyphenates the ISBN based on the discovered
-country and publisher codes.  An ISBN that is not valid may 
-produce strange results. 
+country and publisher codes.  An ISBN that is not valid may
+produce strange results.
 
 The positions specified in the passed anonymous array
 are only used for one method use and do not replace
@@ -523,22 +523,22 @@ A terminating 'x' is changed to 'X'.
 
 =item  is_valid
 
-Returns C<Business::ISBN::GOOD_ISBN> if the checksum is valid and the 
+Returns C<Business::ISBN::GOOD_ISBN> if the checksum is valid and the
 country and publisher codes are defined.
 
-Returns C<Business::ISBN::BAD_CHECKSUM> if the ISBN does not pass 
+Returns C<Business::ISBN::BAD_CHECKSUM> if the ISBN does not pass
 the checksum test. The constructor accepts invalid ISBN's so that
-they might be fixed with C<fix_checksum>.  
+they might be fixed with C<fix_checksum>.
 
-Returns C<Business::ISBN::INVALID_COUNTRY_CODE> if a country code 
+Returns C<Business::ISBN::INVALID_COUNTRY_CODE> if a country code
 could not be determined (relies on a valid checksum).
 
-Returns C<Business::ISBN::INVALID_PUBLISHER_CODE> if a publisher code 
-could not be determined (relies on a valid checksum and country code). 
+Returns C<Business::ISBN::INVALID_PUBLISHER_CODE> if a publisher code
+could not be determined (relies on a valid checksum and country code).
 
 Returns C<Business::ISBN::BAD_ISBN> if the string has no hope of ever
 looking like a valid ISBN.  This might include strings such as C<"abc">,
-C<"123456">, and so on. 
+C<"123456">, and so on.
 
 =item fix_checksum()
 
@@ -590,8 +590,8 @@ do not use object technology behind the scenes.
 =item is_valid_checksum('1565921496')
 
 Takes the ISBN string and runs it through the checksum
-comparison routine.  Returns C<Business::ISBN::GOOD_ISBN> 
-if the ISBN is valid, C<Business::ISBN::BAD_CHECKSUM> if the 
+comparison routine.  Returns C<Business::ISBN::GOOD_ISBN>
+if the ISBN is valid, C<Business::ISBN::BAD_CHECKSUM> if the
 string looks like an ISBN but has an invalid checksum, and
 C<Business::ISBN::BAD_ISBN> if the string does not look like
 an ISBN.
@@ -630,14 +630,9 @@ to the author. :)
 
 =head1 AUTHOR
 
-brian d foy E<lt>bdfoy@cpan.orgE<gt>
+brian d foy C<< <bdfoy@cpan.org> >>
 
-Copyright 2001 brian d foy
-
-Country code and publisher code graciously provided by Steve
-Fisher <stevef@teleord.co.uk> of Whitaker (the UK ISBN folks
-and the major bibliographic data provider in the UK).
-"Whitaker - helping to link authors to readers worldwide"
+Copyright 2001-2004 brian d foy
 
 Thanks to Mark W. Eichin E<lt>eichin@thok.orgE<gt> for suggestions and
 discussions on EAN support.

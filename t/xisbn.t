@@ -1,4 +1,4 @@
-# $Id: xisbn.t,v 1.3 2004/01/28 17:46:01 comdog Exp $
+# $Id: xisbn.t,v 1.4 2004/09/02 21:16:51 comdog Exp $
 
 use Test::More;
 
@@ -23,7 +23,7 @@ be down.
 --------------------------------------------------------
 HERE
 
-		#plan skip_all => "Could not reach $host: skipping tests";
+		plan skip_all => "Could not reach $host: skipping tests";
 		}
 	}
 
@@ -43,6 +43,7 @@ use_ok( "Business::ISBN" );
 	
 foreach my $string ( @isbns )
 	{
+	local $^W=0;
 	my $isbn = Business::ISBN->new( $string );
 	isa_ok( $isbn, 'Business::ISBN' );
 	ok( $isbn->is_valid, "$isbn is valid" );
