@@ -1,4 +1,8 @@
-# $Id: Changes,v 1.8 2004/09/15 02:16:47 comdog Exp $
+# $Id: Changes,v 1.9 2004/10/08 20:45:09 comdog Exp $
+
+1.08 - Fri Oct  8 15:44:38 2004
+* no change in functionality or data: no need to upgrade
+* added strictures to the package
 
 1.07 - Tue Sep 14 21:16:31 2004
 * distro cleanup:  no need to upgrade
