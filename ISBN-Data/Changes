@@ -1,4 +1,7 @@
-# $Id: Changes,v 1.7 2004/09/15 00:53:22 comdog Exp $
+# $Id: Changes,v 1.8 2004/09/15 02:16:47 comdog Exp $
+
+1.07 - Tue Sep 14 21:16:31 2004
+* distro cleanup:  no need to upgrade
 
 1.06 - Tue Sep 14 19:52:50 2004
 * small clean-ups for distribution bits---no need to upgrade
