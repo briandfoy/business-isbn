@@ -6,3 +6,4 @@ blib
 Business-*
 .lwpcookies
 META.yml
+*.tmp
