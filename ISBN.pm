@@ -1,6 +1,6 @@
 package Business::ISBN;
-# $Revision: 1.69 $
-# $Id: ISBN.pm,v 1.69 2002/09/05 06:17:49 comdog Exp $
+# $Revision: 1.70 $
+# $Id: ISBN.pm,v 1.70 2002/09/06 04:38:19 comdog Exp $
 
 use strict;
 use subs qw( _common_format _checksum is_valid_checksum
@@ -24,7 +24,7 @@ my $debug = 0;
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN);
 
-($VERSION)   = q$Revision: 1.69 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.70 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -90,8 +90,6 @@ sub new
 	                              $count) )  and
 	                              $count < $max_publisher_code_length)
 		{
-		my $trial_publisher_code_length = length $trial_publisher_code;
-
 		my @pairs = @{${$country_data{ $self->{'country_code'} } }[1]};
 
 		PAIR: 
@@ -111,17 +109,16 @@ sub new
 			#	$trial_publisher_code_length <  $lower_length;
 			
 			next PAIR unless ( 
-				$trial_publisher_code_length >= $lower_length 
+				$count >= $lower_length 
 					and
-			        $trial_publisher_code_length <= $upper_length );
+			        $count <= $upper_length );
 				
 			if( $trial_publisher_code >= $lower_bound and
 			    $trial_publisher_code <= $upper_bound )
 			    {
 			    $self->{'publisher_code'} = $trial_publisher_code;
 				${$self->{'positions'}}[1] = 
-					$country_code_length +
-					$trial_publisher_code_length;
+					$country_code_length + $count;
 			    last PUBLISHER_CODE;
 			    }
 			} 
