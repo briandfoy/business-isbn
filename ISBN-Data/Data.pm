@@ -1,10 +1,10 @@
-# $Id: Data.pm,v 1.5 2003/11/27 14:19:37 comdog Exp $
+# $Id: Data.pm,v 1.6 2004/09/15 00:51:14 comdog Exp $
 package Business::ISBN::Data;
 use vars qw($VERSION);
 
-$VERSION = sprintf "%d.%02d", q$Revision: 1.5 $ =~ m/ (\d+) \. (\d+) /xg;
+$VERSION = sprintf "%d.%02d", q$Revision: 1.6 $ =~ m/ (\d+) \. (\d+) /xg;
 
-=head1 NAME 
+=head1 NAME
 
 Business::ISBN::Data - data pack for Business::ISBN
 
@@ -34,14 +34,14 @@ Older versions of this module did not declare a version.
 This source is part of a SourceForge project which always has the
 latest sources in CVS, as well as all of the previous releases.
 
-	https://sourceforge.net/projects/perl-isbn/
-	
+	http://sourceforge.net/projects/perl-isbn/
+
 If, for some reason, I disappear from the world, one of the other
 members of the project can shepherd this module appropriately.
 
 =head1 AUTHOR
 
-brian d foy, E<lt>bdfoy@cpan.orgE<gt>
+brian d foy, C<< <bdfoy@cpan.org> >>
 
 =cut
 
@@ -184,7 +184,7 @@ package Business::ISBN;
 # i cheat a little bit here.  i know that that the max length is
 # 5, and that i know that those will start with 999xx. :)
 # however, if the data changes i should think about this again.
-$MAX_COUNTRY_CODE_LENGTH = length( 
+$MAX_COUNTRY_CODE_LENGTH = length(
 	( sort { $a <=> $b } keys %country_data )[-1]
 	);
 

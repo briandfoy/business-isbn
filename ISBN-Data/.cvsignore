@@ -4,3 +4,4 @@ Makefile
 pm_to_blib
 blib
 Business-ISBN-Data-*
+META.yml
