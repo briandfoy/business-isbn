@@ -1,4 +1,4 @@
-# $Id: ISMN.pm,v 1.5 2004/09/16 16:07:47 comdog Exp $
+# $Id: ISMN.pm,v 1.6 2005/03/08 22:18:22 comdog Exp $
 package Business::ISMN;
 use strict;
 
@@ -23,7 +23,7 @@ my $debug = 0;
 @EXPORT_OK = qw(is_valid_checksum ean_to_ismn ismn_to_ean
 	INVALID_PUBLISHER_CODE BAD_CHECKSUM GOOD_ISMN BAD_ISMN);
 
-($VERSION)   = q$Revision: 1.5 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.6 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_PUBLISHER_CODE { -3 };
 sub BAD_CHECKSUM           { -1 };
@@ -410,6 +410,10 @@ returns C<undef>.  It may do this if the string passed as the
 ISMN cannot be munged to the internal format meaning that it
 does not even come close to looking like an ISMN.
 
+=item ismn
+
+Returns the ISMN as a string
+
 =item publisher
 
 Returns the country associated with the publisher code.
@@ -417,6 +421,16 @@ Returns the country associated with the publisher code.
 =item publisher_code
 
 Returns the publisher code or C<undef> if no publisher
+code was found.
+
+=item article_code
+
+Returns the article code or C<undef> if no article
+code was found.
+
+=item checksum
+
+Returns the checksum or C<undef> if no publisher
 code was found.
 
 =item hyphen_positions
@@ -461,6 +475,10 @@ could not be determined.
 Returns C<Business::ISMN::BAD_ISMN> if the string has no hope of ever
 looking like a valid ISMN.  This might include strings such as C<"abc">,
 C<"123456">, and so on.
+
+=item is_valid_publisher_code
+
+Returns true if the publisher code is valid, and false otherwise.
 
 =item  fix_checksum()
 
