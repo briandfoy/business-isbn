@@ -1,8 +1,8 @@
+# $Revision: 1.76 $
+# $Id: ISBN.pm,v 1.76 2004/10/08 21:11:28 comdog Exp $
 package Business::ISBN;
-# $Revision: 1.75 $
-# $Id: ISBN.pm,v 1.75 2004/09/25 23:51:10 comdog Exp $
-
 use strict;
+
 use subs qw( _common_format _checksum is_valid_checksum
 	INVALID_COUNTRY_CODE
 	INVALID_PUBLISHER_CODE
@@ -25,7 +25,7 @@ my $debug = 0;
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN);
 
-($VERSION)   = q$Revision: 1.75 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.76 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -629,6 +629,8 @@ to the author. :)
 * i would like to create the bar codes with the price extension: 
 	for now: 
 	https://www.lightningsource.com/LSISecure/PubResources/CoverSpecsEntry.asp
+
+* the ISBN is going to expand to 13 numbers soon
 
 =head1 SOURCE AVAILABILITY
 
