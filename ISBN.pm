@@ -1,6 +1,6 @@
 package Business::ISBN;
-# $Revision: 1.68 $
-# $Id: ISBN.pm,v 1.68 2002/09/04 20:52:52 comdog Exp $
+# $Revision: 1.69 $
+# $Id: ISBN.pm,v 1.69 2002/09/05 06:17:49 comdog Exp $
 
 use strict;
 use subs qw( _common_format _checksum is_valid_checksum
@@ -24,7 +24,7 @@ my $debug = 0;
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN);
 
-($VERSION)   = q$Revision: 1.68 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.69 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -397,7 +397,11 @@ Business::ISBN - work with International Standard Book Numbers
 
 =head1 DESCRIPTION
 
-=head2 C<new($isbn)>
+=head2 METHODS
+
+=over 4
+
+=item new($isbn)
 
 The constructor accepts a scalar representing the ISBN.
 
@@ -441,24 +445,24 @@ returns C<undef>.  It may do this if the string passed as the
 ISBN cannot be munged to the internal format meaning that it
 does not even come close to looking like an ISBN.
 
-=head2 C<$obj-E<gt>publisher_code>
+=item publisher_code
 
 Returns the publisher code or C<undef> if no publisher
 code was found.
 
-=head2 C<$obj-E<gt>country_code>
+=item country_code
 
 Returns the country code or C<undef> if no country code
 was found.
 
-=head2 C<$obj-E<gt>hyphen_positions>
+=item hyphen_positions
 
 Returns the list of hyphen positions as determined from the 
 country and publisher codes.  the C<as_string> method provides
 a way to temporarily override these positions and to even
 forego them altogether.
 
-=head2 C<$obj-E<gt>as_string()>,  C<$obj-E<gt>as_string([])>
+=item as_string(),  as_string([])
 
 Return the ISBN as a string.  This function takes an
 optional anonymous array (or array reference) that specifies
@@ -480,7 +484,7 @@ ignored.
 
 A terminating 'x' is changed to 'X'.
 
-=head2  C<$obj-E<gt>is_valid()>
+=item  is_valid
 
 Returns C<Business::ISBN::GOOD_ISBN> if the checksum is valid and the 
 country and publisher codes are defined.
@@ -499,7 +503,7 @@ Returns C<Business::ISBN::BAD_ISBN> if the string has no hope of ever
 looking like a valid ISBN.  This might include strings such as C<"abc">,
 C<"123456">, and so on. 
 
-=head2  C<$obj-E<gt>fix_checksum()>
+=item  fix_checksum()
 
 Replace the tenth character with the checksum the
 corresponds to the previous nine digits.  This does not
@@ -509,24 +513,28 @@ at all.  It only produces a string that passes the checksum
 routine.  If the ISBN passed to the constructor was invalid,
 the error might have been in any of the other nine positions.
 
-=head2  C<$obj-E<gt>as_ean()>
+=item  $obj-E<gt>as_ean()
 
 Converts the ISBN to the equivalent EAN (European Article Number).
 No pricing extension is added.  Returns the EAN as a string.  This
 method can also be used as an exportable function since it checks
 its argument list to determine what to do.
 
-=head2 C<$obj-E<gt>png_barcode()>
+=item png_barcode()
 
 Creates a PNG image of the EAN13 barcode which corresponds to the
 ISBN. Returns the image as a string.
 
-=head1 EXPORTABLE FUNCTIONS
+=back
+
+=head2 EXPORTABLE FUNCTIONS
 
 Some functions can be used without the object interface.  These
 do not use object technology behind the scenes.
 
-=head2 C<is_valid_checksum('1565921496')>
+=over 4
+
+=item is_valid_checksum('1565921496')
 
 Takes the ISBN string and runs it through the checksum
 comparison routine.  Returns C<Business::ISBN::GOOD_ISBN> 
@@ -535,7 +543,7 @@ string looks like an ISBN but has an invalid checksum, and
 C<Business::ISBN::BAD_ISBN> if the string does not look like
 an ISBN.
 
-=head2 C<isbn_to_ean('1565921496')>
+=item isbn_to_ean('1565921496')
 
 Takes the ISBN string and converts it to the equivalent
 EAN string.  This function checks for a valid ISBN and will return
@@ -543,13 +551,15 @@ undef for invalid ISBNs, otherwise it returns the EAN as a string.
 Uses as_ean internally, which checks its arguments to determine
 what to do.
 
-=head2 C<ean_to_isbn('9781565921498')>
+=item ean_to_isbn('9781565921498')
 
 Takes the EAN string and converts it to the equivalent
 ISBN string.  This function checks for a valid ISBN and will return
 undef for invalid ISBNs, otherwise it returns the EAN as a string.
 Uses as_ean internally, which checks its arguments to determine
 what to do.
+
+=back
 
 =head1 BUGS
 
