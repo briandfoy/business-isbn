@@ -1,6 +1,10 @@
 Revision history for Perl extension Business::ISBN.
-$Revision: 1.5 $
-$Id: Changes,v 1.5 2004/02/11 21:15:53 comdog Exp $
+$Revision: 1.6 $
+$Id: Changes,v 1.6 2004/09/02 21:23:59 comdog Exp $
+
+1.73 - Thu Sep  2 16:21:10 2004
+* this is a distro fix only.  if you already have Business::ISBN, you
+don't need this
 
 1.72 - Wed Feb 11 16:18:30 2004
 	* removed errant File::Find::Rule use
