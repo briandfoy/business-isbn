@@ -2,3 +2,7 @@
 *.gz
 Business-ISMN-*
 .lwpcookies
+Makefile
+*.old
+*.bak
+META.yml
