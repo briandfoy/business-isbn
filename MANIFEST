@@ -10,5 +10,6 @@ scripts/get_isbn_data.pl
 t/isbn.t
 t/load.t
 t/pod.t
+t/pod_coverage.t
 t/test_manifest
 t/xisbn.t
