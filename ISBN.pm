@@ -1,5 +1,5 @@
-# $Revision: 1.79 $
-# $Id: ISBN.pm,v 1.79 2004/12/14 10:58:32 comdog Exp $
+# $Revision: 1.80 $
+# $Id: ISBN.pm,v 1.80 2005/03/08 21:57:05 comdog Exp $
 package Business::ISBN;
 use strict;
 
@@ -25,7 +25,7 @@ my $debug = 0;
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN %ERROR_TEXT);
 
-($VERSION)   = q$Revision: 1.79 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.80 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -497,6 +497,11 @@ returns C<undef>.  It may do this if the string passed as the
 ISBN cannot be munged to the internal format meaning that it
 does not even come close to looking like an ISBN.
 
+=item isbn
+
+Returns the isbn as a string with no hyphens or other separating
+characters.
+
 =item publisher_code
 
 Returns the publisher code or C<undef> if no publisher
@@ -506,6 +511,16 @@ code was found.
 
 Returns the country code or C<undef> if no country code
 was found.
+
+=item article_code
+
+Returns the article code or C<undef> if no article code
+was found
+
+=item checksum
+
+Returns the checksum (last character) or C<undef> if no 
+checksum was found or it could not be computed.
 
 =item hyphen_positions
 
