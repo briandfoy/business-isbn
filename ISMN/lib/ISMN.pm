@@ -1,6 +1,6 @@
 package Business::ISMN;
-# $Revision: 1.1 $
-# $Id: ISMN.pm,v 1.1 2002/09/09 16:38:25 comdog Exp $
+# $Revision: 1.2 $
+# $Id: ISMN.pm,v 1.2 2002/09/09 19:52:01 uid59984 Exp $
 
 use strict;
 use subs qw( _common_format _checksum is_valid_checksum
@@ -14,7 +14,7 @@ use vars qw( $VERSION @ISA @EXPORT_OK $debug %country_data
 
 use Exporter;
 use List::Util qw(sum);
-use Tie::Toggle;
+use Tie::Cycle;
 use Business::ISMN::Data;
 
 my $debug = 0;
@@ -23,7 +23,7 @@ my $debug = 0;
 @EXPORT_OK = qw(is_valid_checksum ean_to_ismn ismn_to_ean
 	INVALID_PUBLISHER_CODE BAD_CHECKSUM GOOD_ISMN BAD_ISMN);
 
-($VERSION)   = q$Revision: 1.1 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.2 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_PUBLISHER_CODE { -3 };
 sub BAD_CHECKSUM           { -1 };
@@ -260,16 +260,23 @@ sub _check_validity
 sub _checksum
 	{
 	my $data = _common_format shift;
-	$data =~ s/^M/1/i;
 	
-	tie my $factor, 'Tie::Toggle', [ 3, 1 ];
+	tie my $factor, 'Tie::Cycle', [ 1, 3 ];
 	return unless defined $data;
 
-	my $sum = sum( map $factor * $_, substr( $data, 0, 9 ) );
-
+	my $sum = 9;
+	
+	foreach my $digit ( split //, substr( $data, 1, 8 ) )
+		{
+		my $mult = $factor;
+		$sum += $digit * $mult;
+		}
+		
+		
 	#return what the check digit should be
-	my $checksum = $sum % 10;
-
+	# the extra mod 10 turns 10 into 0.
+	my $checksum = ( 10 - ($sum % 10) ) % 10;
+	
 	return $checksum;
 	}
 

@@ -1,14 +1,14 @@
-# $Revision: 1.1 $
+# $Revision: 1.2 $
 
 use Test::More tests => 18;
 
 use Business::ISMN;
 
-my $GOOD_ISMN          = "M021765430";
-my $GOOD_ISMN_STRING   = "M-021-76543-0";
-my $GOOD_EAN           = "9790021765439";
-my $PUBLISHER          = "021";
-my $BAD_CHECKSUM_ISMN  = "M021765436";
+my $GOOD_ISMN          = "M706208053";
+my $GOOD_ISMN_STRING   = "M-706208-05-3";
+my $GOOD_EAN           = "9790706208053";
+my $PUBLISHER          = "706208";
+my $BAD_CHECKSUM_ISMN  = "M706208057";
 my $BAD_PUBLISHER_ISMN = "M456922572";
 my $NULL_ISMN          = undef;
 my $NO_GOOD_CHAR_ISMN  = "abcdefghij";
@@ -75,6 +75,7 @@ SKIP:
 	while( <FILE> )
 		{
 		chomp;
+		next unless /\S+/;
 		my $ismn = Business::ISMN->new( $_ );
 		
 		my $result = $ismn->is_valid;
