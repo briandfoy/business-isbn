@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.1 2002/09/09 16:37:45 comdog Exp $
+# $Id: Makefile.PL,v 1.2 2002/10/09 06:18:04 comdog Exp $
 use ExtUtils::MakeMaker;
 
 my $tests = do {
@@ -10,11 +10,12 @@ WriteMakefile(
     'NAME'  	 	=> 'Business::ISMN',
     'VERSION_FROM' 	=> 'lib/ISMN.pm', 
     'PREREQ_PM'     => {
-    	Test::More       => 0,
-    	Test::Pod        => 0,
-    	File::Find::Rule => 0,
-    	Tie::Toggle      => 0,
-    	List::Util       => 0,
+    	'File::Find::Rule' => '0',
+    	'List::Util'       => '0',
+    	'Test::More'       => '0',
+    	'Test::Pod'        => '0',
+    	'Test::Prereq'     => '0',
+    	'Tie::Toggle'      => '0',
     	},
 	'PM'            => { 'lib/ISMN.pm' => '$(INST_LIBDIR)/ISMN.pm',
                          'lib/Data.pm' => '$(INST_LIBDIR)/ISMN/Data.pm',
@@ -23,4 +24,5 @@ WriteMakefile(
                          
     depend => { Makefile => 't/test_manifest' },
     test   => { TESTS => $tests },
+    clean  => { FILES => 'Business-ISMN-*' },
 	);
