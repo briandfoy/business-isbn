@@ -1,17 +1,12 @@
-# $Id: load.t,v 1.1 2002/09/04 20:53:22 comdog Exp $
+# $Id: load.t,v 1.2 2004/01/28 17:31:16 comdog Exp $
 BEGIN {
 	use File::Find::Rule;
-	@classes = map { my $x = $_;
-		$x =~ s|^blib/lib/||;
-		$x =~ s|/|::|g;
-		$x =~ s|\.pm$||;
-		$x;
-		} File::Find::Rule->file()->name( '*.pm' )->in( 'blib/lib' );
+	@classes = qw(Business::ISBN Business::ISBN::Data);
 	}
 
 use Test::More tests => scalar @classes;
 	
 foreach my $class ( @classes )
 	{
-	use_ok( $class );
+	print "Bail out!" unless use_ok( $class );
 	}
