@@ -1,6 +1,5 @@
-# $Id: MANIFEST,v 1.1 2002/09/09 16:43:27 comdog Exp $
 Changes
-MANIFEST			
+MANIFEST			This list of files
 Makefile.PL
 ismns.txt
 lib/Data.pm
@@ -8,4 +7,5 @@ lib/ISMN.pm
 t/ismn.t
 t/load.t
 t/pod.t
+t/prereq.t
 t/test_manifest
