@@ -1,0 +1,61 @@
+Revision history for Perl extension Business::ISBN.
+$Revision: 1.1 $
+$Id: Changes,v 1.1 2001/08/13 06:38:01 comdog Exp $
+
+1.60	Sun Apr  1 17:06:28 EDT 2001
+	- fixed some POD problems
+	- no changes to the actual code
+
+1.59	Tue Mar 27 11:51:42 EST 2001
+	- fixed some -w dirty internals
+	- clarified documentation for as_string method
+
+1.58	Mon Mar 26 19:47:03 EST 2001
+	- there was an error in test.pl that failed to
+	identify a bug. Andy Lester <andy@petdance.com>
+	found it though.  the constructor was always
+	setting $obj->is_valid to BAD_CHECKSUM.  that
+	is fixed.
+	- version 1.57 should not be used at all.  it
+	is severely broken due to that bug.
+
+1.57	Wed Mar 21 18:07:17 EST 2001
+	- fixed -w dirty line in is_valid_checksum
+	(identified by Andy Lester <andy@petdance.com>)
+
+1.56	  Mon Mar 12 10:03:37 EST 2001
+	EVERYONE SHOULD UPGRADE TO THIS VERSION
+	- fixed problem parsing ISBNs without valid
+	country codes which would cause an infinite
+	loop. (identified by Andy Lester <andy@petdance.com>)
+	- this module is now kept in a local CVS repository
+	- added symbolic constants to replace magic return
+	values.  see the docs for details.
+	- fixed is_valid_checksum which would issue warnings
+	if the string was less than ten characters
+	(identified by Adam Thompson <athompso@athompso.net>)
+	- added a test.pl which still needs more tests to
+	reach all of the code.
+
+1.51      Wed Jan 24 14:22:02 EST 2001
+	- version 1.5 fixed some bugs with checksums
+	- version 1.51 has a few minor doc fixes
+	- now we have sane version numbers. :)
+
+20001010  Sat Sep  9 00:33:07 EDT 2000
+	- fixed some missing arguments to _is_valid.  
+	- updated contact information
+	- added some real tests to test.pl
+	- everyone should update their installations
+
+19990112  Mon Jan 11 18:03:07 EST 1999
+	- added "use Exporter" which was missing.  
+
+19980901  Tue Sep 01 15:15:30 1998
+	- added support for EAN-13 (isbn -> ean, ean -> isbn )
+	- cleaned up other nagging problems
+	- if you don't want EAN13, then you don't need this update
+
+19980329  Sun Mar 29 03:29:16 1998
+	- original version; created by h2xs 1.18
+	- gutsy enough to actually release it for testing and comments

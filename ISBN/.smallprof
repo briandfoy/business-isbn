@@ -1,0 +1,5 @@
+{
+my @modules = qw( main Business::ISBN );
+@DB::packages{ @modules } = @modules;
+}
+
