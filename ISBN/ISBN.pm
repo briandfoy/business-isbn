@@ -1,6 +1,6 @@
 package Business::ISBN;
-# $Revision: 1.64 $
-# $Id: ISBN.pm,v 1.64 2001/09/05 05:36:57 comdog Exp $
+# $Revision: 1.65 $
+# $Id: ISBN.pm,v 1.65 2001/11/20 20:44:30 comdog Exp $
 
 use strict;
 use subs qw( _common_format _checksum is_valid_checksum
@@ -24,7 +24,7 @@ my $debug = 0;
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN);
 
-($VERSION)   = q$Revision: 1.64 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.65 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -266,6 +266,19 @@ sub isbn_to_ean
 	return as_ean($isbn);
 	}	
 	
+sub png_barcode
+	{
+	my $self = shift;
+
+	my $ean = isbn_to_ean( $self->as_string([]) );
+
+	require GD::Barcode::EAN13;
+
+	my $image = GD::Barcode::EAN13->new($ean)->plot->png;
+
+	return $image;
+	}
+
 #internal function.  you don't get to use this one.
 sub _check_validity
 	{
@@ -362,6 +375,9 @@ Business::ISBN - work with International Standard Book Numbers
 	#fix the ISBN checksum.  BEWARE:  the error might not be
 	#in the checksum!
 	$isbn_object->fix_checksum;
+
+	# create an EAN13 barcode in PNG format
+	$isbn_object->png_barcode;
 
 	#EXPORTABLE FUNCTIONS
 	
@@ -500,6 +516,11 @@ No pricing extension is added.  Returns the EAN as a string.  This
 method can also be used as an exportable function since it checks
 its argument list to determine what to do.
 
+=head2 C<$obj-E<gt>png_barcode()>
+
+Creates a PNG image of the EAN13 barcode which corresponds to the
+ISBN. Returns the image as a string.
+
 =head1 EXPORTABLE FUNCTIONS
 
 Some functions can be used without the object interface.  These
@@ -529,6 +550,19 @@ ISBN string.  This function checks for a valid ISBN and will return
 undef for invalid ISBNs, otherwise it returns the EAN as a string.
 Uses as_ean internally, which checks its arguments to determine
 what to do.
+
+=head1 BUGS
+
+* none that i know about.
+
+This module is on Sourceforge at http://perl-isbn.sourceforge.net/.
+You can download the lastest CVS source, submit bugs and patches,
+and watch the development.  Of course, you can always write directly
+to the author. :)
+
+=head1 TO DO
+
+* i would like to create the bar codes with the price extension
 
 =head1 AUTHOR
 
