@@ -1,5 +1,5 @@
-# $Revision: 1.1 $
-# $Id: test.pl,v 1.1 2001/08/13 06:38:02 comdog Exp $
+# $Revision: 1.1.1.1 $
+# $Id: test.pl,v 1.1.1.1 2001/08/13 06:38:02 comdog Exp $
 # Before `make install' is performed this script should be runnable with
 # `make test'. After `make install' it should work as `perl test.pl'
 

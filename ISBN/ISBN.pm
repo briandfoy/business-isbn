@@ -1,6 +1,6 @@
 package Business::ISBN;
-# $Revision: 1.1 $
-# $Id: ISBN.pm,v 1.1 2001/08/13 06:38:02 comdog Exp $
+# $Revision: 1.1.1.1 $
+# $Id: ISBN.pm,v 1.1.1.1 2001/08/13 06:38:02 comdog Exp $
 
 use strict;
 use subs qw( _common_format _checksum is_valid_checksum
@@ -22,7 +22,7 @@ my $debug = 0;
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN);
 
-($VERSION)   = q$Revision: 1.1 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.1.1.1 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
