@@ -1,6 +1,6 @@
 package Business::ISBN;
-# $Revision: 1.66 $
-# $Id: ISBN.pm,v 1.66 2002/04/09 08:08:03 comdog Exp $
+# $Revision: 1.67 $
+# $Id: ISBN.pm,v 1.67 2002/04/09 08:36:29 comdog Exp $
 
 use strict;
 use subs qw( _common_format _checksum is_valid_checksum
@@ -24,7 +24,7 @@ my $debug = 0;
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN);
 
-($VERSION)   = q$Revision: 1.66 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.67 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -333,9 +333,9 @@ sub _common_format
 	#get rid of everything except decimal digits and X
 	$data =~ s/[^0-9X]//g;
 	
-	return $data if $data =~ m/
+	return $1 if $data =~ m/
 	                  ^    	#anchor at start  
-			\d{9}[0-9X]
+			(\d{9}[0-9X])
 	                  $	#anchor at end
 	                  /x;
 	                  
