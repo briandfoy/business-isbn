@@ -1,12 +1,6 @@
-# $Id: load.t,v 1.2 2002/10/09 06:17:52 comdog Exp $
+# $Id: load.t,v 1.3 2004/09/16 16:02:59 comdog Exp $
 BEGIN {
-	use File::Find::Rule;
-	@classes = map { my $x = $_;
-		$x =~ s|^blib/lib/||;
-		$x =~ s|/|::|g;
-		$x =~ s|\.pm$||;
-		$x;
-		} File::Find::Rule->file()->name( '*.pm' )->in( 'blib/lib' );
+	@classes = qw(Business::ISMN Business::ISMN::Data);
 	}
 
 use Test::More tests => scalar @classes;
