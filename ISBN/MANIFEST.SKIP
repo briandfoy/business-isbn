@@ -1,0 +1,13 @@
+.cvsignore
+.lwpcookies
+.releaserc
+objtest.pl
+stringtest.pl
+CVS
+blib
+.bak$
+.old$
+Makefile$
+MANIFEST.SKIP
+(^|/)\.
+.gz$
