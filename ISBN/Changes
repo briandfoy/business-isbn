@@ -1,6 +1,12 @@
 Revision history for Perl extension Business::ISBN.
-$Revision: 1.9 $
-$Id: Changes,v 1.9 2004/10/27 07:40:43 comdog Exp $
+$Revision: 1.10 $
+$Id: Changes,v 1.10 2004/11/22 01:49:06 comdog Exp $
+
+1.78 - Sun Nov 21 19:46:40 2004
+* Require the latest version on Business::ISBN::Data, which was unbundled in 
+the last version.  You need Business::ISBN::Data 1.08 to pass the latest 
+tests that check for the new ranges the ISBN folks assigned a couple of
+years ago.
 
 1.77 - Wed Oct 27 02:39:17 2004
 * removed Business::ISBN::Data, which is now a separate module so you
