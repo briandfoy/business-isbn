@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.1 2002/11/25 20:10:01 comdog Exp $
+# $Id: Makefile.PL,v 1.2 2002/11/25 20:23:56 comdog Exp $
 use ExtUtils::MakeMaker;
 
 sub ExtUtils::MM_Any::test_via_harness
@@ -20,7 +20,7 @@ WriteMakefile(
     	'Test::Pod'        => '0',
     	},
 	'PM'            => { 
-		'Data.pm' => '$(INST_LIBDIR)/ISBN/Data.pm',
+		'Data.pm' => '$(INST_LIBDIR)/Data.pm',
 		},
                          
 	'MAN3PODS'		 => {

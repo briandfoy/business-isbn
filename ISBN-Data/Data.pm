@@ -1,8 +1,8 @@
-# $Id: Data.pm,v 1.2 2002/11/25 20:16:26 comdog Exp $
+# $Id: Data.pm,v 1.3 2002/11/25 20:23:56 comdog Exp $
 package Business::ISBN::Data;
 use vars qw($VERSION);
 
-$VERSION = sprintf "%d.%02d", q$Revision: 1.2 $ =~ m/ (\d+) \. (\d+) /xg;
+$VERSION = sprintf "%d.%02d", q$Revision: 1.3 $ =~ m/ (\d+) \. (\d+) /xg;
 
 =head1 NAME 
 
@@ -10,7 +10,7 @@ Business::ISBN::Data - data pack for Business::ISBN
 
 =head1 SYNOPSIS
 
-see Business::ISBN
+see L<Business::ISBN>
 
 =head1 DESCRIPTION
 
