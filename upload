@@ -1,5 +1,0 @@
-#!/bin/sh
-
-FILE=$1
-
-scp ${FILE} comdog@panix.com:./public_html/Perl/${FILE}
