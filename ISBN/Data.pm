@@ -1,6 +1,24 @@
 package Business::ISBN::Data;
-# $Revision: 1.4 $
-# $Id: Data.pm,v 1.4 2001/09/10 20:39:10 comdog Exp $
+# $Revision: 1.5 $
+# $Id: Data.pm,v 1.5 2002/09/04 20:52:12 comdog Exp $
+
+=head1 NAME 
+
+Business::ISBN::Data - data pack for Business::ISBN
+
+=head1 SYNOPSIS
+
+see Business::ISBN
+
+=head1 DESCRIPTION
+
+See L<Business::ISBN>.
+
+=head1 AUTHOR
+
+brian d foy, E<lt>bdfoy@cpan.orgE<gt>
+
+=cut
 
 package Business::ISBN;
 
