@@ -1,4 +1,6 @@
-#!/usr/bin/perl
+#!/usr/local/bin/perl
+
+use lib qw(blib/lib);
 
 use Business::ISBN;
 
