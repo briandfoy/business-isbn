@@ -1,6 +1,9 @@
 Revision history for Perl extension Business::ISBN.
-$Revision: 1.12 $
-$Id: Changes,v 1.12 2005/03/08 21:59:32 comdog Exp $
+$Revision: 1.13 $
+$Id: Changes,v 1.13 2005/08/14 03:10:30 comdog Exp $
+
+1.81 - Sat Aug 13 22:08:40 2005
+	* exposed the country group name as the country() method
 
 1.80 - Tue Mar  8 16:58:47 2005
 	* added POD coverage tests and documented the uncovered methods
