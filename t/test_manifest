@@ -1,6 +1,7 @@
-# $Id: test_manifest,v 1.4 2005/03/08 21:57:09 comdog Exp $
+# $Id: test_manifest,v 1.5 2005/08/14 16:40:32 comdog Exp $
 load.t
 pod.t
 pod_coverage.t
+albania.t
 isbn.t
 xisbn.t
