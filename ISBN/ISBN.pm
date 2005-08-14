@@ -1,5 +1,5 @@
-# $Revision: 1.80 $
-# $Id: ISBN.pm,v 1.80 2005/03/08 21:57:05 comdog Exp $
+# $Revision: 1.81 $
+# $Id: ISBN.pm,v 1.81 2005/08/14 03:02:54 comdog Exp $
 package Business::ISBN;
 use strict;
 
@@ -11,7 +11,7 @@ use subs qw( _common_format _checksum is_valid_checksum
 	BAD_ISBN
 	);
 use vars qw( $VERSION @ISA @EXPORT_OK $debug %country_data
-		$MAX_COUNTRY_CODE_LENGTH %ERROR_TEXT );
+	$MAX_COUNTRY_CODE_LENGTH %ERROR_TEXT );
 
 use Carp qw(carp);
 use Exporter;
@@ -25,7 +25,7 @@ my $debug = 0;
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN %ERROR_TEXT);
 
-($VERSION)   = q$Revision: 1.80 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.81 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -168,6 +168,7 @@ sub new
 sub isbn ()             { my $self = shift; return $self->{'isbn'}           }
 sub is_valid ()         { my $self = shift; return $self->{'valid'}          }
 sub country_code ()     { my $self = shift; return $self->{'country_code'}   }
+sub country()           { $_[0]->{'country'} }
 sub publisher_code ()   { my $self = shift; return $self->{'publisher_code'} }
 sub article_code ()     { my $self = shift; return $self->{'article_code'}   }
 sub checksum ()         { my $self = shift; return $self->{'checksum'}       }
@@ -400,8 +401,8 @@ Business::ISBN - work with International Standard Book Numbers
 
 	use Business::ISBN;
 
-	$isbn_object = new Business::ISBN('1565922573');
-	$isbn_object = new Business::ISBN('1-56592-257-3');
+	$isbn_object = Business::ISBN->new('1565922573');
+	$isbn_object = Business::ISBN->new('1-56592-257-3');
 
 	#print the ISBN with hyphens at positions specified
 	#by constructor
@@ -510,6 +511,12 @@ code was found.
 =item country_code
 
 Returns the country code or C<undef> if no country code
+was found.
+
+=item country
+
+Returns the country group (which may not be an actual country
+name (e.g. "English")) or C<undef> if no country code
 was found.
 
 =item article_code
