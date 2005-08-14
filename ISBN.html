@@ -23,6 +23,7 @@
 
 	<li><a href="#bugs">BUGS</a></li>
 	<li><a href="#to_do">TO DO</a></li>
+	<li><a href="#source_availability">SOURCE AVAILABILITY</a></li>
 	<li><a href="#author">AUTHOR</a></li>
 </ul>
 <!-- INDEX END -->
@@ -39,8 +40,8 @@
 <pre>
         use Business::ISBN;</pre>
 <pre>
-        $isbn_object = new Business::ISBN('1565922573');
-        $isbn_object = new Business::ISBN('1-56592-257-3');</pre>
+        $isbn_object = Business::ISBN-&gt;new('1565922573');
+        $isbn_object = Business::ISBN-&gt;new('1-56592-257-3');</pre>
 <pre>
         #print the ISBN with hyphens at positions specified
         #by constructor
@@ -119,6 +120,16 @@ versions of this module which used literal values.</p>
         Business::ISBN::BAD_ISBN</pre>
 </dd>
 <dd>
+<p>If you have one of these values and want to turn it into
+a string, you can use the %Business::ISBN::ERROR_TEXT hash,
+which is exportable by asking for it explicitly in the import
+list.</p>
+</dd>
+<dd>
+<pre>
+        use Business::ISBN qw(%ERROR_TEXT);</pre>
+</dd>
+<dd>
 <p>The string passed as the ISBN need not be a valid ISBN as
 long as it superficially looks like one.  This allows one to
 use the <a href="#item_fix_checksum"><code>fix_checksum()</code></a> method.  Despite the disclaimer in
@@ -137,6 +148,13 @@ ISBN cannot be munged to the internal format meaning that it
 does not even come close to looking like an ISBN.</p>
 </dd>
 <p></p>
+<dt><strong><a name="item_isbn">isbn</a></strong><br />
+</dt>
+<dd>
+Returns the isbn as a string with no hyphens or other separating
+characters.
+</dd>
+<p></p>
 <dt><strong><a name="item_publisher_code">publisher_code</a></strong><br />
 </dt>
 <dd>
@@ -149,6 +167,28 @@ code was found.
 <dd>
 Returns the country code or <code>undef</code> if no country code
 was found.
+</dd>
+<p></p>
+<dt><strong><a name="item_country">country</a></strong><br />
+</dt>
+<dd>
+Returns the country group (which may not be an actual country
+name (e.g. ``English'')) or <code>undef</code> if no country code
+was found.
+</dd>
+<p></p>
+<dt><strong><a name="item_article_code">article_code</a></strong><br />
+</dt>
+<dd>
+Returns the article code or <code>undef</code> if no article code
+was found
+</dd>
+<p></p>
+<dt><strong><a name="item_checksum">checksum</a></strong><br />
+</dt>
+<dd>
+Returns the checksum (last character) or <code>undef</code> if no 
+checksum was found or it could not be computed.
 </dd>
 <p></p>
 <dt><strong><a name="item_hyphen_positions">hyphen_positions</a></strong><br />
@@ -311,17 +351,32 @@ to the author. :)</p>
 </p>
 <hr />
 <h1><a name="to_do">TO DO</a></h1>
-<p>* i would like to create the bar codes with the price extension</p>
+<p><table cellspacing="0" cellpadding="0"><tr><td>* i would like to create the bar codes with the price extension:
+<tr><td><td>for now:
+<tr><td><td><a href="https://www.lightningsource.com/LSISecure/PubResources/CoverSpecsEntry.asp">https://www.lightningsource.com/LSISecure/PubResources/CoverSpecsEntry.asp</a></table></p>
+<p>* the ISBN is going to expand to 13 numbers soon</p>
+<p>
+</p>
+<hr />
+<h1><a name="source_availability">SOURCE AVAILABILITY</a></h1>
+<p>This source is part of a SourceForge project which always has the
+latest sources in CVS, as well as all of the previous releases.</p>
+<pre>
+        <a href="http://sourceforge.net/projects/perl-isbn/">http://sourceforge.net/projects/perl-isbn/</a></pre>
+<p>If, for some reason, I disappear from the world, one of the other
+members of the project can shepherd this module appropriately.</p>
 <p>
 </p>
 <hr />
 <h1><a name="author">AUTHOR</a></h1>
 <p>brian d foy <code>&lt;bdfoy@cpan.org&gt;</code></p>
 <p>Copyright 2001-2004 brian d foy</p>
-<p>Thanks to Mark W. Eichin &lt;<a href="mailto:eichin@thok.org">eichin@thok.org</a>&gt; for suggestions and
+<p>Thanks to Mark W. Eichin <code>&lt;eichin@thok.org&gt;</code> for suggestions and
 discussions on EAN support.</p>
-<p>Thanks to Andy Lester &lt;<a href="mailto:andy@petdance.com">andy@petdance.com</a>&gt; for lots of bug fixes
+<p>Thanks to Andy Lester <code>&lt;andy@petdance.com&gt;</code> for lots of bug fixes
 and testing.</p>
+<p>Ed Summers <code>&lt;esummers@cpan.org&gt;</code> has volunteered to help with
+this module.</p>
 
 </body>
 
