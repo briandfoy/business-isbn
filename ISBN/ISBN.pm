@@ -1,5 +1,5 @@
-# $Revision: 1.81 $
-# $Id: ISBN.pm,v 1.81 2005/08/14 03:02:54 comdog Exp $
+# $Revision: 1.82 $
+# $Id: ISBN.pm,v 1.82 2005/08/14 16:40:32 comdog Exp $
 package Business::ISBN;
 use strict;
 
@@ -25,7 +25,7 @@ my $debug = 0;
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN %ERROR_TEXT);
 
-($VERSION)   = q$Revision: 1.81 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.82 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -139,7 +139,7 @@ sub new
 
 	# do we have a publisher code? if not, game over
 	# $self->is_valid is already set
-	return $self unless $self->{publisher_code};
+	return $self unless defined $self->{publisher_code};
 
 	# we have a valid publisher code, so the rest is gravy
 
