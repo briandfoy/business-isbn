@@ -1,11 +1,12 @@
 Changes
 Data.pm
-MANIFEST			This list of files
+make_data.pl
 Makefile.PL
+MANIFEST			This list of files
+META.yml			Module meta-data (added by MakeMaker)
+README
 t/load.t
 t/pod.t
+t/pod_coverage.t
 t/prereq.t
 t/test_manifest
-META.yml                                 Module meta-data (added by MakeMaker)
-README
-make_data.pl

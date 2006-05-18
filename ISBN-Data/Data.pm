@@ -1,9 +1,9 @@
-# $Id: Data.pm,v 1.10 2005/03/08 22:14:31 comdog Exp $
+# $Id: Data.pm,v 1.11 2006/05/18 22:22:17 comdog Exp $
 package Business::ISBN::Data;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = sprintf "%d.%02d", q$Revision: 1.10 $ =~ m/ (\d+) \. (\d+) /xg;
+$VERSION = sprintf "%d.%02d", q$Revision: 1.11 $ =~ m/ (\d+) \. (\d+) /xg;
 
 =head1 NAME
 
@@ -38,6 +38,9 @@ Older versions of this module did not declare a version, and will work
 with whatever version of Business::ISBN you have despite anything the
 Makefile.PL might say.
 
+If you make updates, please send them to me so I can include them in
+future releases.
+
 =head1 SOURCE AVAILABILITY
 
 This source is part of a SourceForge project which always has the
@@ -50,7 +53,7 @@ members of the project can shepherd this module appropriately.
 
 =head1 AUTHOR
 
-Copyright 2002-2005, brian d foy, C<< <bdfoy@cpan.org> >>
+Copyright 2002-2006, brian d foy, C<< <bdfoy@cpan.org> >>
 
 =cut
 
