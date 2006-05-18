@@ -1,4 +1,7 @@
-# $Id: Changes,v 1.5 2005/03/08 22:23:29 comdog Exp $
+# $Id: Changes,v 1.6 2006/05/18 23:05:48 comdog Exp $
+
+1.07 - Thu May 18 18:05:18 2006
+	* cleanups for distro and kwalitee. no need to upgrade.
 
 1.6 - Tue Mar  8 17:18:49 2005
 	* Added a POD coverage test and fixed up the problems it found
