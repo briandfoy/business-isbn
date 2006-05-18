@@ -1,6 +1,8 @@
-.cvsignore
 .releaserc
-Business-ISMN-*
+.cvsignore
+.lwpcookies
+.DS_Store
+Business-*
 blib/
 hacks/
 CVS
@@ -9,3 +11,12 @@ MANIFEST.SKIP
 MANIFEST.bak
 pm_to_blib
 Makefile$
+~$
+.rej$
+\.*bak
+Makefile$
+\.\#
+\.old
+\.orig
+\.rej
+\.mine
