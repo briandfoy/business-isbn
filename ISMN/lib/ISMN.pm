@@ -1,4 +1,4 @@
-# $Id: ISMN.pm,v 1.7 2006/05/18 23:04:39 comdog Exp $
+# $Id: ISMN.pm,v 1.8 2006/06/04 23:08:18 comdog Exp $
 package Business::ISMN;
 use strict;
 
@@ -23,7 +23,7 @@ my $debug = 0;
 @EXPORT_OK = qw(is_valid_checksum ean_to_ismn ismn_to_ean
 	INVALID_PUBLISHER_CODE BAD_CHECKSUM GOOD_ISMN BAD_ISMN);
 
-($VERSION)   = q$Revision: 1.7 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.8 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_PUBLISHER_CODE { -3 };
 sub BAD_CHECKSUM           { -1 };
@@ -387,12 +387,10 @@ may be exported on demand). The actual values of these
 symbolic versions are the same as those from previous
 versions of this module which used literal values.
 
-
 	Business::ISMN::INVALID_PUBLISHER_CODE
 	Business::ISMN::BAD_CHECKSUM
 	Business::ISMN::GOOD_ISMN
 	Business::ISMN::BAD_ISMN
-
 
 The string passed as the ISMN need not be a valid ISMN as
 long as it superficially looks like one.  This allows one to
