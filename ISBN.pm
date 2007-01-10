@@ -1,5 +1,5 @@
-# $Revision: 1.82 $
-# $Id: ISBN.pm,v 1.82 2005/08/14 16:40:32 comdog Exp $
+# $Revision: 1.83 $
+# $Id: ISBN.pm,v 1.83 2007/01/10 03:43:21 comdog Exp $
 package Business::ISBN;
 use strict;
 
@@ -25,7 +25,7 @@ my $debug = 0;
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN %ERROR_TEXT);
 
-($VERSION)   = q$Revision: 1.82 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.83 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -667,7 +667,7 @@ to the author. :)
 	for now:
 	https://www.lightningsource.com/LSISecure/PubResources/CoverSpecsEntry.asp
 
-* the ISBN is going to expand to 13 numbers soon
+* the ISBN is expanded to 13 numbers in 2007, but we don't suppor that yet
 
 =head1 SOURCE AVAILABILITY
 
@@ -683,7 +683,13 @@ members of the project can shepherd this module appropriately.
 
 brian d foy C<< <bdfoy@cpan.org> >>
 
-Copyright 2001-2004 brian d foy
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (c) 2001-2007, brian d foy, All Rights Reserved.
+
+You may redistribute this under the same terms as Perl itself.
+
+=head1 CREDITS
 
 Thanks to Mark W. Eichin C<< <eichin@thok.org> >> for suggestions and
 discussions on EAN support.
