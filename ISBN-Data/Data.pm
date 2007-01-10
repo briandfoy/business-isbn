@@ -1,9 +1,9 @@
-# $Id: Data.pm,v 1.11 2006/05/18 22:22:17 comdog Exp $
+# $Id: Data.pm,v 1.12 2007/01/10 03:45:41 comdog Exp $
 package Business::ISBN::Data;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = sprintf "%d.%02d", q$Revision: 1.11 $ =~ m/ (\d+) \. (\d+) /xg;
+$VERSION = sprintf "%d.%02d", q$Revision: 1.12 $ =~ m/ (\d+) \. (\d+) /xg;
 
 =head1 NAME
 
@@ -53,7 +53,13 @@ members of the project can shepherd this module appropriately.
 
 =head1 AUTHOR
 
-Copyright 2002-2006, brian d foy, C<< <bdfoy@cpan.org> >>
+brian d foy, C<< <bdfoy@cpan.org> >>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (c) 2002-2006, brian d foy, All Rights Reserved.
+
+You may redistribute this under the same terms as Perl itself.
 
 =cut
 

@@ -1,4 +1,4 @@
-# $Id: ISMN.pm,v 1.8 2006/06/04 23:08:18 comdog Exp $
+# $Id: ISMN.pm,v 1.9 2007/01/10 03:47:51 comdog Exp $
 package Business::ISMN;
 use strict;
 
@@ -23,7 +23,7 @@ my $debug = 0;
 @EXPORT_OK = qw(is_valid_checksum ean_to_ismn ismn_to_ean
 	INVALID_PUBLISHER_CODE BAD_CHECKSUM GOOD_ISMN BAD_ISMN);
 
-($VERSION)   = q$Revision: 1.8 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.9 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_PUBLISHER_CODE { -3 };
 sub BAD_CHECKSUM           { -1 };
@@ -554,10 +554,10 @@ members of the project can shepherd this module appropriately.
 
 brian d foy, C<< <bdfoy@cpan.org> >>
 
-=head1 COPYRIGHT
+=head1 COPYRIGHT AND LICENSE
 
-Copyright 2001-2006 brian d foy, All rights reserved
+Copyright (c) 2001-2007, brian d foy, All Rights Reserved.
 
-You may use this software under the same terms as Perl itself.
+You may redistribute this under the same terms as Perl itself.
 
 =cut

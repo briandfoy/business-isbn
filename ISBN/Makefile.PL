@@ -1,11 +1,12 @@
-# $Id: Makefile.PL,v 1.10 2005/03/19 18:50:44 comdog Exp $
+# $Id: Makefile.PL,v 1.11 2007/01/10 03:43:21 comdog Exp $
 use ExtUtils::MakeMaker;
 
-eval "use Test::Manifest 1.13";
+eval "use Test::Manifest 1.14";
 	
 WriteMakefile(
     'NAME'  	 	=> 'Business::ISBN',
     'VERSION_FROM' 	=> 'ISBN.pm', 
+	'LICENSE'       => 'perl',
     'PREREQ_PM'     => {
     	'Test::More'           => '0',
     	'Business::ISBN::Data' => '1.09',

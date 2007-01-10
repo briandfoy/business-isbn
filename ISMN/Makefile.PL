@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.6 2006/05/18 23:04:39 comdog Exp $
+# $Id: Makefile.PL,v 1.7 2007/01/10 03:47:51 comdog Exp $
 use ExtUtils::MakeMaker;
 
 eval "use Test::Manifest 1.14";
@@ -6,6 +6,8 @@ eval "use Test::Manifest 1.14";
 WriteMakefile(
     'NAME'  	 	=> 'Business::ISMN',
     'VERSION_FROM' 	=> 'lib/ISMN.pm', 
+	'LICENSE'       => 'perl',
+
     'PREREQ_PM'     => {
     	'List::Util'       => '0',
     	'Test::More'       => '0',

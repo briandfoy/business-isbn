@@ -1,7 +1,7 @@
 package Business::ISBM::Data;
 use strict;
-# $Revision: 1.2 $
-# $Id: Data.pm,v 1.2 2004/09/16 16:07:46 comdog Exp $
+# $Revision: 1.3 $
+# $Id: Data.pm,v 1.3 2007/01/10 03:47:51 comdog Exp $
 
 =head1 NAME
 
@@ -18,6 +18,13 @@ See L<Business::ISMN>.
 =head1 AUTHOR
 
 brian d foy, C<< <bdfoy@cpan.org> >>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (c) 2005-2007 brian d foy.  All rights reserved.
+
+This program is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
 
 =cut
 
