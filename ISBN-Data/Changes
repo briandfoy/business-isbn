@@ -1,4 +1,8 @@
-# $Id: Changes,v 1.13 2006/05/18 22:40:15 comdog Exp $
+# $Id: Changes,v 1.14 2007/01/10 03:46:46 comdog Exp $
+
+1.12 - Tue Jan  9 21:46:19 2007
+	* updated copyright and license info
+	* no code changes, so no need to upgrade
 
 1.11 - Thu May 18 17:22:51 2006
 	* Updated distro and kwalitee. No need to upgrade.
