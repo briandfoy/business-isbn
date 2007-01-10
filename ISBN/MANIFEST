@@ -2,11 +2,13 @@ Changes
 ISBN.html
 ISBN.pm
 isbns.txt
+LICENSE
 Makefile.PL
 MANIFEST
 META.yml
 README
 scripts/get_isbn_data.pl
+t/albania.t
 t/isbn.t
 t/load.t
 t/pod.t

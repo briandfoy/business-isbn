@@ -1,9 +1,10 @@
-# $Id: ISMN.pm,v 1.9 2007/01/10 03:47:51 comdog Exp $
+# $Id: ISMN.pm,v 1.10 2007/01/10 05:15:25 comdog Exp $
 package Business::ISMN;
 use strict;
 
 use base qw(Exporter);
-use subs qw( _common_format _checksum is_valid_checksum
+use subs qw( 
+	_common_format _checksum is_valid_checksum
 	INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM
 	GOOD_ISMN
@@ -23,7 +24,7 @@ my $debug = 0;
 @EXPORT_OK = qw(is_valid_checksum ean_to_ismn ismn_to_ean
 	INVALID_PUBLISHER_CODE BAD_CHECKSUM GOOD_ISMN BAD_ISMN);
 
-($VERSION)   = q$Revision: 1.9 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.10 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_PUBLISHER_CODE { -3 };
 sub BAD_CHECKSUM           { -1 };
