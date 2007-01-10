@@ -1,5 +1,5 @@
-# $Revision: 1.83 $
-# $Id: ISBN.pm,v 1.83 2007/01/10 03:43:21 comdog Exp $
+# $Revision: 1.84 $
+# $Id: ISBN.pm,v 1.84 2007/01/10 05:08:26 comdog Exp $
 package Business::ISBN;
 use strict;
 
@@ -25,7 +25,7 @@ my $debug = 0;
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN %ERROR_TEXT);
 
-($VERSION)   = q$Revision: 1.83 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 1.84 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -667,7 +667,7 @@ to the author. :)
 	for now:
 	https://www.lightningsource.com/LSISecure/PubResources/CoverSpecsEntry.asp
 
-* the ISBN is expanded to 13 numbers in 2007, but we don't suppor that yet
+* the ISBN is expanded to 13 numbers in 2007, but we don't suppor that yetmore t/a
 
 =head1 SOURCE AVAILABILITY
 
