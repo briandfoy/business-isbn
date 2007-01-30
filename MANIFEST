@@ -1,8 +1,10 @@
 Changes
 examples/README
 ISBN.html
-ISBN.pm
 isbns.txt
+lib/ISBN.pm
+lib/ISBN10.pm
+lib/ISBN13.pm
 LICENSE
 Makefile.PL
 MANIFEST
@@ -10,9 +12,9 @@ META.yml
 README
 scripts/get_isbn_data.pl
 t/albania.t
-t/isbn.t
+t/isbn10.t
 t/load.t
 t/pod.t
 t/pod_coverage.t
 t/test_manifest
-t/xisbn.t
+t/xisbn10.t

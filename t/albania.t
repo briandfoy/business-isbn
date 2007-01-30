@@ -1,4 +1,4 @@
-use Test::More tests => 7;
+use Test::More tests => 8;
 
 use Business::ISBN;
 
@@ -10,7 +10,10 @@ my $PUBLISHER          = "0";
 
 # test to see if we can construct an object?
 my $isbn = Business::ISBN->new( $GOOD_ISBN );
-isa_ok( $isbn, 'Business::ISBN' );
+isa_ok( $isbn, 'Business::ISBN10' );
+
+ok( defined $Business::ISBN10::MAX_COUNTRY_CODE_LENGTH, "Data module imported" );
+
 is( $isbn->is_valid, Business::ISBN::GOOD_ISBN, "$GOOD_ISBN is valid" );
 
 is( $isbn->publisher_code, $PUBLISHER,          "$GOOD_ISBN has right publisher");
