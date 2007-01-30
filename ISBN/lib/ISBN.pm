@@ -1,5 +1,5 @@
 # $Revision: 2.1 $
-# $Id: ISBN.pm,v 2.1 2007/01/30 04:14:03 comdog Exp $
+# $Id: ISBN.pm,v 2.1 2007/01/30 04:14:04 comdog Exp $
 package Business::ISBN;
 use strict;
 
@@ -27,11 +27,11 @@ my $debug = 0;
 
 ($VERSION)   = q$Revision: 2.1 $ =~ m/(\d+\.\d+)\s*$/;
 
-sub INVALID_COUNTRY_CODE   { -2 };
-sub INVALID_PUBLISHER_CODE { -3 };
-sub BAD_CHECKSUM           { -1 };
-sub GOOD_ISBN              {  1 };
-sub BAD_ISBN               {  0 };
+sub INVALID_COUNTRY_CODE   () { -2 };
+sub INVALID_PUBLISHER_CODE () { -3 };
+sub BAD_CHECKSUM           () { -1 };
+sub GOOD_ISBN              () {  1 };
+sub BAD_ISBN               () {  0 };
 
 %ERROR_TEXT = (
 	 0 => "Bad ISBN",
@@ -41,378 +41,33 @@ sub BAD_ISBN               {  0 };
 	-3 => "Invalid publisher code",
 	);
 
+use Business::ISBN10;
+use Business::ISBN13;
 
 sub new
 	{
 	my $class       = shift;
 	my $common_data = _common_format shift;
 
-	return unless defined $common_data;
-
-	my $isbn13; #Boolean.  Determines whether we've got a 13 or a 10.
-	if(length($common_data) == 13)
-	{ $isbn13 = 1; }
-
-	my $self  = {};
-	bless $self, $class;
-
-	$self->{'isbn'}      = $common_data;
-	if($isbn13)
-	{
-		$self->{'positions'} = [12];
-		${$self->{'positions'}}[3] = 3;
-	}
-	else
-	{ $self->{'positions'} = [9]; }
-
-	# we don't know if we have a valid country code yet
-	# so let's assume that we don't
-	$self->{'valid'}  = INVALID_COUNTRY_CODE;
-
-	# extract the country code
-	my $trial_country_code  = undef;  # try this to see what we get
-	my $country_code_length = 0;
-	my $prefix = 0; #For ISBN13, the country code starts
-	if($isbn13)                 #at position 3.
-	{ $prefix = 3; }
-
-	my $count = 1;
-	COUNTRY_CODE:
-	while( defined ($trial_country_code =
-		substr($self->{'isbn'}, $prefix, $count++) ) )
-		{
-		if(defined $country_data{ $trial_country_code } )
+	my $isbn = do {
+		if( length( $common_data ) == 10 )
 			{
-			$self->{'country_code'} = $trial_country_code;
-			$self->{'country'} =
-				${$country_data{ $trial_country_code }}[0];
-			$country_code_length = length $trial_country_code;
-			${$self->{'positions'}}[2] = $prefix + $country_code_length;
-			last COUNTRY_CODE;
+			Business::ISBN10->new( $common_data );
 			}
-
-		# if we've past the point of finding a country
-		# code we're pretty much stuffed.
-		return $self if $count > $MAX_COUNTRY_CODE_LENGTH;
-		}
-
-	# we have a valid country code, but we don't know if we
-	# have a valid publisher code, so let's assume we don't
-	$self->{'valid'} = INVALID_PUBLISHER_CODE;
-
-	# let's check the publisher code.
-	my $trial_publisher_code;
-	my $max_publisher_code_length = 10 - 1 - $country_code_length;
-	print "Max Publisher Code Length = [$max_publisher_code_length]\n"
-		if $debug > 0;
-	$count = 1;
-
-	PUBLISHER_CODE:
-	while( defined( $trial_publisher_code = substr($self->{'isbn'},
-	                              $prefix + $country_code_length,
-	                              $count) )  and
-	                              $count < $max_publisher_code_length)
-		{
-		my @pairs = @{${$country_data{ $self->{'country_code'} } }[1]};
-
-		PAIR:
-		while( @pairs )
+		elsif( length( $common_data ) == 13 )
 			{
-			my $lower_bound  = shift @pairs;
-			my $upper_bound  = shift @pairs;
-			my $lower_length = length $lower_bound;
-			my $upper_length = length $upper_bound;
-
- 			#in looking for the publisher code, 00 has a different
-			#meaning than 0 (in this case means that the publisher
-			#code is at least two digits).  we have to be careful
-			#because perl turns 00* into 0 when used as a number
-
-			#last PAIR if
-			#	$trial_publisher_code_length <  $lower_length;
-
-			next PAIR unless (
-				$count >= $lower_length
-					and
-			        $count <= $upper_length );
-
-			if( $trial_publisher_code >= $lower_bound and
-			    $trial_publisher_code <= $upper_bound )
-			    {
-			    $self->{'publisher_code'} = $trial_publisher_code;
-				${$self->{'positions'}}[1] =
-					$prefix + $country_code_length + $count;
-			    last PUBLISHER_CODE;
-			    }
+			require Business::ISBN10;
+			Business::ISBN13->new( $common_data );
 			}
-
-		$count++;
-
-		}
-
-	# do we have a publisher code? if not, game over
-	# $self->is_valid is already set
-	return $self unless defined $self->{publisher_code};
-
-	# we have a valid publisher code, so the rest is gravy
-
-	#get the book code, which is everything between the
-	#publisher code the and the checksum
-	if ( $common_data =~ m/
-					$self->{'country_code'}
-					$self->{'publisher_code'}
-					(.+)
-					([\dxX])
-					$
-					/x )
-		{
-		$self->{'article_code'} = $1;
-		$self->{'checksum'}     = $2;
-		}
-
-	$self->{'valid'} = is_valid_checksum( $self->{'isbn'} );
-
-	return $self;
-	}
-
-
-#it's your fault if you muck with the internals yourself
-# none of these take arguments
-sub isbn ()             { my $self = shift; return $self->{'isbn'}           }
-sub is_valid ()         { my $self = shift; return $self->{'valid'}          }
-sub country_code ()     { my $self = shift; return $self->{'country_code'}   }
-sub country()           { $_[0]->{'country'} }
-sub publisher_code ()   { my $self = shift; return $self->{'publisher_code'} }
-sub article_code ()     { my $self = shift; return $self->{'article_code'}   }
-sub checksum ()         { my $self = shift; return $self->{'checksum'}       }
-sub hyphen_positions () { my $self = shift; return @{$self->{'positions'}}   }
-
-
-sub fix_checksum
-	{
-	my $self = shift;
-
-	my $last_char = substr($self->{'isbn'}, length($self->{'isbn'})-1, 1);
-	my $checksum = _checksum $self->isbn;
-
-	substr($self->{'isbn'}, length($self->{'isbn'})-1, 1) = $checksum;
-
-	$self->_check_validity;
-
-	return 0 if $last_char eq $checksum;
-	return 1;
-	}
-
-sub as_string
-	{
-	my $self      = shift;
-	my $array_ref = shift;
-
-	#this allows one to override the positions settings from the
-	#constructor
-	$array_ref = $self->{'positions'} unless ref $array_ref eq 'ARRAY';
-
-	return unless $self->is_valid eq GOOD_ISBN;
-	my $isbn = $self->isbn;
-
-	foreach my $position ( sort { $b <=> $a } @$array_ref )
-		{
-		next if $position > (length($isbn)-1) or $position < 1;
-		substr($isbn, $position, 0) = '-';
-		}
-
+		else
+			{
+			();
+			}
+		};
+		
 	return $isbn;
 	}
-
-sub as_ean
-	{
-	my $self = shift;
-
-	my $isbn = ref $self ? $self->as_string([]) : _common_format $self;
-
-	return unless defined $isbn;
-
-	my $ean;
-
-	if(length($isbn) == 10)
-	{
-		$ean = "978$isbn";
-		$ean = substr($ean,0,12) . _checksum($ean);
-	}
-	elsif(length($isbn) == 13)
-	{ $ean = $isbn; }
-
-	return $ean;
-	}
-
-sub as_isbn_10
-	{
-	my $self = shift;
-
-	my $isbn = ref $self ? $self->as_string([]) : _common_format $self;
-
-	return unless defined $isbn;
-
-	if(length($isbn) == 10)
-	{ return $isbn; }
-	elsif(length($isbn) == 13)
-	{
-		return unless $isbn =~ /^978/;
-
-		my $isbn_10 = new Business::ISBN( substr($isbn, 3, 10) );
-		$isbn_10->fix_checksum;
-
-		return $isbn_10->as_string([]) if $isbn_10->is_valid;
-	}
-
-	return;
-	}
-
-sub is_valid_checksum
-	{
-	my $data = _common_format shift;
-
-	return BAD_ISBN unless defined $data;
-	return GOOD_ISBN if substr($data, length($data)-1, 1) eq _checksum $data;
-
-	return BAD_CHECKSUM;
-	}
-
-sub ean_to_isbn
-	{
-	my $ean = shift;
-
-	return as_isbn_10($ean);
-	}
-
-
-sub isbn_to_ean
-	{
-	my $isbn = _common_format shift;
-
-	return unless (defined $isbn and is_valid_checksum($isbn) eq GOOD_ISBN);
-
-	return as_ean($isbn);
-	}
-
-sub png_barcode
-	{
-	my $self = shift;
-
-	my $ean = isbn_to_ean( $self->as_string([]) );
-
-	eval "use GD::Barcode::EAN13";
-	if( $@ )
-		{
-		carp "Need GD::Barcode::EAN13 to use png_barcode!";
-		return;
-		}
-
-	my $image = GD::Barcode::EAN13->new($ean)->plot->png;
-
-	return $image;
-	}
-
-sub xisbn
-	{
-	my $self = shift;
-
-	my $data = $self->_get_xisbn;
-	$data =~ tr/x/X/;
-
-	my @isbns = $data =~ m|<isbn>(.*?)</isbn>|ig;
-	shift @isbns;
-	wantarray ? @isbns : \@isbns;
-	}
-
-sub _get_xisbn
-	{
-	my $self = shift;
-
-	eval "use LWP::Simple";
-	if( $@ ) { carp "You need LWP::Simple to use xisbn()"; return; }
-
-	my $data = LWP::Simple::get( $self->_xisbn_url );
-
-	carp "Could not fetch xISBN data" unless defined $data;
-
-	return $data;
-	}
-
-sub _xisbn_url
-	{
-	my $self = shift;
-	my $isbn = $self->as_isbn_10;
-
-	return "http://labs.oclc.org/xisbn/$isbn";
-	}
-
-#internal function.  you don't get to use this one.
-sub _check_validity
-	{
-	my $self = shift;
-
-	if( is_valid_checksum $self->{'isbn'} eq GOOD_ISBN and
-		defined $self->{'country_code'}
-	    and defined $self->{'publisher_code'} )
-	    {
-	    $self->{'valid'} = GOOD_ISBN;
-	    }
-	else
-		{
-		$self->{'valid'} = INVALID_PUBLISHER_CODE
-			unless defined $self->{'publisher_code'};
-		$self->{'valid'} = INVALID_COUNTRY_CODE
-			unless defined $self->{'country_code'};
-		$self->{'valid'} = GOOD_ISBN
-			 unless is_valid_checksum $self->{'isbn'} ne GOOD_ISBN;
-		}
-	}
-
-#internal function.  you don't get to use this one.
-sub _checksum
-	{
-	my $data = _common_format shift;
-
-	return unless defined $data;
-
-	my $checksum;
-
-	if(length($data) == 10)
-	{
-		my @digits = split //, $data;
-		my $sum    = 0;
-
-		foreach( reverse 2..10 )
-			{
-			$sum += $_ * (shift @digits);
-			}
-
-		#return what the check digit should be
-		$checksum = (11 - ($sum % 11))%11;
-
-		$checksum = 'X' if $checksum == 10;
-
-	}
-	elsif(length($data) == 13)
-	{
-		my $sum = 0;
-		foreach my $index ( 0, 2, 4, 6, 8, 10 )
-			{
-			$sum +=     substr($data, $index, 1);
-			$sum += 3 * substr($data, $index + 1, 1);
-			}
-
-		#take the next higher multiple of 10 and subtract the sum.
-		#if $sum is 37, the next highest multiple of ten is 40. the
-		#check digit would be 40 - 37 => 3.
-		$checksum = ( 10 * ( int( $sum / 10 ) + 1 ) - $sum ) % 10;
-	}
-
-	return $checksum;
-	}
-
-
+	
 #internal function.  you don't get to use this one.
 sub _common_format
 	{
@@ -423,10 +78,11 @@ sub _common_format
 	$data =~ s/[^0-9X]//g;
 
 	return $1 if $data =~ m/
-	                  ^    	#anchor at start
-		((97[89])?\d{9}[0-9X])
-	                  $	#anchor at end
+	        \A   	         #anchor at start
+			(\d{9,12}[0-9X])
+	        \z	             #anchor at end
 	                  /x;
+
 	return;
 	}
 
@@ -444,8 +100,6 @@ Business::ISBN - work with International Standard Book Numbers
 
 	$isbn_object = Business::ISBN->new('1565922573');
 	$isbn_object = Business::ISBN->new('1-56592-257-3');
-	$isbn_object = Business::ISBN->new('9781565922570')
-	$isbn_object = Business::ISBN->new('979-952-14-7452-0');
 
 	#print the ISBN with hyphens at positions specified
 	#by constructor
@@ -498,8 +152,8 @@ The constructor accepts a scalar representing the ISBN.
 The string representing the ISBN may contain characters
 other than C<[0-9xX]>, although these will be removed in the
 internal representation.  The resulting string must look
-like an ISBN - all but the last character must be digits
-and the last character must be a digit, 'x', or 'X'.
+like an ISBN - the first nine characters must be digits and
+the tenth character must be a digit, 'x', or 'X'.
 
 The constructor attempts to determine the country
 code and the publisher code.  If these data cannot
@@ -569,7 +223,7 @@ was found
 
 =item checksum
 
-Returns the checksum (last character) or C<undef> if no
+Returns the checksum (last character) or C<undef> if no 
 checksum was found or it could not be computed.
 
 =item hyphen_positions
@@ -596,8 +250,8 @@ assumes that you know what you are doing and will attempt
 to use the least three positions specified.  If you pass
 an anonymous array of several positions, the list will
 be sorted and the lowest three positions will be used.
-Positions less than 1 and those greater than or equal to
-the length of the ISBN are silently ignored.
+Positions less than 1 and greater than 9 are silently
+ignored.
 
 A terminating 'x' is changed to 'X'.
 
@@ -622,13 +276,13 @@ C<"123456">, and so on.
 
 =item fix_checksum()
 
-Replace the last character with the checksum that
-corresponds to the previous digits.  This does not
+Replace the tenth character with the checksum the
+corresponds to the previous nine digits.  This does not
 guarantee that the ISBN corresponds to the product one
 thinks it does, or that the ISBN corresponds to any product
 at all.  It only produces a string that passes the checksum
 routine.  If the ISBN passed to the constructor was invalid,
-the error might have been in any of the other positions.
+the error might have been in any of the other nine positions.
 
 =item as_ean()
 
@@ -636,13 +290,6 @@ Converts the ISBN to the equivalent EAN (European Article Number).
 No pricing extension is added.  Returns the EAN as a string.  This
 method can also be used as an exportable function since it checks
 its argument list to determine what to do.
-
-=item as_isbn_10()
-
-Converts the ISBN to its equivalent 10 digit representation. If the ISBN
-is already 10 digits, it is returned.  If the ISBN is 13 digits and begins
-with 978, it is converted to 10 digit form and returned.  Otherwise, there
-is no 10 digit representation, and the return is empty.
 
 =item png_barcode()
 
@@ -696,7 +343,7 @@ what to do.
 Takes the EAN string and converts it to the equivalent
 ISBN string.  This function checks for a valid ISBN and will return
 undef for invalid ISBNs, otherwise it returns the EAN as a string.
-Uses as_isbn_10 internally, which checks its arguments to determine
+Uses as_ean internally, which checks its arguments to determine
 what to do.
 
 =back

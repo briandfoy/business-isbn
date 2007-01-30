@@ -1,4 +1,4 @@
-# $Id: load.t,v 1.3 2004/02/11 21:00:32 comdog Exp $
+# $Id: load.t,v 2.1 2007/01/30 04:14:04 comdog Exp $
 BEGIN { @classes = map { "Business::ISBN" } '', '::Data' }
 
 use Test::More tests => scalar @classes;

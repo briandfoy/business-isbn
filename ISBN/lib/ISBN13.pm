@@ -1,6 +1,6 @@
 # $Revision: 2.1 $
-# $Id: ISBN.pm,v 2.1 2007/01/30 04:14:03 comdog Exp $
-package Business::ISBN;
+# $Id: ISBN13.pm,v 2.1 2007/01/30 04:14:04 comdog Exp $
+package Business::ISBN13;
 use strict;
 
 use subs qw( _common_format _checksum is_valid_checksum
@@ -17,6 +17,9 @@ use Carp qw(carp);
 use Exporter;
 
 use Business::ISBN::Data 1.09; # now a separate module
+# ugh, hack
+*country_data = *Business::ISBN::country_data;
+*MAX_COUNTRY_CODE_LENGTH = *Business::ISBN::MAX_COUNTRY_CODE_LENGTH;
 
 my $debug = 0;
 
@@ -27,11 +30,11 @@ my $debug = 0;
 
 ($VERSION)   = q$Revision: 2.1 $ =~ m/(\d+\.\d+)\s*$/;
 
-sub INVALID_COUNTRY_CODE   { -2 };
-sub INVALID_PUBLISHER_CODE { -3 };
-sub BAD_CHECKSUM           { -1 };
-sub GOOD_ISBN              {  1 };
-sub BAD_ISBN               {  0 };
+sub INVALID_COUNTRY_CODE   () { -2 };
+sub INVALID_PUBLISHER_CODE () { -3 };
+sub BAD_CHECKSUM           () { -1 };
+sub GOOD_ISBN              () {  1 };
+sub BAD_ISBN               () {  0 };
 
 %ERROR_TEXT = (
 	 0 => "Bad ISBN",
@@ -41,7 +44,6 @@ sub BAD_ISBN               {  0 };
 	-3 => "Invalid publisher code",
 	);
 
-
 sub new
 	{
 	my $class       = shift;
@@ -49,21 +51,10 @@ sub new
 
 	return unless defined $common_data;
 
-	my $isbn13; #Boolean.  Determines whether we've got a 13 or a 10.
-	if(length($common_data) == 13)
-	{ $isbn13 = 1; }
-
-	my $self  = {};
+	my $self  = { format => 'ISBN13' };
 	bless $self, $class;
 
-	$self->{'isbn'}      = $common_data;
-	if($isbn13)
-	{
-		$self->{'positions'} = [12];
-		${$self->{'positions'}}[3] = 3;
-	}
-	else
-	{ $self->{'positions'} = [9]; }
+	$self->{'positions'} = [12, undef, undef, 3];
 
 	# we don't know if we have a valid country code yet
 	# so let's assume that we don't
@@ -72,9 +63,7 @@ sub new
 	# extract the country code
 	my $trial_country_code  = undef;  # try this to see what we get
 	my $country_code_length = 0;
-	my $prefix = 0; #For ISBN13, the country code starts
-	if($isbn13)                 #at position 3.
-	{ $prefix = 3; }
+	my $prefix = 3; #For ISBN13, the country code starts
 
 	my $count = 1;
 	COUNTRY_CODE:
@@ -87,7 +76,7 @@ sub new
 			$self->{'country'} =
 				${$country_data{ $trial_country_code }}[0];
 			$country_code_length = length $trial_country_code;
-			${$self->{'positions'}}[2] = $prefix + $country_code_length;
+			$self->{'positions'}[2] = $prefix + $country_code_length;
 			last COUNTRY_CODE;
 			}
 
@@ -230,19 +219,7 @@ sub as_ean
 
 	my $isbn = ref $self ? $self->as_string([]) : _common_format $self;
 
-	return unless defined $isbn;
-
-	my $ean;
-
-	if(length($isbn) == 10)
-	{
-		$ean = "978$isbn";
-		$ean = substr($ean,0,12) . _checksum($ean);
-	}
-	elsif(length($isbn) == 13)
-	{ $ean = $isbn; }
-
-	return $ean;
+	return $isbn;
 	}
 
 sub as_isbn_10
@@ -299,7 +276,7 @@ sub png_barcode
 	{
 	my $self = shift;
 
-	my $ean = isbn_to_ean( $self->as_string([]) );
+	my $ean = $self->as_string([]);
 
 	eval "use GD::Barcode::EAN13";
 	if( $@ )
@@ -378,36 +355,17 @@ sub _checksum
 
 	my $checksum;
 
-	if(length($data) == 10)
-	{
-		my @digits = split //, $data;
-		my $sum    = 0;
+	my $sum = 0;
+	foreach my $index ( 0, 2, 4, 6, 8, 10 )
+		{
+		$sum +=     substr($data, $index, 1);
+		$sum += 3 * substr($data, $index + 1, 1);
+		}
 
-		foreach( reverse 2..10 )
-			{
-			$sum += $_ * (shift @digits);
-			}
-
-		#return what the check digit should be
-		$checksum = (11 - ($sum % 11))%11;
-
-		$checksum = 'X' if $checksum == 10;
-
-	}
-	elsif(length($data) == 13)
-	{
-		my $sum = 0;
-		foreach my $index ( 0, 2, 4, 6, 8, 10 )
-			{
-			$sum +=     substr($data, $index, 1);
-			$sum += 3 * substr($data, $index + 1, 1);
-			}
-
-		#take the next higher multiple of 10 and subtract the sum.
-		#if $sum is 37, the next highest multiple of ten is 40. the
-		#check digit would be 40 - 37 => 3.
-		$checksum = ( 10 * ( int( $sum / 10 ) + 1 ) - $sum ) % 10;
-	}
+	#take the next higher multiple of 10 and subtract the sum.
+	#if $sum is 37, the next highest multiple of ten is 40. the
+	#check digit would be 40 - 37 => 3.
+	$checksum = ( 10 * ( int( $sum / 10 ) + 1 ) - $sum ) % 10;
 
 	return $checksum;
 	}

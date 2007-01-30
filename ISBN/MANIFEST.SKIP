@@ -12,3 +12,6 @@ Makefile$
 MANIFEST.SKIP
 (^|/)\.
 .gz$
+t/isbn.t
+t/xisbn.t
+^ISBN.pm$
