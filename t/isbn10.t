@@ -1,59 +1,74 @@
-# $Revision: 2.1 $
+# $Revision: 2.2 $
+use strict;
 
-use Test::More tests => 22;
+use Test::More 'no_plan';
 
-use Business::ISBN;
+use Business::ISBN qw(:all);
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 my $GOOD_ISBN          = "1565922573";
 my $GOOD_ISBN_STRING   = "1-56592-257-3";
 my $GOOD_EAN           = "9781565922570";
 my $COUNTRY            = "English";
-my $COUNTRY_CODE       = "1";
+my $GROUP_CODE         = "1";
 my $PUBLISHER          = "56592";
+
 my $BAD_CHECKSUM_ISBN  = "1565922572";
-my $BAD_COUNTRY_ISBN   = "9990222576";
+
+my $BAD_GROUP_ISBN     = "9990222576";
+
 my $BAD_PUBLISHER_ISBN = "9165022222"; # 91-650-22222-?  Sweden (stops at 649)
+
 my $NULL_ISBN          = undef;
+
 my $NO_GOOD_CHAR_ISBN  = "abcdefghij";
+
 my $SHORT_ISBN         = "156592";
 
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # test to see if we can construct an object?
 my $isbn = Business::ISBN->new( $GOOD_ISBN );
 isa_ok( $isbn, 'Business::ISBN10' );
 is( $isbn->is_valid, Business::ISBN10::GOOD_ISBN, "$GOOD_ISBN is valid" );
 
-is( $isbn->publisher_code, $PUBLISHER,          "$GOOD_ISBN has right publisher");
-is( $isbn->country_code,   $COUNTRY_CODE,       "$GOOD_ISBN has right country code");
-is( $isbn->country,        $COUNTRY,            "$GOOD_ISBN has right country");
-is( $isbn->as_string,      $GOOD_ISBN_STRING,   "$GOOD_ISBN stringifies correctly");
-is( $isbn->as_string([]),  $GOOD_ISBN,          "$GOOD_ISBN stringifies correctly");
+is( $isbn->publisher_code, $PUBLISHER,        "$GOOD_ISBN has right publisher");
+is( $isbn->group_code,     $GROUP_CODE,       "$GOOD_ISBN has right country code");
+is( $isbn->group,          $COUNTRY,          "$GOOD_ISBN has right country");
+is( $isbn->as_string,      $GOOD_ISBN_STRING, "$GOOD_ISBN stringifies correctly");
+is( $isbn->as_string([]),  $GOOD_ISBN,        "$GOOD_ISBN stringifies correctly");
 
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # and bad checksums?
 $isbn = Business::ISBN->new( $BAD_CHECKSUM_ISBN );
 isa_ok( $isbn, 'Business::ISBN10' );
-is( $isbn->is_valid, Business::ISBN10::BAD_CHECKSUM, 
-	"$BAD_CHECKSUM_ISBN is invalid" );
+is( $isbn->error, BAD_CHECKSUM, 
+	"Bad checksum [$BAD_CHECKSUM_ISBN] is invalid" );
 
 #after this we should have a good ISBN
 $isbn->fix_checksum;
-is( $isbn->is_valid, Business::ISBN10::GOOD_ISBN, 
-	"$BAD_CHECKSUM_ISBN had checksum fixed" );
+ok( $isbn->is_valid, 
+	"Bad checksum [$BAD_CHECKSUM_ISBN] had checksum fixed" );
 
 # bad country code?
-$isbn = Business::ISBN->new( $BAD_COUNTRY_ISBN );
+$isbn = Business::ISBN->new( $BAD_GROUP_ISBN );
 isa_ok( $isbn, 'Business::ISBN10' );
-is( $isbn->is_valid, Business::ISBN10::INVALID_COUNTRY_CODE, 
-	"$BAD_COUNTRY_ISBN is invalid" );
+is( $isbn->error, INVALID_GROUP_CODE, 
+	"Bad group code [$BAD_GROUP_ISBN] is invalid" );
 
 # bad publisher code?
 $isbn = Business::ISBN->new( $BAD_PUBLISHER_ISBN );
 isa_ok( $isbn, 'Business::ISBN10' );
-is( $isbn->is_valid, Business::ISBN10::INVALID_PUBLISHER_CODE, 
-	"$BAD_PUBLISHER_ISBN is invalid" );
+is( $isbn->error, INVALID_PUBLISHER_CODE, 
+	"Bad publisher [$BAD_PUBLISHER_ISBN] is invalid" );
 
 # convert to EAN?
 $isbn = Business::ISBN->new( $GOOD_ISBN );
 is( $isbn->as_ean, $GOOD_EAN, "$GOOD_ISBN converted to EAN" );
+
+=pod
 
 # do exportable functions do the right thing?
 {
@@ -64,6 +79,10 @@ my $valid = Business::ISBN10::is_valid_checksum( $SHORT_ISBN );
 is( $valid, Business::ISBN10::BAD_ISBN, "Catch short ISBN string" );
 }
 
+
+TODO: {
+	local $TODO = "not implemented";
+eval {
 is( Business::ISBN10::is_valid_checksum( $GOOD_ISBN ),
 	Business::ISBN10::GOOD_ISBN, 'is_valid_checksum with good ISBN' );
 is( Business::ISBN10::is_valid_checksum( $BAD_CHECKSUM_ISBN ),
@@ -74,8 +93,12 @@ is( Business::ISBN10::is_valid_checksum( $NO_GOOD_CHAR_ISBN ),
 	Business::ISBN10::BAD_ISBN, 'is_valid_checksum with no good char ISBN' );
 is( Business::ISBN10::is_valid_checksum( $SHORT_ISBN ),
 	Business::ISBN10::BAD_ISBN, 'is_valid_checksum with short ISBN' );
+}
+}
 
+=cut
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 SKIP:
 	{
 	my $file = "isbns.txt";
@@ -101,5 +124,39 @@ SKIP:
 	
 	close FILE;
 	
-	ok( $bad == 0, "Match ISBNs" );
+	ok( $bad == 0, "Match good ISBNs" );
+	}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+SKIP:
+	{
+	my $file = "bad-isbns.txt";
+
+	open FILE, $file or 
+		skip( "Could not read $file: $!", 1, "Need $file");
+
+	print STDERR "\nChecking bad ISBNs... (this should be fast)\n";
+	
+	my $good = 0;
+	my @good = ();
+	
+	while( <FILE> )
+		{
+		chomp;
+		my $valid = eval { Business::ISBN->new( $_ )->is_valid };
+		next unless $valid;
+		
+		push @good, $_;
+		
+		$good++;	
+		}
+	
+	close FILE;
+
+	{
+	local $" = "\n\t";
+	ok( $good == 0, "Don't match bad ISBNs" ) || 
+		diag( "Matched $good bad ISBNs\n\t@good\n" );
+	}
+	
 	}

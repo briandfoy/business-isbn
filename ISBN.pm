@@ -1,5 +1,5 @@
-# $Revision: 2.1 $
-# $Id: ISBN.pm,v 2.1 2007/01/30 04:14:03 comdog Exp $
+# $Revision: 2.2 $
+# $Id: ISBN.pm,v 2.2 2007/03/11 20:17:08 comdog Exp $
 package Business::ISBN;
 use strict;
 
@@ -18,14 +18,14 @@ use Exporter;
 
 use Business::ISBN::Data 1.09; # now a separate module
 
-my $debug = 0;
+my $debug = 0
 
 @ISA       = qw(Exporter);
 @EXPORT_OK = qw(is_valid_checksum ean_to_isbn isbn_to_ean
 	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM GOOD_ISBN BAD_ISBN %ERROR_TEXT);
 
-($VERSION)   = q$Revision: 2.1 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 2.2 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub INVALID_COUNTRY_CODE   { -2 };
 sub INVALID_PUBLISHER_CODE { -3 };
@@ -59,8 +59,8 @@ sub new
 	$self->{'isbn'}      = $common_data;
 	if($isbn13)
 	{
-		$self->{'positions'} = [12];
-		${$self->{'positions'}}[3] = 3;
+		$self->{'positions'}    = [12];
+		$self->{'positions'}[3] = 3;
 	}
 	else
 	{ $self->{'positions'} = [9]; }
@@ -85,7 +85,7 @@ sub new
 			{
 			$self->{'country_code'} = $trial_country_code;
 			$self->{'country'} =
-				${$country_data{ $trial_country_code }}[0];
+				$country_data{ $trial_country_code }[0];
 			$country_code_length = length $trial_country_code;
 			${$self->{'positions'}}[2] = $prefix + $country_code_length;
 			last COUNTRY_CODE;
@@ -140,7 +140,7 @@ sub new
 			    $trial_publisher_code <= $upper_bound )
 			    {
 			    $self->{'publisher_code'} = $trial_publisher_code;
-				${$self->{'positions'}}[1] =
+				$self->{'positions'}[1] =
 					$prefix + $country_code_length + $count;
 			    last PUBLISHER_CODE;
 			    }
