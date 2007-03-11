@@ -1,9 +1,9 @@
-# $Id: load.t,v 2.1 2007/01/30 04:14:04 comdog Exp $
-BEGIN { @classes = map { "Business::ISBN" } '', '::Data' }
+# $Id: load.t,v 2.2 2007/03/11 20:17:09 comdog Exp $
+BEGIN { @classes = map { "Business::ISBN$_" } '',  '10', '13' }
 
 use Test::More tests => scalar @classes;
 	
 foreach my $class ( @classes )
 	{
-	print "Bail out!" unless use_ok( $class );
+	print "Bail out!\n" unless use_ok( $class );
 	}

@@ -1,72 +1,278 @@
-# $Revision: 2.1 $
-# $Id: ISBN.pm,v 2.1 2007/01/30 04:14:04 comdog Exp $
+# $Revision: 2.2 $
+# $Id: ISBN.pm,v 2.2 2007/03/11 20:17:08 comdog Exp $
 package Business::ISBN;
 use strict;
 
-use subs qw( _common_format _checksum is_valid_checksum
-	INVALID_COUNTRY_CODE
+use subs qw( 
+	_common_format
+	INVALID_GROUP_CODE
 	INVALID_PUBLISHER_CODE
 	BAD_CHECKSUM
 	GOOD_ISBN
 	BAD_ISBN
 	);
-use vars qw( $VERSION @ISA @EXPORT_OK $debug %country_data
-	$MAX_COUNTRY_CODE_LENGTH %ERROR_TEXT );
+use vars qw( $VERSION @ISA @EXPORT_OK %EXPORT_TAGS $debug %group_data
+	$MAX_GROUP_CODE_LENGTH %ERROR_TEXT );
 
-use Carp qw(carp);
-use Exporter;
+use Carp qw(carp croak);
+use Exporter qw( import );
 
 use Business::ISBN::Data 1.09; # now a separate module
+# ugh, hack
+*group_data = *Business::ISBN::country_data;
+sub _group_data { $group_data{ $_[1] } }
+
+sub _max_group_code_length  { $Business::ISBN::MAX_COUNTRY_CODE_LENGTH };
+sub _max_publisher_code_length  { 
+	10 - $_[0]->_group_code_length - 1 - 1;
+	};
+sub _publisher_ranges
+	{	
+	my $self = shift;
+	[ @{ $self->_group_data( $self->group_code )->[1] } ];
+	}
 
 my $debug = 0;
 
-@ISA       = qw(Exporter);
-@EXPORT_OK = qw(is_valid_checksum ean_to_isbn isbn_to_ean
-	INVALID_COUNTRY_CODE INVALID_PUBLISHER_CODE
-	BAD_CHECKSUM GOOD_ISBN BAD_ISBN %ERROR_TEXT);
+BEGIN {
+	@EXPORT_OK = qw(
+		INVALID_GROUP_CODE INVALID_PUBLISHER_CODE
+		BAD_CHECKSUM GOOD_ISBN BAD_ISBN 
+		INVALID_PREFIX
+		%ERROR_TEXT);
+	%EXPORT_TAGS = ( 
+		'all' => \@EXPORT_OK,	
+		);
+	};
+	
+($VERSION)   = q$Revision: 2.2 $ =~ m/(\d+\.\d+)\s*$/;
 
-($VERSION)   = q$Revision: 2.1 $ =~ m/(\d+\.\d+)\s*$/;
-
-sub INVALID_COUNTRY_CODE   () { -2 };
+sub INVALID_PREFIX         () { -4 };
+sub INVALID_GROUP_CODE     () { -2 };
 sub INVALID_PUBLISHER_CODE () { -3 };
 sub BAD_CHECKSUM           () { -1 };
 sub GOOD_ISBN              () {  1 };
 sub BAD_ISBN               () {  0 };
 
+	
 %ERROR_TEXT = (
 	 0 => "Bad ISBN",
 	 1 => "Good ISBN",
 	-1 => "Bad ISBN checksum",
-	-2 => "Invalid country code",
+	-2 => "Invalid group code",
 	-3 => "Invalid publisher code",
+	-4 => "Invalid prefix (must be 978 or 979)",
 	);
 
 use Business::ISBN10;
-use Business::ISBN13;
+#use Business::ISBN13;
 
 sub new
 	{
 	my $class       = shift;
 	my $common_data = _common_format shift;
 
+	return unless $common_data;
+	
+	my $self = {};
+	
 	my $isbn = do {
 		if( length( $common_data ) == 10 )
 			{
-			Business::ISBN10->new( $common_data );
+			bless $self, 'Business::ISBN10';
 			}
 		elsif( length( $common_data ) == 13 )
 			{
-			require Business::ISBN10;
-			Business::ISBN13->new( $common_data );
+			bless $self, 'Business::ISBN13';
 			}
 		else
 			{
-			();
+			return BAD_ISBN;
 			}
 		};
+
+	$self->_init( $common_data );
+	$self->_parse_isbn( $common_data );
 		
 	return $isbn;
 	}
+
+sub _init
+	{
+	my $self = shift;
+	my $common_data = shift;
+	
+	my $class = ref $self =~ m/.*::(.*)/g;
+	
+	$self->set_type( $class );
+	$self->set_isbn( $common_data );
+
+	# we don't know if we have a valid group code yet
+	# so let's assume that we don't
+	$self->set_is_valid( INVALID_GROUP_CODE );
+	}
+
+{
+my @methods = (
+	[ qw( prefix         ), INVALID_PREFIX         ],
+	[ qw( group_code     ), INVALID_GROUP_CODE     ],
+	[ qw( publisher_code ), INVALID_PUBLISHER_CODE ],
+	[ qw( article_code   ), BAD_ISBN               ],
+	[ qw( checksum       ), BAD_CHECKSUM           ],
+	);
+	
+sub _parse_isbn
+	{
+	my $self = shift;
+	
+	foreach my $pair ( @methods )
+		{
+		my( $method, $error_code ) = @$pair;
+
+		my $parser = "_parse_$method";
+		my $result = $self->$parser;
+		
+		unless( defined $result )
+			{
+			$self->set_is_valid( $error_code );
+			#print STDERR "Got bad result for $method [$$self{isbn}]\n";
+			return;
+			}
+			
+		$method = "set_$method";
+		$self->$method( $result );
+		}
+	
+	$self->set_is_valid( $self->is_valid_checksum );
+	
+	return $self;
+	}
+}
+
+sub _parse_group_code
+	{
+	my $self = shift;
+	
+	my $trial;  # try this to see what we get
+	my $group_code_length = 0;
+
+	my $count = 1;
+	
+	GROUP_CODE:
+	while( defined( $trial= substr($self->isbn, $self->_prefix_length, $count++) ) )
+		{
+		if( defined $self->_group_data( $trial ) )
+			{
+			return $trial;
+			last GROUP_CODE;
+			}
+
+		# if we've past the point of finding a group
+		# code we're pretty much stuffed.
+		return if $count > $self->_max_group_code_length;
+		}
+	
+	return; #failed if I got this far
+	}
+
+sub _parse_publisher_code
+	{
+	my $self = shift;
+	
+	my $pairs = $self->_publisher_ranges;
+
+	# get the longest possible publisher code
+	# I'll try substrs of this to get the real one
+	my $longest = substr(
+		$self->isbn, 
+		$self->_prefix_length + $self->_group_code_length,
+		length( $self->isbn ) 
+			- $self->_prefix_length - $self->_group_code_length - 2
+		);
+	
+	#print STDERR "Trying to parse publisher: longest [$longest]\n";
+	while( @$pairs )
+		{
+		my $lower  = shift @$pairs;
+		my $upper  = shift @$pairs;
+		
+		my $trial  = substr( $longest, 0, length $lower ); 
+		#print STDERR "Trying [$trial] with $lower <-> $upper [$$self{isbn}]\n";
+		
+		# this has to be a sring comparison because there are
+		# possibly leading 0s
+		if( $trial ge $lower and $trial le $upper )
+			{
+			#print STDERR "Returning $trial\n";
+			return $trial;
+			}
+		
+		}
+		
+	return; #failed if I got this far	
+	}
+	
+sub _parse_article_code
+	{
+	my $self = shift;
+	
+	my $head = $self->_prefix_length + 
+		$self->_group_code_length + 
+		$self->_publisher_code_length;
+	my $length = length( $self->isbn ) - $head - 1;
+	
+	substr( $self->isbn, $head, $length );
+	}
+	
+sub _parse_checksum
+	{
+	my $self = shift;
+	
+	substr( $self->isbn, -1, 1 );
+	}
+	
+#it's your fault if you muck with the internals yourself
+# none of these take arguments
+sub isbn ()                  {   $_[0]->{'isbn'}                              }
+
+sub error                    {   $_[0]->{'valid'}                             }
+sub is_valid ()              {   $_[0]->{'valid'} eq GOOD_ISBN                }
+
+sub prefix                   {   $_[0]->{'prefix'}                            }
+sub _prefix_length           { length $_[0]->{'prefix'}                       }
+
+sub group_code ()            {   $_[0]->{'group_code'}                        }
+sub group()                  {   $_[0]->_group_data( $_[0]->group_code )->[0] }
+sub _group_code_length   { 
+	length(
+		defined $_[0]->{'group_code'} ? $_[0]->{'group_code'} : ''    
+		);
+	}
+
+sub publisher_code ()        {   $_[0]->{'publisher_code'}                    }
+sub _publisher_code_length   { 
+	length(
+		defined $_[0]->{'publisher_code'} ? $_[0]->{'publisher_code'} : ''    
+		);
+	}
+
+sub article_code ()          {   $_[0]->{'article_code'}                      }
+sub checksum ()              {   $_[0]->{'checksum'}                          }
+sub type                     {   $_[0]->{'type'}                              }
+
+sub hyphen_positions ()      { croak "hyphen_positions() must be implemented in Business::ISBN subclass" }
+
+
+sub set_isbn ()             {   $_[0]->{'isbn'}           = $_[1];   }
+sub set_is_valid ()         {   $_[0]->{'valid'}          = $_[1];   }
+sub set_prefix ()           {   croak "set_prefix() must be implemented in Business::ISBN subclass" }
+sub set_group_code ()       {   $_[0]->{'group_code'}     = $_[1];   }
+sub set_group()             {   $_[0]->{'group'}          = $_[1];   }
+sub set_publisher_code ()   {   $_[0]->{'publisher_code'} = $_[1];   }
+sub set_article_code ()     {   $_[0]->{'article_code'}   = $_[1];   }
+sub set_checksum ()         {   $_[0]->{'checksum'}       = $_[1];   }
+sub set_type                {   $_[0]->{'type'}           = $_[1];   }
+
 	
 #internal function.  you don't get to use this one.
 sub _common_format
@@ -79,7 +285,8 @@ sub _common_format
 
 	return $1 if $data =~ m/
 	        \A   	         #anchor at start
-			(\d{9,12}[0-9X])
+	        (?:97[89])?
+			(\d{9}[0-9X])
 	        \z	             #anchor at end
 	                  /x;
 
@@ -109,8 +316,8 @@ Business::ISBN - work with International Standard Book Numbers
 	#this not does affect the default positions
 	print $isbn_object->as_string([]);
 
-	#print the country code or publisher code
-	print $isbn->country_code;
+	#print the group code or publisher code
+	print $isbn->group_code;
 	print $isbn->publisher_code;
 
 	#check to see if the ISBN is valid
@@ -155,7 +362,7 @@ internal representation.  The resulting string must look
 like an ISBN - the first nine characters must be digits and
 the tenth character must be a digit, 'x', or 'X'.
 
-The constructor attempts to determine the country
+The constructor attempts to determine the group
 code and the publisher code.  If these data cannot
 be determined, the constructor sets C<$obj-E<gt>is_valid>
 to something other than C<GOOD_ISBN>.
@@ -167,7 +374,7 @@ versions of this module which used literal values.
 
 
 	Business::ISBN::INVALID_PUBLISHER_CODE
-	Business::ISBN::INVALID_COUNTRY_CODE
+	Business::ISBN::INVALID_GROUP_CODE
 	Business::ISBN::BAD_CHECKSUM
 	Business::ISBN::GOOD_ISBN
 	Business::ISBN::BAD_ISBN
@@ -205,15 +412,15 @@ characters.
 Returns the publisher code or C<undef> if no publisher
 code was found.
 
-=item country_code
+=item group_code
 
-Returns the country code or C<undef> if no country code
+Returns the group code or C<undef> if no group code
 was found.
 
-=item country
+=item group
 
-Returns the country group (which may not be an actual country
-name (e.g. "English")) or C<undef> if no country code
+Returns the group group (which may not be an actual group
+name (e.g. "English")) or C<undef> if no group code
 was found.
 
 =item article_code
@@ -229,7 +436,7 @@ checksum was found or it could not be computed.
 =item hyphen_positions
 
 Returns the list of hyphen positions as determined from the
-country and publisher codes.  the C<as_string> method provides
+group and publisher codes.  the C<as_string> method provides
 a way to temporarily override these positions and to even
 forego them altogether.
 
@@ -240,7 +447,7 @@ optional anonymous array (or array reference) that specifies
 the placement of hyphens in the string.  An empty anonymous array
 produces a string with no hyphens. An empty argument list
 automatically hyphenates the ISBN based on the discovered
-country and publisher codes.  An ISBN that is not valid may
+group and publisher codes.  An ISBN that is not valid may
 produce strange results.
 
 The positions specified in the passed anonymous array
@@ -258,17 +465,17 @@ A terminating 'x' is changed to 'X'.
 =item  is_valid
 
 Returns C<Business::ISBN::GOOD_ISBN> if the checksum is valid and the
-country and publisher codes are defined.
+group and publisher codes are defined.
 
 Returns C<Business::ISBN::BAD_CHECKSUM> if the ISBN does not pass
 the checksum test. The constructor accepts invalid ISBN's so that
 they might be fixed with C<fix_checksum>.
 
-Returns C<Business::ISBN::INVALID_COUNTRY_CODE> if a country code
+Returns C<Business::ISBN::INVALID_GROUP_CODE> if a group code
 could not be determined (relies on a valid checksum).
 
 Returns C<Business::ISBN::INVALID_PUBLISHER_CODE> if a publisher code
-could not be determined (relies on a valid checksum and country code).
+could not be determined (relies on a valid checksum and group code).
 
 Returns C<Business::ISBN::BAD_ISBN> if the string has no hope of ever
 looking like a valid ISBN.  This might include strings such as C<"abc">,
