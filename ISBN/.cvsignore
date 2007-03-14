@@ -11,3 +11,5 @@ Data.pm
 pm_to_blib.ts
 blibdirs.ts
 .DS_Store
+ISBN.pm.dist
+cover_db
