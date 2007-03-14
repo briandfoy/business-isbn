@@ -15,3 +15,7 @@ MANIFEST.SKIP
 t/isbn.t
 t/xisbn.t
 ^ISBN.pm$
+isbn.t
+\.dist$
+\.html$
+cover_db

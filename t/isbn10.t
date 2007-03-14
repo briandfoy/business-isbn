@@ -1,4 +1,4 @@
-# $Revision: 2.2 $
+# $Revision: 2.3 $
 use strict;
 
 use Test::More 'no_plan';
@@ -6,14 +6,20 @@ use Test::More 'no_plan';
 use Business::ISBN qw(:all);
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-my $GOOD_ISBN          = "1565922573";
-my $GOOD_ISBN_STRING   = "1-56592-257-3";
-my $GOOD_EAN           = "9781565922570";
-my $COUNTRY            = "English";
-my $GROUP_CODE         = "1";
-my $PUBLISHER          = "56592";
+my $GOOD_ISBN          = "0596527241";
+my $GOOD_ISBN_STRING   = "0-596-52724-1";
 
-my $BAD_CHECKSUM_ISBN  = "1565922572";
+my $GOOD_EAN           = "9780596527242";
+my $GOOD_EAN_STRING    = "978-0-596-52724-2";
+
+my $GROUP              = "English";
+
+my $PREFIX             = '978';
+
+my $GROUP_CODE         = "0";
+my $PUBLISHER          = "596";
+
+my $BAD_CHECKSUM_ISBN  = "0596527244";
 
 my $BAD_GROUP_ISBN     = "9990222576";
 
@@ -30,15 +36,50 @@ my $SHORT_ISBN         = "156592";
 # test to see if we can construct an object?
 my $isbn = Business::ISBN->new( $GOOD_ISBN );
 isa_ok( $isbn, 'Business::ISBN10' );
-is( $isbn->is_valid, Business::ISBN10::GOOD_ISBN, "$GOOD_ISBN is valid" );
+is( $isbn->is_valid,       GOOD_ISBN, "$GOOD_ISBN is valid" );
 
+is( $isbn->type,           'ISBN10',          "$GOOD_ISBN has right type");
+
+is( $isbn->prefix,         '',                "$GOOD_ISBN has right prefix");
 is( $isbn->publisher_code, $PUBLISHER,        "$GOOD_ISBN has right publisher");
 is( $isbn->group_code,     $GROUP_CODE,       "$GOOD_ISBN has right country code");
-is( $isbn->group,          $COUNTRY,          "$GOOD_ISBN has right country");
+is( $isbn->group,          $GROUP,            "$GOOD_ISBN has right country");
 is( $isbn->as_string,      $GOOD_ISBN_STRING, "$GOOD_ISBN stringifies correctly");
 is( $isbn->as_string([]),  $GOOD_ISBN,        "$GOOD_ISBN stringifies correctly");
 
+is( $isbn->as_string([]),  $isbn->common_data, "$GOOD_ISBN stringifies correctly");
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# can I clone it?
+{
+my $clone = $isbn->as_isbn10;
+
+isa_ok( $clone, 'Business::ISBN10' );
+is( $clone->is_valid,       GOOD_ISBN, "$GOOD_ISBN is valid" );
+
+is( $clone->publisher_code, $PUBLISHER,        "$GOOD_ISBN has right publisher");
+is( $clone->group_code,     $GROUP_CODE,       "$GOOD_ISBN has right country code");
+is( $clone->group,          $GROUP,            "$GOOD_ISBN has right country");
+is( $clone->as_string,      $GOOD_ISBN_STRING, "$GOOD_ISBN stringifies correctly");
+is( $clone->as_string([]),  $GOOD_ISBN,        "$GOOD_ISBN stringifies correctly");
+}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# can I make it ISBN13?
+{
+my $clone = $isbn->as_isbn13;
+
+isa_ok( $clone, 'Business::ISBN13' );
+is( $clone->is_valid,       GOOD_ISBN, "$GOOD_ISBN is valid" );
+
+is( $clone->type,           'ISBN13',          "$GOOD_ISBN has right type");
+is( $clone->prefix,         $PREFIX,           "$GOOD_ISBN has right prefix");
+is( $clone->publisher_code, $PUBLISHER,        "$GOOD_ISBN has right publisher");
+is( $clone->group_code,     $GROUP_CODE,       "$GOOD_ISBN has right country code");
+is( $clone->group,          $GROUP,            "$GOOD_ISBN has right country");
+is( $clone->as_string,      $GOOD_EAN_STRING,  "$GOOD_ISBN stringifies correctly");
+is( $clone->as_string([]),  $GOOD_EAN,         "$GOOD_ISBN stringifies correctly");
+}
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # and bad checksums?
@@ -46,11 +87,13 @@ $isbn = Business::ISBN->new( $BAD_CHECKSUM_ISBN );
 isa_ok( $isbn, 'Business::ISBN10' );
 is( $isbn->error, BAD_CHECKSUM, 
 	"Bad checksum [$BAD_CHECKSUM_ISBN] is invalid" );
+is( $isbn->input_isbn, $BAD_CHECKSUM_ISBN, "Bad ISBN is in input_data" );
 
 #after this we should have a good ISBN
 $isbn->fix_checksum;
 ok( $isbn->is_valid, 
 	"Bad checksum [$BAD_CHECKSUM_ISBN] had checksum fixed" );
+is( $isbn->input_isbn, $BAD_CHECKSUM_ISBN, "Bad ISBN is still in input_data" );
 
 # bad country code?
 $isbn = Business::ISBN->new( $BAD_GROUP_ISBN );
@@ -66,39 +109,17 @@ is( $isbn->error, INVALID_PUBLISHER_CODE,
 
 # convert to EAN?
 $isbn = Business::ISBN->new( $GOOD_ISBN );
-is( $isbn->as_ean, $GOOD_EAN, "$GOOD_ISBN converted to EAN" );
-
-=pod
-
-# do exportable functions do the right thing?
-{
-my $SHORT_ISBN = $GOOD_ISBN;
-chop $SHORT_ISBN;
-
-my $valid = Business::ISBN10::is_valid_checksum( $SHORT_ISBN );
-is( $valid, Business::ISBN10::BAD_ISBN, "Catch short ISBN string" );
-}
-
-
-TODO: {
-	local $TODO = "not implemented";
-eval {
-is( Business::ISBN10::is_valid_checksum( $GOOD_ISBN ),
-	Business::ISBN10::GOOD_ISBN, 'is_valid_checksum with good ISBN' );
-is( Business::ISBN10::is_valid_checksum( $BAD_CHECKSUM_ISBN ),
-	Business::ISBN10::BAD_CHECKSUM, 'is_valid_checksum with bad checksum ISBN' );
-is( Business::ISBN10::is_valid_checksum( $NULL_ISBN ),
-	Business::ISBN10::BAD_ISBN, 'is_valid_checksum with bad ISBN' );
-is( Business::ISBN10::is_valid_checksum( $NO_GOOD_CHAR_ISBN ),
-	Business::ISBN10::BAD_ISBN, 'is_valid_checksum with no good char ISBN' );
-is( Business::ISBN10::is_valid_checksum( $SHORT_ISBN ),
-	Business::ISBN10::BAD_ISBN, 'is_valid_checksum with short ISBN' );
-}
-}
-
-=cut
+is( $isbn->as_isbn13->as_string([]), $GOOD_EAN, "$GOOD_ISBN converted to EAN" );
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Am I prevented from doing bad things?
+
+my $result = eval { $isbn->_set_prefix( '978' ) };
+ok( defined $@, "Setting prefix on ISBN-10 fails" );
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# parse a bunch of good ones
 SKIP:
 	{
 	my $file = "isbns.txt";
@@ -128,6 +149,7 @@ SKIP:
 	}
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# fail on a bunch of bad ones
 SKIP:
 	{
 	my $file = "bad-isbns.txt";

@@ -1,4 +1,4 @@
-# $Id: xisbn.t,v 2.1 2007/01/30 04:14:04 comdog Exp $
+# $Id: xisbn.t,v 2.2 2007/03/14 07:31:26 comdog Exp $
 
 use Test::More;
 
@@ -35,13 +35,11 @@ my $hash = {
 	'0684833395' => [qw(0671502336  044011120X  0679437223  0440204399  0886461251  0684865130  067189854X  070898164X  1560549602  0736690859  0736689621  0671202960  0224613286  0886464935  5237000665  9660301588  1560549238  8401410266  9576773075  0552015008  2246269318  8388087398  5718100012  8306023056  4653014507  5770770910  8385855807  7805676291  8939202376  8939202384  8939202392  9633070597  9735761599  3596125723  5273001285  7531213451  8387974811  8474444896  8501009261  8700199583  8700964344  8845228827  9146133690  9512045583  9635483325)],
 	};
 	
-my @isbns = sort keys %$hash;
-
-plan tests => 6 * @isbns + 1;
+plan tests => 6 * keys %$hash + 1;
 
 use_ok( "Business::ISBN" );
 	
-foreach my $string ( @isbns )
+foreach my $string ( sort keys %$hash )
 	{
 	local $^W=0;
 	my $isbn = Business::ISBN->new( $string );
@@ -56,7 +54,7 @@ foreach my $string ( @isbns )
 	
 	#scalar context
 	my $isbns = $isbn->xisbn;
-	isa_ok( $isbns, 'ARRAY' );
+	isa_ok( $isbns, ref [] );
 	my $count = grep { /$string/ } @$isbns;
 	is( $count, 0, "List does not contain $string" );
 	eq_array( $isbns, $expected, "List is correct" );
@@ -67,3 +65,6 @@ foreach my $string ( @isbns )
 	is( $count, 0, "List does not contain $string" );
 	eq_array( \@isbns, $expected, "List is correct" );
 	}
+
+__END__
+http://labs.oclc.org/xisbn/9780596527242

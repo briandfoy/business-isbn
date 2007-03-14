@@ -1,6 +1,6 @@
+bad-isbns.txt
 Changes
 examples/README
-ISBN.html
 isbns.txt
 lib/ISBN.pm
 lib/ISBN10.pm
@@ -12,8 +12,12 @@ META.yml
 README
 scripts/get_isbn_data.pl
 t/albania.t
+t/constants.t
+t/interface.t
 t/isbn10.t
+t/isbn13.t
 t/load.t
+t/png_barcode.t
 t/pod.t
 t/pod_coverage.t
 t/test_manifest
