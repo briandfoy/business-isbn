@@ -1,5 +1,5 @@
-# $Revision: 2.3 $
-# $Id: ISBN.pm,v 2.3 2007/03/14 07:31:26 comdog Exp $
+# $Revision: 2.4 $
+# $Id: ISBN.pm,v 2.4 2007/03/14 07:37:38 comdog Exp $
 package Business::ISBN;
 use strict;
 
@@ -106,7 +106,8 @@ BEGIN {
 		);
 	};
 	
-($VERSION)   = q$Revision: 2.3 $ =~ m/(\d+\.\d+)\s*$/;
+#$VERSION = sprintf "%d.%02d", q$Revision: 2.4 $ =~ m/(\d+) \. (\d+)/xg;
+$VERSION = "2.00_01";
 
 sub INVALID_PREFIX         () { -4 };
 sub INVALID_GROUP_CODE     () { -2 };
