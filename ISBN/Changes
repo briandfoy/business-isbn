@@ -1,6 +1,12 @@
 Revision history for Perl extension Business::ISBN.
-$Revision: 2.1 $
-$Id: Changes,v 2.1 2007/01/30 04:14:03 comdog Exp $
+$Revision: 2.2 $
+$Id: Changes,v 2.2 2007/03/14 07:40:46 comdog Exp $
+
+2.00 - Wed Mar 14 00:38:18 2007
+	* DEVELOPER RELEASE
+	* Completely redone internals to handle ISBN-10 and ISBN-13
+	* Some interface changes to Business::ISBN 1.x
+	* Removed exportable functions.
 
 1.84 - Tue Jan  9 23:10:00 2007
 	* updated copyright and license info
