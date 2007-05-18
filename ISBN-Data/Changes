@@ -1,4 +1,7 @@
-# $Id: Changes,v 1.16 2007/01/10 05:12:48 comdog Exp $
+# $Id: Changes,v 1.17 2007/05/18 16:28:06 comdog Exp $
+
+1.14 - Fri May 18 11:27:36 2007
+	* *Added 7000-8499 range from Greece (960) to fix RT #27107
 
 1.13 - Tue Jan  9 23:12:56 2007
 	* updated copyright and license info
