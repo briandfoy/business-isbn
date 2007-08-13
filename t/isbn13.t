@@ -1,4 +1,4 @@
-# $Revision: 2.1 $
+# $Revision: 2.2 $
 use strict;
 
 use Test::More 'no_plan';
@@ -15,6 +15,7 @@ my $PREFIX             = "978";
 
 my $GROUP              = "English";
 my $GROUP_CODE         = "0";
+my $BOOKLAND           = 'Bookland';
 
 my $PUBLISHER          = "596";
 
@@ -49,7 +50,7 @@ is( $isbn->is_valid, GOOD_ISBN, "$GOOD_ISBN is valid" );
 is( $isbn->prefix,         $PREFIX,           "$GOOD_ISBN has right prefix");
 
 is( $isbn->group_code,     $GROUP_CODE,       "$GOOD_ISBN has right group code");
-is( $isbn->group,          $GROUP,            "$GOOD_ISBN has right group");
+is( $isbn->group,          $BOOKLAND,         "$GOOD_ISBN has right group");
 
 is( $isbn->publisher_code, $PUBLISHER,        "$GOOD_ISBN has right publisher");
 
@@ -72,7 +73,7 @@ is( $isbn->is_valid, GOOD_ISBN, "$GOOD_ISBN is valid" );
 is( $isbn->prefix,         $PREFIX,           "$GOOD_ISBN has right prefix");
 
 is( $isbn->group_code,     $GROUP_CODE,       "$GOOD_ISBN has right group code");
-is( $isbn->group,          $GROUP,            "$GOOD_ISBN has right group");
+is( $isbn->group,          $BOOKLAND,         "$GOOD_ISBN has right group");
 
 is( $isbn->publisher_code, $PUBLISHER,        "$GOOD_ISBN has right publisher");
 
