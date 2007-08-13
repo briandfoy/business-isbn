@@ -1,6 +1,15 @@
 Revision history for Perl extension Business::ISBN.
-$Revision: 2.2 $
-$Id: Changes,v 2.2 2007/03/14 07:40:46 comdog Exp $
+$Revision: 2.3 $
+$Id: Changes,v 2.3 2007/08/13 03:30:11 comdog Exp $
+
+2.01 - Sun Aug 12 22:28:01 2007
+	* Official release of Business::ISBN to handle ISBN-13
+	* Does not handle 979- numbers yet (need publisher data for that)
+	* Does handle 978-numbere, which is the 10 digit ISBN with a 
+	different "country code", so it uses the same publisher data
+	* There are significant API changes to handle the new stuff. It's
+	not so bad, but test it before you rip out the old Business::ISBN
+	stuff.
 
 2.00 - Wed Mar 14 00:38:18 2007
 	* DEVELOPER RELEASE
