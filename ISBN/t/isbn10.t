@@ -1,4 +1,4 @@
-# $Revision: 2.3 $
+# $Revision: 2.4 $
 use strict;
 
 use Test::More 'no_plan';
@@ -13,6 +13,7 @@ my $GOOD_EAN           = "9780596527242";
 my $GOOD_EAN_STRING    = "978-0-596-52724-2";
 
 my $GROUP              = "English";
+my $BOOKLAND           = "Bookland";
 
 my $PREFIX             = '978';
 
@@ -76,7 +77,7 @@ is( $clone->type,           'ISBN13',          "$GOOD_ISBN has right type");
 is( $clone->prefix,         $PREFIX,           "$GOOD_ISBN has right prefix");
 is( $clone->publisher_code, $PUBLISHER,        "$GOOD_ISBN has right publisher");
 is( $clone->group_code,     $GROUP_CODE,       "$GOOD_ISBN has right country code");
-is( $clone->group,          $GROUP,            "$GOOD_ISBN has right country");
+is( $clone->group,          $BOOKLAND,         "$GOOD_ISBN has right country");
 is( $clone->as_string,      $GOOD_EAN_STRING,  "$GOOD_ISBN stringifies correctly");
 is( $clone->as_string([]),  $GOOD_EAN,         "$GOOD_ISBN stringifies correctly");
 }

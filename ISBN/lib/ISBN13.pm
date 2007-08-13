@@ -1,5 +1,5 @@
-# $Revision: 2.3 $
-# $Id: ISBN13.pm,v 2.3 2007/03/14 07:31:26 comdog Exp $
+# $Revision: 2.4 $
+# $Id: ISBN13.pm,v 2.4 2007/08/13 03:15:22 comdog Exp $
 package Business::ISBN13;
 use strict;
 use base qw(Business::ISBN);
@@ -24,7 +24,7 @@ use Carp qw(carp croak cluck);
 
 my $debug = 0;
 
-($VERSION)   = q$Revision: 2.3 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 2.4 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub _max_length { 10 }
 
@@ -52,6 +52,8 @@ sub _hyphen_positions
 	$_[0]->_checksum_pos,
 	]
 	}
+
+sub group { 'Bookland' }
 
 sub as_isbn10
 	{

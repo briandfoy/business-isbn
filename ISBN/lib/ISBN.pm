@@ -1,5 +1,5 @@
-# $Revision: 2.4 $
-# $Id: ISBN.pm,v 2.4 2007/03/14 07:37:38 comdog Exp $
+# $Revision: 2.5 $
+# $Id: ISBN.pm,v 2.5 2007/08/13 03:15:22 comdog Exp $
 package Business::ISBN;
 use strict;
 
@@ -106,8 +106,7 @@ BEGIN {
 		);
 	};
 	
-#$VERSION = sprintf "%d.%02d", q$Revision: 2.4 $ =~ m/(\d+) \. (\d+)/xg;
-$VERSION = "2.00_01";
+$VERSION = "2.01";
 
 sub INVALID_PREFIX         () { -4 };
 sub INVALID_GROUP_CODE     () { -2 };
@@ -358,8 +357,9 @@ sub _checksum_pos            { length( $_[0]->isbn ) - 1                      }
 
 =item is_valid_checksum
 
-Returns true for valid checksums and false otherwise. This does not guarantee
-that the rest of the ISBN is valid.
+Returns C<Business::ISBN::GOOD_ISBN> for valid checksums and
+C<Business::ISBN::BAD_CHECKSUM> otherwise. This does not guarantee
+that the rest of the ISBN is actually assigned to a book.
 
 =cut
 
@@ -560,7 +560,11 @@ sub _set_prefix
 
 sub _set_group_code     {   $_[0]->{'group_code'}     = $_[1];   }
 
+sub _set_group_code_string     {   $_[0]->{'group_code_string'}     = $_[1];   }
+
 sub _set_publisher_code {   $_[0]->{'publisher_code'} = $_[1];   }
+
+sub _set_publisher_code_string {   $_[0]->{'publisher_code_string'} = $_[1];   }
 
 sub _set_article_code   {   $_[0]->{'article_code'}   = $_[1];   }
 
@@ -769,9 +773,7 @@ __END__
 
 =head1 TO DO
 
-* i would like to create the bar codes with the price extension:
-	for now:
-	https://www.lightningsource.com/LSISecure/PubResources/CoverSpecsEntry.asp
+* i would like to create the bar codes with the price extension
 
 =head1 SOURCE AVAILABILITY
 
