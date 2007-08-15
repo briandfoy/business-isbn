@@ -20,6 +20,7 @@ t/load.t
 t/png_barcode.t
 t/pod.t
 t/pod_coverage.t
+t/rt/27107.t
+t/rt/28843.t
 t/test_manifest
 t/xisbn10.t
-t/rt/27107.t

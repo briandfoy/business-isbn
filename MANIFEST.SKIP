@@ -19,3 +19,4 @@ isbn.t
 \.dist$
 \.html$
 cover_db
+select_tabledata.pl

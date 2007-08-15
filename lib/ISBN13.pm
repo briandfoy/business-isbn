@@ -1,5 +1,5 @@
-# $Revision: 2.4 $
-# $Id: ISBN13.pm,v 2.4 2007/08/13 03:15:22 comdog Exp $
+# $Revision: 2.5 $
+# $Id: ISBN13.pm,v 2.5 2007/08/15 08:04:56 comdog Exp $
 package Business::ISBN13;
 use strict;
 use base qw(Business::ISBN);
@@ -24,7 +24,7 @@ use Carp qw(carp croak cluck);
 
 my $debug = 0;
 
-($VERSION)   = q$Revision: 2.4 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 2.5 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub _max_length { 10 }
 
@@ -32,7 +32,7 @@ sub _set_type     { $_[0]->{type} = 'ISBN13' }
 
 sub _parse_prefix 
 	{ 
-	( $_[0]->isbn =~ /\A(\d\d\d)(.{10})\z/g )[0];
+	( $_[0]->isbn =~ /\A(97[89])(.{10})\z/g )[0];
 	}
 
 sub _set_prefix   
