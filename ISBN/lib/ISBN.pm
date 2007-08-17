@@ -1,5 +1,5 @@
-# $Revision: 2.6 $
-# $Id: ISBN.pm,v 2.6 2007/08/15 08:06:49 comdog Exp $
+# $Revision: 2.7 $
+# $Id: ISBN.pm,v 2.7 2007/08/17 18:52:16 comdog Exp $
 package Business::ISBN;
 use strict;
 
@@ -68,7 +68,7 @@ use vars qw( $VERSION @ISA @EXPORT_OK %EXPORT_TAGS $debug %group_data
 	$MAX_GROUP_CODE_LENGTH %ERROR_TEXT );
 
 use Carp qw(carp croak cluck);
-use Exporter qw( import );
+use base qw(Exporter);
 
 use Business::ISBN::Data 1.09; # now a separate module
 # ugh, hack
@@ -106,7 +106,7 @@ BEGIN {
 		);
 	};
 	
-$VERSION = "2.02";
+$VERSION = "2.02_01";
 
 sub INVALID_PREFIX         () { -4 };
 sub INVALID_GROUP_CODE     () { -2 };
