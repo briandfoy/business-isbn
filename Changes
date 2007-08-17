@@ -1,6 +1,10 @@
 Revision history for Perl extension Business::ISBN.
-$Revision: 2.4 $
-$Id: Changes,v 2.4 2007/08/15 08:38:28 comdog Exp $
+$Revision: 2.5 $
+$Id: Changes,v 2.5 2007/08/17 19:00:43 comdog Exp $
+
+2.02 - Fri Aug 17 14:00:51 2007
+	* Don't import import() from Exporter. There are a lot of people
+	(apparently) using very old perls, not just CPAN Testers.
 
 2.02 - Wed Aug 15 03:11:25 2007
 	* fixes RT #28843: an ISBN-13 with a bad prefix shouldn't croak,
