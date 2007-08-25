@@ -1,5 +1,5 @@
-# $Revision: 2.7 $
-# $Id: ISBN.pm,v 2.7 2007/08/17 18:52:16 comdog Exp $
+# $Revision: 2.8 $
+# $Id: ISBN.pm,v 2.8 2007/08/25 10:54:39 comdog Exp $
 package Business::ISBN;
 use strict;
 
@@ -99,7 +99,9 @@ BEGIN {
 		INVALID_GROUP_CODE INVALID_PUBLISHER_CODE
 		BAD_CHECKSUM GOOD_ISBN BAD_ISBN 
 		INVALID_PREFIX
-		%ERROR_TEXT);
+		%ERROR_TEXT
+		valid_isbn_checksum
+		);
 
 	%EXPORT_TAGS = ( 
 		'all' => \@EXPORT_OK,	
@@ -128,6 +130,40 @@ sub BAD_ISBN               () {  0 };
 use Business::ISBN10;
 use Business::ISBN13;
 
+=head2 Function interface
+
+=over 4
+
+=item valid_isbn_checksum( ISBN10 | ISBN13 )
+
+This function is exportable on demand, and works for either 10
+or 13 character ISBNs).
+
+	use Business::ISBN qw( valid_isbn_checksum );
+	
+Returns 1 if the ISBN is a valid ISBN with the right checksum.
+
+Returns 0 if the ISBN has valid prefix and publisher codes, but an
+invalid checksum.
+
+Returns undef if the ISBN does not validate for any other reason.
+
+=back 
+
+=cut
+
+sub valid_isbn_checksum
+	{
+	my $isbn = shift;
+	
+	my $obj =  Business::ISBN->new( $isbn );
+	
+	return 1 if $obj->is_valid_checksum == GOOD_ISBN;
+	return 0 if $obj->is_valid_checksum == BAD_CHECKSUM;
+	return;
+	}
+	
+=head2 Object interface
 
 =over 4
 
@@ -173,7 +209,7 @@ extremely useful.  One should check the validity of the ISBN
 with C<is_valid()> rather than relying on the return value
 of the constructor.  If all one wants to do is check the
 validity of an ISBN, one can skip the object-oriented
-interface and use the C<is_valid_checksum()> function
+interface and use the C<valid_isbn_checksum()> function
 which is exportable on demand.
 
 If the constructor decides it cannot create an object, it
