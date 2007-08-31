@@ -1,9 +1,9 @@
-# $Id: Data.pm,v 1.14 2007/05/18 16:26:50 comdog Exp $
+# $Id: Data.pm,v 1.15 2007/08/31 07:18:04 comdog Exp $
 package Business::ISBN::Data;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = sprintf "%d.%02d", q$Revision: 1.14 $ =~ m/ (\d+) \. (\d+) /xg;
+$VERSION = sprintf "%d.%02d", q$Revision: 1.15 $ =~ m/ (\d+) \. (\d+) /xg;
 
 =head1 NAME
 
@@ -40,6 +40,8 @@ Makefile.PL might say.
 
 If you make updates, please send them to me so I can include them in
 future releases.
+
+=head2 Utility functions
 
 =head1 SOURCE AVAILABILITY
 
@@ -98,7 +100,7 @@ use vars qw( %country_data $MAX_COUNTRY_CODE_LENGTH );
   957 => [ 'Taiwan, China',             [ '00' => '02', '0300' => '0499', '05' => 19, 2000 => 2099, 21 => 27, 28000 => 30999, 31 => 43, 440 => 819, 8200 => 9699, 97000 => 99999 ] ],
   958 => [ 'Colombia',                  [ '00' => 59, 600 => 799, 8000 => 9499, 95000 => 99999 ] ],
   959 => [ 'Cuba',                      [ '00' => 19, 200 => 699, 7000 => 8499 ] ],
-  960 => [ 'Greece',                    [ '00' => 19, 200 => 659, 6600 => 6899, 690 => 699, 7000 - 8499, 85000 => 99999 ] ],
+  960 => [ 'Greece',                    [ '00' => 19, 200 => 659, 6600 => 6899, 690 => 699, 7000 => 8499, 85000 => 99999 ] ],
   961 => [ 'Slovenia',                  [ '00' => 19, 200 => 599, 6000 => 8999, 90000 => 94999 ] ],
   962 => [ 'Hong Kong',                 [ '00' => 19, 200 => 699, 7000 => 8499, 85000 => 86999, 8700 => 8999, 900 => 999 ] ],
   963 => [ 'Hungary',                   [ '00' => 19, 200 => 699, 7000 => 8499, 85000 => 89999, 9000 => 9999 ] ],
@@ -224,5 +226,14 @@ $MAX_COUNTRY_CODE_LENGTH = length(
 	( sort { $a <=> $b } keys %country_data )[-1]
 	);
 
+sub isbn_group_code_string_from_number
+	{
+	return $Business::ISBN::country_data{ $_[0] }[0] || '';
+	}
+
+sub isbn_publisher_ranges_from_group_number
+	{
+	return $Business::ISBN::country_data{ $_[0] }[1] || [];
+	}
 
 1;
