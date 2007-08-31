@@ -1,4 +1,7 @@
-# $Id: Changes,v 1.17 2007/05/18 16:28:06 comdog Exp $
+# $Id: Changes,v 1.18 2007/08/31 07:19:34 comdog Exp $
+
+1.15 - Fri Aug 31 02:19:06 2007
+	[BUGFIX] RT #29078: Fix publihser ranges for Greece
 
 1.14 - Fri May 18 11:27:36 2007
 	* *Added 7000-8499 range from Greece (960) to fix RT #27107
