@@ -1,4 +1,4 @@
-# $Revision: 2.3 $
+# $Revision: 2.4 $
 use strict;
 
 use Test::More 'no_plan';
@@ -15,7 +15,6 @@ my $PREFIX             = "978";
 
 my $GROUP              = "English";
 my $GROUP_CODE         = "0";
-my $BOOKLAND           = 'Bookland';
 
 my $PUBLISHER          = "596";
 
@@ -50,7 +49,7 @@ is( $isbn->is_valid, GOOD_ISBN, "$GOOD_ISBN is valid" );
 is( $isbn->prefix,         $PREFIX,           "$GOOD_ISBN has right prefix");
 
 is( $isbn->group_code,     $GROUP_CODE,       "$GOOD_ISBN has right group code");
-is( $isbn->group,          $BOOKLAND,         "$GOOD_ISBN has right group");
+is( $isbn->group,          $GROUP,            "$GOOD_ISBN has right group");
 
 is( $isbn->publisher_code, $PUBLISHER,        "$GOOD_ISBN has right publisher");
 
@@ -73,7 +72,7 @@ is( $isbn->is_valid, GOOD_ISBN, "$GOOD_ISBN is valid" );
 is( $isbn->prefix,         $PREFIX,           "$GOOD_ISBN has right prefix");
 
 is( $isbn->group_code,     $GROUP_CODE,       "$GOOD_ISBN has right group code");
-is( $isbn->group,          $BOOKLAND,         "$GOOD_ISBN has right group");
+is( $isbn->group,          $GROUP,            "$GOOD_ISBN has right group");
 
 is( $isbn->publisher_code, $PUBLISHER,        "$GOOD_ISBN has right publisher");
 
@@ -193,7 +192,7 @@ SKIP:
 	open FILE, $file or 
 		skip( "Could not read $file: $!", 1, "Need $file");
 
-	diag "\nChecking ISBN13s... (this may take a bit)\n";
+	diag "\nChecking ISBN13s... (this may take a bit)";
 	
 	my $bad = 0;
 	while( <FILE> )
@@ -205,7 +204,7 @@ SKIP:
 		my $text   = $Business::ISBN::ERROR_TEXT{ $result };
 		
 		$bad++ unless $result eq Business::ISBN::GOOD_ISBN;
-		diag "$_ is not valid? [ $result -> $text ]\n" 
+		diag "\n\t$_ is not valid? [ $result -> $text ]\n" 
 			unless $result eq Business::ISBN::GOOD_ISBN;	
 		}
 	
@@ -222,7 +221,7 @@ SKIP:
 	open FILE, $file or 
 		skip( "Could not read $file: $!", 1, "Need $file");
 
-	diag "\nChecking bad ISBN13s... (this should be fast)\n";
+	diag "\nChecking bad ISBN13s... (this should be fast)";
 	
 	my $good = 0;
 	my @good = ();
