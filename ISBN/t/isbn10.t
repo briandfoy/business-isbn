@@ -1,4 +1,4 @@
-# $Revision: 2.5 $
+# $Revision: 2.6 $
 use strict;
 
 use Test::More 'no_plan';
@@ -13,7 +13,6 @@ my $GOOD_EAN           = "9780596527242";
 my $GOOD_EAN_STRING    = "978-0-596-52724-2";
 
 my $GROUP              = "English";
-my $BOOKLAND           = "Bookland";
 
 my $PREFIX             = '978';
 
@@ -77,7 +76,7 @@ is( $clone->type,           'ISBN13',          "$GOOD_ISBN has right type");
 is( $clone->prefix,         $PREFIX,           "$GOOD_ISBN has right prefix");
 is( $clone->publisher_code, $PUBLISHER,        "$GOOD_ISBN has right publisher");
 is( $clone->group_code,     $GROUP_CODE,       "$GOOD_ISBN has right country code");
-is( $clone->group,          $BOOKLAND,         "$GOOD_ISBN has right country");
+is( $clone->group,          $GROUP,            "$GOOD_ISBN has right country");
 is( $clone->as_string,      $GOOD_EAN_STRING,  "$GOOD_ISBN stringifies correctly");
 is( $clone->as_string([]),  $GOOD_EAN,         "$GOOD_ISBN stringifies correctly");
 }
@@ -128,7 +127,7 @@ SKIP:
 	open FILE, $file or 
 		skip( "Could not read $file: $!", 1, "Need $file");
 
-	diag "\nChecking ISBNs... (this may take a bit)\n";
+	diag "\nChecking ISBNs... (this may take a bit)";
 	
 	my $bad = 0;
 	while( <FILE> )
@@ -140,7 +139,7 @@ SKIP:
 		my $text   = $Business::ISBN::ERROR_TEXT{ $result };
 		
 		$bad++ unless $result eq Business::ISBN::GOOD_ISBN;
-		diag "$_ is not valid? [ $result -> $text ]\n" 
+		diag "\n\t$_ is not valid? [ $result -> $text ]" 
 			unless $result eq Business::ISBN::GOOD_ISBN;	
 		}
 	
@@ -158,7 +157,7 @@ SKIP:
 	open FILE, $file or 
 		skip( "Could not read $file: $!", 1, "Need $file");
 
-	diag "\nChecking bad ISBNs... (this should be fast)\n";
+	diag "\nChecking bad ISBNs... (this should be fast)";
 	
 	my $good = 0;
 	my @good = ();
@@ -179,7 +178,7 @@ SKIP:
 	{
 	local $" = "\n\t";
 	ok( $good == 0, "Don't match bad ISBNs" ) || 
-		diag( "Matched $good bad ISBNs\n\t@good\n" );
+		diag( "\nMatched $good bad ISBNs\n\t@good" );
 	}
 	
 	}
