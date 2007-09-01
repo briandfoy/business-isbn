@@ -13,7 +13,7 @@ else
 
 	pod_coverage_ok( "Business::ISBN",
 		{
-		trustme => [ qr/^[A-Z_]+$/ ],
+		trustme => [ qr/^[A-Z_]+$/i],
 		}
 		);      
 	}
