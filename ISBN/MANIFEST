@@ -1,6 +1,8 @@
+bad-isbn13s.txt
 bad-isbns.txt
 Changes
 examples/README
+isbn13s.txt
 isbns.txt
 lib/ISBN.pm
 lib/ISBN10.pm
@@ -22,6 +24,7 @@ t/pod.t
 t/pod_coverage.t
 t/rt/27107.t
 t/rt/28843.t
+t/rt/29089.t
 t/test_manifest
 t/valid_isbn_checksum.t
 t/xisbn10.t
