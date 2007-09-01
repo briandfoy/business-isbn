@@ -1,8 +1,8 @@
 Revision history for Perl extension Business::ISBN.
-$Revision: 2.6 $
-$Id: Changes,v 2.6 2007/08/25 11:00:05 comdog Exp $
+$Revision: 2.7 $
+$Id: Changes,v 2.7 2007/09/01 09:08:27 comdog Exp $
 
-2.02 - Sat Aug 25 05:57:22 2007
+2.02_02 - Sat Aug 25 05:57:22 2007
 	[FEATURE] added exportable function valid_isbn_checksum that 
 	takes care of all of the object stuff for you and just gives
 	you the answer. In previous docs, this was called is_valid_checksum
@@ -11,7 +11,7 @@ $Id: Changes,v 2.6 2007/08/25 11:00:05 comdog Exp $
 	[BUGFIX] now should pass tests under 5.6.2, after a bit of
 	backporting. Upgrade already people! :)
 
-2.02 - Fri Aug 17 14:00:51 2007
+2.02_01 - Fri Aug 17 14:00:51 2007
 	* Don't import import() from Exporter. There are a lot of people
 	(apparently) using very old perls, not just CPAN Testers.
 
@@ -28,7 +28,7 @@ $Id: Changes,v 2.6 2007/08/25 11:00:05 comdog Exp $
 	not so bad, but test it before you rip out the old Business::ISBN
 	stuff.
 
-2.00 - Wed Mar 14 00:38:18 2007
+2.00_01 - Wed Mar 14 00:38:18 2007
 	* DEVELOPER RELEASE
 	* Completely redone internals to handle ISBN-10 and ISBN-13
 	* Some interface changes to Business::ISBN 1.x
@@ -52,37 +52,37 @@ $Id: Changes,v 2.6 2007/08/25 11:00:05 comdog Exp $
 	it found
 
 1.79 - Tue Dec 14 05:00:37 2004
-* Updated tests for new ISBN data: previously invalid ISBNs are now
-valid.  The latest data is in Business::ISBN::Data 1.09 and is current
-as of November 2004.
-* You don't need this version of Business::ISBN if you already have it,
-although you should get the latest Business::ISBN::Data.
+	* Updated tests for new ISBN data: previously invalid ISBNs are now
+	valid.  The latest data is in Business::ISBN::Data 1.09 and is current
+	as of November 2004.
+	* You don't need this version of Business::ISBN if you already have it,
+	although you should get the latest Business::ISBN::Data.
 
 1.78 - Sun Nov 21 19:46:40 2004
-* Require the latest version on Business::ISBN::Data, which was unbundled in 
-the last version.  You need Business::ISBN::Data 1.08 to pass the latest 
-tests that check for the new ranges the ISBN folks assigned a couple of
-years ago.
+	* Require the latest version on Business::ISBN::Data, which was
+	unbundled in the last version.  You need Business::ISBN::Data 1.08
+	to pass the latest tests that check for the new ranges the ISBN
+	folks assigned a couple of years ago.
 
 1.77 - Wed Oct 27 02:39:17 2004
-* removed Business::ISBN::Data, which is now a separate module so you
-can update the data without updating the rest of the stuff.  Previously,
-CPAN.pm would install Business::ISBN::Data as a prerequisite, and this 
-distribution would come along and overwrite it with old data.  That
-was a bad thing.
+	* removed Business::ISBN::Data, which is now a separate module so
+	you can update the data without updating the rest of the stuff. 
+	Previously, CPAN.pm would install Business::ISBN::Data as a
+	prerequisite, and this distribution would come along and overwrite
+	it with old data.  That was a bad thing.
 
 1.76 - Fri Oct  8 16:12:51 2004
-* somehow this module went missing from CPAN, so here it is again
-* no need to upgrade if you have the previous version
+	* somehow this module went missing from CPAN, so here it is again
+	* no need to upgrade if you have the previous version
 
 1.74 - Thu Sep  2 17:17:20 2004
-* another distro fix: some documentation cleanups, and the README is
-now in MANIFEST.  You do not need to upgrade if you already have
-installed this module.
+	* another distro fix: some documentation cleanups, and the README
+	is now in MANIFEST.  You do not need to upgrade if you already
+	have installed this module.
 
 1.73 - Thu Sep  2 16:21:10 2004
-* this is a distro fix only.  if you already have Business::ISBN, you
-don't need this
+	* this is a distro fix only.  if you already have Business::ISBN,
+	you don't need this
 
 1.72 - Wed Feb 11 16:18:30 2004
 	* removed errant File::Find::Rule use

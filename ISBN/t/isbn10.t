@@ -1,4 +1,4 @@
-# $Revision: 2.4 $
+# $Revision: 2.5 $
 use strict;
 
 use Test::More 'no_plan';
@@ -128,7 +128,7 @@ SKIP:
 	open FILE, $file or 
 		skip( "Could not read $file: $!", 1, "Need $file");
 
-	print STDERR "\nChecking ISBNs... (this may take a bit)\n";
+	diag "\nChecking ISBNs... (this may take a bit)\n";
 	
 	my $bad = 0;
 	while( <FILE> )
@@ -140,7 +140,7 @@ SKIP:
 		my $text   = $Business::ISBN::ERROR_TEXT{ $result };
 		
 		$bad++ unless $result eq Business::ISBN::GOOD_ISBN;
-		print STDERR "$_ is not valid? [ $result -> $text ]\n" 
+		diag "$_ is not valid? [ $result -> $text ]\n" 
 			unless $result eq Business::ISBN::GOOD_ISBN;	
 		}
 	
@@ -158,7 +158,7 @@ SKIP:
 	open FILE, $file or 
 		skip( "Could not read $file: $!", 1, "Need $file");
 
-	print STDERR "\nChecking bad ISBNs... (this should be fast)\n";
+	diag "\nChecking bad ISBNs... (this should be fast)\n";
 	
 	my $good = 0;
 	my @good = ();
