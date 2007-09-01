@@ -1,6 +1,11 @@
 Revision history for Perl extension Business::ISBN.
-$Revision: 2.8 $
-$Id: Changes,v 2.8 2007/09/01 09:13:31 comdog Exp $
+$Revision: 2.9 $
+$Id: Changes,v 2.9 2007/09/01 20:00:55 comdog Exp $
+
+2.02 - Sat Sep  1 14:55:00 2007
+	[BUGFIX] ISBN13 was returing "Bookland" for all groups, but 
+	it shouldn't do that. Now it returns the same thing you'd
+	get from ISBN10 (e.g. "English", "German", ... ).
 
 2.02 - Sat Sep  1 04:12:49 2007
 	[BUGFIX] RT 29089 - I had the wrong _max_length for ISBN13. That 13
