@@ -1,6 +1,10 @@
 Revision history for Perl extension Business::ISBN.
-$Revision: 2.7 $
-$Id: Changes,v 2.7 2007/09/01 09:08:27 comdog Exp $
+$Revision: 2.8 $
+$Id: Changes,v 2.8 2007/09/01 09:13:31 comdog Exp $
+
+2.02 - Sat Sep  1 04:12:49 2007
+	[BUGFIX] RT 29089 - I had the wrong _max_length for ISBN13. That 13
+	is the hint that it should be 13. :)
 
 2.02_02 - Sat Aug 25 05:57:22 2007
 	[FEATURE] added exportable function valid_isbn_checksum that 
