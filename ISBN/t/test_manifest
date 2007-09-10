@@ -1,4 +1,4 @@
-# $Id: test_manifest,v 2.7 2007/09/01 09:08:27 comdog Exp $
+# $Id: test_manifest,v 2.8 2007/09/10 23:45:49 comdog Exp $
 load.t
 pod.t
 pod_coverage.t
@@ -13,3 +13,4 @@ png_barcode.t
 rt/27107.t
 rt/28843.t
 rt/29089.t
+rt/29292.t
