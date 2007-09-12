@@ -1,5 +1,5 @@
-# $Revision: 2.11 $
-# $Id: ISBN.pm,v 2.11 2007/09/01 19:54:22 comdog Exp $
+# $Revision: 2.12 $
+# $Id: ISBN.pm,v 2.12 2007/09/12 18:26:06 comdog Exp $
 package Business::ISBN;
 use strict;
 
@@ -108,7 +108,7 @@ BEGIN {
 		);
 	};
 	
-$VERSION = "2.02_04";
+$VERSION = "2.02_05";
 
 sub INVALID_PREFIX         () { -4 };
 sub INVALID_GROUP_CODE     () { -2 };
@@ -453,7 +453,7 @@ assumes that you know what you are doing and will attempt
 to use the least three positions specified.  If you pass
 an anonymous array of several positions, the list will
 be sorted and the lowest three positions will be used.
-Positions less than 1 and greater than 9 are silently
+Positions less than 1 and greater than 12 are silently
 ignored.
 
 A terminating 'x' is changed to 'X'.
