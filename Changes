@@ -1,18 +1,18 @@
 Revision history for Perl extension Business::ISBN.
-$Revision: 2.10 $
-$Id: Changes,v 2.10 2007/09/12 18:28:14 comdog Exp $
+$Revision: 2.11 $
+$Id: Changes,v 2.11 2007/09/17 02:34:58 comdog Exp $
 
-2.02 - Wed Sep 12 13:27:09 2007
+2.02_05 - Wed Sep 12 13:27:09 2007
 	* Explore RT #29292. I don't seem to have the problem with
 	hyphens for ISBN-13, but let's see what CPAN Testers has to
 	say
 
-2.02 - Sat Sep  1 14:55:00 2007
+2.02_04 - Sat Sep  1 14:55:00 2007
 	[BUGFIX] ISBN13 was returing "Bookland" for all groups, but 
 	it shouldn't do that. Now it returns the same thing you'd
 	get from ISBN10 (e.g. "English", "German", ... ).
 
-2.02 - Sat Sep  1 04:12:49 2007
+2.02_03 - Sat Sep  1 04:12:49 2007
 	[BUGFIX] RT 29089 - I had the wrong _max_length for ISBN13. That 13
 	is the hint that it should be 13. :)
 
