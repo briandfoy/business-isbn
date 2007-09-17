@@ -1,5 +1,5 @@
-# $Revision: 2.7 $
-# $Id: ISBN13.pm,v 2.7 2007/09/01 19:51:21 comdog Exp $
+# $Revision: 2.8 $
+# $Id: ISBN13.pm,v 2.8 2007/09/17 02:34:58 comdog Exp $
 package Business::ISBN13;
 use strict;
 use base qw(Business::ISBN);
@@ -24,7 +24,7 @@ use Carp qw(carp croak cluck);
 
 my $debug = 0;
 
-($VERSION)   = q$Revision: 2.7 $ =~ m/(\d+\.\d+)\s*$/;
+($VERSION)   = q$Revision: 2.8 $ =~ m/(\d+\.\d+)\s*$/;
 
 sub _max_length { 13 }
 
@@ -32,7 +32,8 @@ sub _set_type     { $_[0]->{type} = 'ISBN13' }
 
 sub _parse_prefix 
 	{ 
-	( $_[0]->isbn =~ /\A(97[89])(.{10})\z/g )[0];
+	my $isbn = $_[0]->isbn; # stupid workaround for 'Can't modify non-lvalue subroutine call'
+	( $isbn =~ /\A(97[89])(.{10})\z/g )[0];
 	}
 
 sub _set_prefix   
