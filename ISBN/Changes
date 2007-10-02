@@ -1,6 +1,9 @@
 Revision history for Perl extension Business::ISBN.
-$Revision: 2.11 $
-$Id: Changes,v 2.11 2007/09/17 02:34:58 comdog Exp $
+$Revision: 2.12 $
+$Id: Changes,v 2.12 2007/10/02 08:17:39 comdog Exp $
+
+2.03 - Tue Oct  2 03:17:34 2007
+	* Fixed minor distro problems and bumped to release version 2.03
 
 2.02_05 - Wed Sep 12 13:27:09 2007
 	* Explore RT #29292. I don't seem to have the problem with
