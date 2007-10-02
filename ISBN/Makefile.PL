@@ -1,10 +1,11 @@
-# $Id: Makefile.PL,v 2.3 2007/09/01 09:08:27 comdog Exp $
+# $Id: Makefile.PL,v 2.4 2007/10/02 08:13:37 comdog Exp $
 use ExtUtils::MakeMaker;
 
 eval "use Test::Manifest 1.14";
 	
 WriteMakefile(
     'NAME'  	 	=> 'Business::ISBN',
+	'ABSTRACT'      => 'Parse and validate ISBNs',
     'VERSION_FROM' 	=> 'lib/ISBN.pm', 
 	'LICENSE'       => 'perl',
  	'AUTHOR'        => 'brian d foy <bdfoy@cpan.org>',
