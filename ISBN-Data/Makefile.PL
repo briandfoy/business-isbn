@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.7 2007/05/18 16:26:51 comdog Exp $
+# $Id: Makefile.PL,v 1.8 2007/10/26 02:37:55 comdog Exp $
 use ExtUtils::MakeMaker;
 
 eval "use Test::Manifest 1.14";
@@ -8,6 +8,7 @@ WriteMakefile(
     'VERSION_FROM' 	=> 'Data.pm', 
 	'LICENSE'       => 'perl',
 	'AUTHOR'        => 'brian d foy <bdfoy@cpan.org>',
+	'ABSTRACT'      => 'Data pack for Business::ISBN',
 	
     'PREREQ_PM'     => {
     	'Test::More'       => '0',
