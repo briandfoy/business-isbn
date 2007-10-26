@@ -1,4 +1,7 @@
-# $Id: Changes,v 1.18 2007/08/31 07:19:34 comdog Exp $
+# $Id: Changes,v 1.19 2007/10/26 02:38:34 comdog Exp $
+
+1.16 - Thu Oct 25 21:38:20 2007
+	* distro cleanups. No need to upgrade.:wq
 
 1.15 - Fri Aug 31 02:19:06 2007
 	[BUGFIX] RT #29078: Fix publihser ranges for Greece
