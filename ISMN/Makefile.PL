@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.7 2007/01/10 03:47:51 comdog Exp $
+# $Id: Makefile.PL,v 1.8 2007/10/26 02:53:51 comdog Exp $
 use ExtUtils::MakeMaker;
 
 eval "use Test::Manifest 1.14";
@@ -7,7 +7,9 @@ WriteMakefile(
     'NAME'  	 	=> 'Business::ISMN',
     'VERSION_FROM' 	=> 'lib/ISMN.pm', 
 	'LICENSE'       => 'perl',
-
+	'AUTHOR'        => 'brian d foy <bdfoy@cpan.org>',
+	'ABSTRACT'      => 'Work with International Standard Music Numbers',
+	
     'PREREQ_PM'     => {
     	'List::Util'       => '0',
     	'Test::More'       => '0',
