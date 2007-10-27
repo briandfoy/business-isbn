@@ -1,4 +1,6 @@
-# $Id: Makefile.PL,v 2.4 2007/10/02 08:13:37 comdog Exp $
+# $Id: Makefile.PL,v 2.5 2007/10/27 07:43:55 comdog Exp $
+require 5.006;
+
 use ExtUtils::MakeMaker;
 
 eval "use Test::Manifest 1.14";
@@ -21,6 +23,5 @@ WriteMakefile(
 		'lib/ISBN13.pm' => '$(INST_LIBDIR)/ISBN13.pm',
 		},
 	
-
 	clean => { FILES => '*.bak Business-*' },
 	);
