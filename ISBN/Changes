@@ -1,6 +1,9 @@
 Revision history for Perl extension Business::ISBN.
-$Revision: 2.12 $
-$Id: Changes,v 2.12 2007/10/02 08:17:39 comdog Exp $
+$Revision: 2.13 $
+$Id: Changes,v 2.13 2007/10/27 07:48:50 comdog Exp $
+
+2.03 - Sat Oct 27 02:48:15 2007
+	* adjustments to make png_barcode.t actually work (RT #30291)
 
 2.03 - Tue Oct  2 03:17:34 2007
 	* Fixed minor distro problems and bumped to release version 2.03
