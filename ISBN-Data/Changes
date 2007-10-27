@@ -1,4 +1,7 @@
-# $Id: Changes,v 1.19 2007/10/26 02:38:34 comdog Exp $
+# $Id: Changes,v 1.20 2007/10/27 18:47:18 comdog Exp $
+
+1.17 - Sat Oct 27 13:47:07 2007
+	* Update to docs to point to latest URL for ISBN International
 
 1.16 - Thu Oct 25 21:38:20 2007
 	* distro cleanups. No need to upgrade.:wq
