@@ -1,5 +1,5 @@
-# $Revision: 2.14 $
-# $Id: ISBN.pm,v 2.14 2007/10/02 08:13:37 comdog Exp $
+# $Revision: 2.15 $
+# $Id: ISBN.pm,v 2.15 2007/10/27 07:43:55 comdog Exp $
 package Business::ISBN;
 use strict;
 
@@ -108,7 +108,7 @@ BEGIN {
 		);
 	};
 	
-$VERSION = "2.03";
+$VERSION = "2.03_01";
 
 sub INVALID_PREFIX         () { -4 };
 sub INVALID_GROUP_CODE     () { -2 };
@@ -577,7 +577,7 @@ sub png_barcode
 		}
 
 	my $image = GD::Barcode::EAN13->new($ean)->plot->png;
-
+	
 	return $image;
 	}
 	

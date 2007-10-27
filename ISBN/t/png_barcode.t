@@ -1,25 +1,31 @@
 #!/usr/bin/perl
 use strict;
 
-use Test::More 'no_plan';
+use Test::More;
 
-my $class = 'Business::ISBN';
+my $loaded = eval { require GD::Barcode::EAN13 };
 
-use_ok( $class );
-
-ok( defined &Business::ISBN::png_barcode, "Method defined" );
-
-foreach my $num ( qw( 0596527241 9780596527242 ) )
+unless( $loaded )
 	{
-	my $isbn = Business::ISBN->new( $num );
-	isa_ok( $isbn, $class );
+	plan( skip_all => "You need GD::Barcode::EAN13 to make barcodes" );
+	}
+else
+	{
+	plan( tests => 8 );
 	
-	ok( $isbn->is_valid, "Valid ISBN" );
+	my $class = 'Business::ISBN';
 	
-	SKIP: {
-		skip "Need GD::Barcode::EAN13", 2,
-			unless eval "use GD::Barcode::EAN13";
-			
+	use_ok( $class );
+	
+	ok( defined &Business::ISBN::png_barcode, "Method defined" );
+		
+	foreach my $num ( qw( 0596527241 9780596527242 ) )
+		{
+		my $isbn = Business::ISBN->new( $num );
+		isa_ok( $isbn, $class );
+		
+		ok( $isbn->is_valid, "Valid ISBN" );
+						
 		my $png  = eval { $isbn->png_barcode };
 		ok( defined $png, "PNG defined" );
 		}
