@@ -1,9 +1,9 @@
-# $Id: Data.pm,v 1.16 2007/10/26 02:37:54 comdog Exp $
+# $Id: Data.pm,v 1.17 2007/10/27 18:46:39 comdog Exp $
 package Business::ISBN::Data;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = sprintf "%d.%02d", q$Revision: 1.16 $ =~ m/ (\d+) \. (\d+) /xg;
+$VERSION = sprintf "%d.%02d", q$Revision: 1.17 $ =~ m/ (\d+) \. (\d+) /xg;
 
 =head1 NAME
 
@@ -22,7 +22,7 @@ they had been proposed. I do not include them in the data.
 Business::ISBN uses this "data pack" to do its work.  You can update
 Business::ISBN::Data independently of the main module as the various
 ISBN organizations assign new publisher codes.  The ISBN agency lists
-these data at http://www.isbn-international.org/identifiers.html . The
+these data at http://www.isbn-international.org/en/identifiers.html . The
 distribution should include the kludegy script I used to extract the
 data and format the data structure.
 
