@@ -1,0 +1,977 @@
+bplist00“_WebMainResource_WebSubresources’	
+^WebResourceURL_WebResourceTextEncodingName_WebResourceMIMEType_WebResourceData_WebResourceFrameName_6http://www.isbn-international.org/converter/ranges.htmUUTF-8Ytext/htmlOm9<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" ""><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" ""><html><head><title>ISBN
+Generator - Ranges></title>
+<link rel="stylesheet" href="isbngen.css" type="text/css"></head><body><br><script src="ranges.js" language="javascript" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+document.write ("<h1>ISBN Prefixes and Publishers Number Ranges</h1>");
+document.write ('<table cellpadding="5" width="70%" cellspacing="1" align="left" border="1">');
+document.write ('<tr><td align="center">Group Number</td><td>Area</td><td align="center">Valid Publisher Numbers</td></tr>');
+for (i=0; i<gi.idarr.length; i++) {
+mid = gi.idarr[i];
+marea = "area" + mid;
+if (! gi[marea] ) alert ("Definition error\n\nNo object for area " + mid);
+//if (! gi[marea].text ) alert ("No area object text " + mid);
+//if (! gi[marea].pubrange ) alert ("No range defined for " + mid);
+document.write ('<tr><td align="center">' +mid+'</td><td>' + gi[marea].text+'</td><td align="center" nowrap>'+ gi[marea].pubrange.replace(/;/g, '<br>').replace(/-/g, " - ") + '</td></tr>');
+}
+document.write ('</table><br><br><br>');
+</script><h1>ISBN Prefixes and Publishers Number Ranges</h1><table cellpadding="5" width="70%" cellspacing="1" align="left" border="1"><tbody><tr><td align="center">Group Number</td><td>Area</td><td align="center">Valid Publisher Numbers</td></tr><tr><td align="center">0</td><td>English speaking area</td><td align="center" nowrap="">00 - 19<br>200 - 699<br>7000 - 8499<br>85000 - 89999<br>900000 - 949999<br>9500000 - 9999999</td></tr><tr><td align="center">1</td><td>English speaking area</td><td align="center" nowrap="">00 - 09<br>100 - 399<br>4000 - 5499<br>55000 - 86979<br>869800 - 998999</td></tr><tr><td align="center">2</td><td>French speaking area</td><td align="center" nowrap="">00 - 19<br>200 - 349<br>35000 - 39999<br>400 - 699<br>7000 - 8399<br>84000 - 89999<br>900000 - 949999<br>9500000 - 9999999</td></tr><tr><td align="center">3</td><td>German speaking area</td><td align="center" nowrap="">00 - 02<br>030 - 033<br>0340 - 0369<br>03700 - 03999<br>04 - 19<br>200 - 699<br>7000 - 8499<br>85000 - 89999<br>900000 - 949999<br>9500000 - 9539999<br>95400 - 96999<br>9700000 - 9899999<br>99000 - 99499<br>99500 - 99999<br></td></tr><tr><td align="center">4</td><td>Japan</td><td align="center" nowrap="">00 - 19<br>200 - 699<br>7000 - 8499<br>85000 - 89999<br>900000 - 949999<br>9500000 - 9999999</td></tr><tr><td align="center">5</td><td>Russian Federation</td><td align="center" nowrap="">00 - 19<br>200 - 420<br>4210 - 4299<br>430 - 430<br>4310 - 4399<br>440 - 440<br>4410 - 4499<br>450 - 699<br>7000 - 8499<br>85000 - 89999<br>900000 - 909999<br>91000 - 91999<br>9200 - 9299<br>93000 - 94999<br>9500 - 9799<br>98000 - 98999<br>9900000 - 9909999<br>9910 - 9999</td></tr><tr><td align="center">600</td><td>Iran</td><td align="center" nowrap="">00 - 09<br>100 - 499<br>5000 - 8999<br>90000 - 99999</td></tr><tr><td align="center">601</td><td>Kazakhstan</td><td align="center" nowrap="">00 - 19<br>200 - 699<br>7000 - 7999<br>80000 - 84999<br>85 - 99</td></tr><tr><td align="center">602</td><td>Indonesia</td><td align="center" nowrap="">00 - 19<br>200 - 799<br>8000 - 9499<br>95000 - 99999</td></tr><tr><td align="center">603</td><td>Saudi Arabia</td><td align="center" nowrap="">00 - 04<br>500 - 799<br>8000 - 8999<br>90000 - 99999</td></tr><tr><td align="center">604</td><td>Vietnam</td><td align="center" nowrap="">0 - 4<br>50 - 89<br>900 - 979<br>9800 - 9999</td></tr><tr><td align="center">605</td><td>Turkey</td><td align="center" nowrap="">00 - 09<br>100 - 399<br>4000 - 5999<br>60000 - 89999</td></tr><tr><td align="center">606</td><td>Romania</td><td align="center" nowrap="">0 - 0<br>10 - 49<br>500 - 799<br>8000 - 9199<br>92000 - 99999</td></tr><tr><td align="center">607</td><td>Mexico</td><td align="center" nowrap="">00 - 39<br>400 - 749<br>7500 - 9499<br>95000 - 99999</td></tr><tr><td align="center">608</td><td>Macedonia</td><td align="center" nowrap="">0 - 0<br>10 - 19<br>200 - 449<br>4500 - 6499<br>65000 - 69999<br>7 - 9</td></tr><tr><td align="center">609</td><td>Lithuania</td><td align="center" nowrap="">00 - 39<br>400 - 799<br>8000 - 9499<br>95000 - 99999</td></tr><tr><td align="center">7</td><td>China, People's Republic</td><td align="center" nowrap="">00 - 09<br>100 - 499<br>5000 - 7999<br>80000 - 89999<br>900000 - 999999</td></tr><tr><td align="center">80</td><td>Czech Republic; Slovakia</td><td align="center" nowrap="">00 - 19<br>200 - 699<br>7000 - 8499<br>85000 - 89999<br>900000 - 999999</td></tr><tr><td align="center">81</td><td>India</td><td align="center" nowrap="">00 - 19<br>200 - 699<br>7000 - 8499<br>85000 - 89999<br>900000 - 999999</td></tr><tr><td align="center">82</td><td>Norway</td><td align="center" nowrap="">00 - 19<br>200 - 699<br>7000 - 8999<br>90000 - 98999<br>990000 - 999999</td></tr><tr><td align="center">83</td><td>Poland</td><td align="center" nowrap="">00 - 19<br>200 - 599<br>60000 - 69999<br>7000 - 8499<br>85000 - 89999<br>900000 - 999999</td></tr><tr><td align="center">84</td><td>Spain</td><td align="center" nowrap="">00 - 19<br>200 - 699<br>7000 - 8499<br>85000 - 89999<br>9000 - 9199<br>920000 - 923999<br>92400 - 92999<br>930000 - 949999<br>95000 - 96999<br>9700 - 9999</td></tr><tr><td align="center">85</td><td>Brazil</td><td align="center" nowrap="">00 - 19<br>200 - 599<br>60000 - 69999<br>7000 - 8499<br>85000 - 89999<br>900000 - 979999<br>98000 - 99999</td></tr><tr><td align="center">86</td><td>Serbia and Montenegro</td><td align="center" nowrap="">00 - 29<br>300 - 599<br>6000 - 7999<br>80000 - 89999<br>900000 - 999999</td></tr><tr><td align="center">87</td><td>Denmark</td><td align="center" nowrap="">00 - 29<br>400 - 649<br>7000 - 7999<br>85000 - 94999<br>970000 - 999999</td></tr><tr><td align="center">88</td><td>Italian speaking area</td><td align="center" nowrap="">00 - 19<br>200 - 599<br>6000 - 8499<br>85000 - 89999<br>900000 - 949999<br>95000 - 99999</td></tr><tr><td align="center">89</td><td>Korea</td><td align="center" nowrap="">00 - 24<br>250 - 549<br>5500 - 8499<br>85000 - 94999<br>950000 - 999999</td></tr><tr><td align="center">90</td><td>Netherlands, Belgium (Flemish)</td><td align="center" nowrap="">00 - 19<br>200 - 499<br>5000 - 6999<br>70000 - 79999<br>800000 - 849999<br>8500 - 8999<br>900000 - 909999<br>940000 - 949999</td></tr><tr><td align="center">91</td><td>Sweden</td><td align="center" nowrap="">0 - 1<br>20 - 49<br>500 - 649<br>7000 - 7999<br>85000 - 94999<br>970000 - 999999</td></tr><tr><td align="center">92</td><td>International Publishers (Unesco, EU), European Community Organizations</td><td align="center" nowrap="">0 - 5<br>60 - 79<br>800 - 899<br>9000 - 9499<br>95000 - 98999<br>990000 - 999999</td></tr><tr><td align="center">93</td><td>India - no ranges fixed yet</td><td align="center" nowrap=""></td></tr><tr><td align="center">94</td><td>Netherlands</td><td align="center" nowrap="">000 - 599<br>6000 - 8999<br>90000 - 99999</td></tr><tr><td align="center">950</td><td>Argentina</td><td align="center" nowrap="">00 - 49<br>500 - 899<br>9000 - 9899<br>99000 - 99999</td></tr><tr><td align="center">951</td><td>Finland</td><td align="center" nowrap="">0 - 1<br>20 - 54<br>550 - 889<br>8900 - 9499<br>95000 - 99999</td></tr><tr><td align="center">952</td><td>Finland</td><td align="center" nowrap="">00 - 19<br>200 - 499<br>5000 - 5999<br>60 - 65<br>6600 - 6699<br>67000 - 69999<br>7000 - 7999<br>80 - 94<br>9500 - 9899<br>99000 - 99999</td></tr><tr><td align="center">953</td><td>Croatia</td><td align="center" nowrap="">0 - 0<br>10 - 14<br>150 - 549<br>55000 - 59999<br>6000 - 9499<br>95000 - 99999</td></tr><tr><td align="center">954</td><td>Bulgaria</td><td align="center" nowrap="">00 - 29<br>300 - 799<br>8000 - 8999<br>90000 - 92999<br>9300 - 9999</td></tr><tr><td align="center">955</td><td>Sri Lanka</td><td align="center" nowrap="">0 - 0<br>1000 - 1999<br>20 - 54<br>550 - 799<br>8000 - 9499<br>95000 - 99999</td></tr><tr><td align="center">956</td><td>Chile</td><td align="center" nowrap="">00 - 19<br>200 - 699<br>7000 - 9999</td></tr><tr><td align="center">957</td><td>Taiwan, China</td><td align="center" nowrap="">00 - 02<br>0300 - 0499<br>05 - 19<br>2000 - 2099<br>21 - 27<br>28000 - 30999<br>31 - 43<br>440 - 819<br>8200 - 9699<br>97000 - 99999</td></tr><tr><td align="center">958</td><td>Colombia</td><td align="center" nowrap="">00 - 56<br>57000 - 59999<br>600 - 799<br>8000 - 9499<br>95000 - 99999</td></tr><tr><td align="center">959</td><td>Cuba</td><td align="center" nowrap="">00 - 19<br>200 - 699<br>7000 - 8499</td></tr><tr><td align="center">960</td><td>Greece</td><td align="center" nowrap="">00 - 19<br>200 - 659<br>6600 - 6899<br>690 - 699<br>7000 - 8499<br>85000 - 99999</td></tr><tr><td align="center">961</td><td>Slovenia</td><td align="center" nowrap="">00 - 19<br>200 - 599<br>6000 - 8999<br>90000 - 94999</td></tr><tr><td align="center">962</td><td>Hong Kong</td><td align="center" nowrap="">00 - 19<br>200 - 699<br>7000 - 8499<br>85000 - 86999<br>8700 - 8999<br>900 - 999</td></tr><tr><td align="center">963</td><td>Hungary</td><td align="center" nowrap="">00 - 19<br>200 - 699<br>7000 - 8499<br>85000 - 89999<br>9000 - 9999</td></tr><tr><td align="center">964</td><td>Iran</td><td align="center" nowrap="">00 - 14<br>150 - 249<br>2500 - 2999<br>300 - 549<br>5500 - 8999<br>90000 - 96999<br>970 - 989<br>9900 - 9999</td></tr><tr><td align="center">965</td><td>Israel</td><td align="center" nowrap="">00 - 19<br>200 - 599<br>7000 - 7999<br>90000 - 99999</td></tr><tr><td align="center">966</td><td>Ukraine</td><td align="center" nowrap="">00 - 14<br>1500 - 1699<br>170 - 199<br>2000 - 2999<br>300 - 699<br>7000 - 8999<br>90000 - 99999</td></tr><tr><td align="center">967</td><td>Malaysia</td><td align="center" nowrap="">00 - 29<br>300 - 499<br>5000 - 5999<br>60 - 89<br>900 - 989<br>9900 - 9989<br>99900 - 99999</td></tr><tr><td align="center">968</td><td>Mexico</td><td align="center" nowrap="">01 - 39<br>400 - 499<br>5000 - 7999<br>800 - 899<br>9000 - 9999</td></tr><tr><td align="center">969</td><td>Pakistan</td><td align="center" nowrap="">0 - 1<br>20 - 39<br>400 - 799<br>8000 - 9999</td></tr><tr><td align="center">970</td><td>Mexico</td><td align="center" nowrap="">01 - 59<br>600 - 899<br>9000 - 9099<br>91000 - 96999<br>9700 - 9999</td></tr><tr><td align="center">971</td><td>Philippines</td><td align="center" nowrap="">000 - 019<br>02 - 02<br>0300 - 0599<br>06 - 09<br>10 - 49<br>500 - 849<br>8500 - 9099<br>91000 - 99999</td></tr><tr><td align="center">972</td><td>Portugal</td><td align="center" nowrap="">0 - 1<br>20 - 54<br>550 - 799<br>8000 - 9499<br>95000 - 99999</td></tr><tr><td align="center">973</td><td>Romania</td><td align="center" nowrap="">0 - 0<br>100 - 169<br>1700 - 1999<br>20 - 54<br>550 - 759<br>7600 - 8499<br>85000 - 88999<br>8900 - 9499<br>95000 - 99999</td></tr><tr><td align="center">974</td><td>Thailand</td><td align="center" nowrap="">00 - 19<br>200 - 699<br>7000 - 8499<br>85000 - 89999<br>90000 - 94999<br>9500 - 9999</td></tr><tr><td align="center">975</td><td>Turkey</td><td align="center" nowrap="">00000 - 00999<br>01 - 24<br>250 - 599<br>6000 - 9199<br>92000 - 98999<br>990 - 999</td></tr><tr><td align="center">976</td><td>Caribbean Community</td><td align="center" nowrap="">0 - 3<br>40 - 59<br>600 - 799<br>8000 - 9499<br>95000 - 99999</td></tr><tr><td align="center">977</td><td>Egypr</td><td align="center" nowrap="">00 - 19<br>200 - 499<br>5000 - 6999<br>700 - 999</td></tr><tr><td align="center">978</td><td>Nigeria</td><td align="center" nowrap="">000 - 199<br>2000 - 2999<br>30000 - 79999<br>8000 - 8999<br>900 - 999</td></tr><tr><td align="center">979</td><td>Indonesia</td><td align="center" nowrap="">000 - 099<br>1000 - 1499<br>15000 - 19999<br>20 - 29<br>3000 - 3999<br>400 - 799<br>8000 - 9499<br>95000 - 99999</td></tr><tr><td align="center">980</td><td>Venezuela</td><td align="center" nowrap="">00 - 19<br>200 - 599<br>6000 - 9999</td></tr><tr><td align="center">981</td><td>Singapore</td><td align="center" nowrap="">00 - 11<br>120 - 299<br>3000 - 9999</td></tr><tr><td align="center">982</td><td>South Pacific</td><td align="center" nowrap="">00 - 09<br>100 - 699<br>70 - 89<br>9000 - 9999</td></tr><tr><td align="center">983</td><td>Malaysia</td><td align="center" nowrap="">00 - 01<br>020 - 199<br>2000 - 3999<br>40000 - 44999<br>45 - 49<br>50 - 79<br>800 - 899<br>9000 - 9899<br>99000 - 99999</td></tr><tr><td align="center">984</td><td>Bangladesh</td><td align="center" nowrap="">00 - 39<br>400 - 799<br>8000 - 8999<br>90000 - 99999</td></tr><tr><td align="center">985</td><td>Belarus</td><td align="center" nowrap="">00 - 39<br>400 - 599<br>6000 - 8999<br>90000 - 99999</td></tr><tr><td align="center">986</td><td>Taiwan, China</td><td align="center" nowrap="">00 - 11<br>120 - 559<br>5600 - 7999<br>80000 - 99999</td></tr><tr><td align="center">987</td><td>Argentina</td><td align="center" nowrap="">00 - 09<br>1000 - 1999<br>20000 - 29999<br>30 - 49<br>500 - 899<br>9000 - 9499<br>95000 - 99999</td></tr><tr><td align="center">988</td><td>Hongkong</td><td align="center" nowrap="">00 - 16<br>17000 - 19999<br>200 - 799<br>8000 - 9699<br>97000 - 99999</td></tr><tr><td align="center">989</td><td>Portugal</td><td align="center" nowrap="">0 - 1<br>20 - 54<br>550 - 799<br>8000 - 9499<br>95000 - 99999</td></tr><tr><td align="center">9934</td><td>Latvia</td><td align="center" nowrap="">0 - 0<br>10 - 49<br>500 - 799<br>8000 - 9999</td></tr><tr><td align="center">9935</td><td>Iceland</td><td align="center" nowrap="">0 - 0<br>10 - 39<br>400 - 899<br>9000 - 9999</td></tr><tr><td align="center">9936</td><td>Afghanistan</td><td align="center" nowrap="">0 - 1<br>20 - 39<br>400 - 799<br>8000 - 9999</td></tr><tr><td align="center">9937</td><td>Nepal</td><td align="center" nowrap="">0 - 2<br>30 - 49<br>500 - 799<br>8000 - 9999</td></tr><tr><td align="center">9938</td><td>Tunisia</td><td align="center" nowrap="">00 - 79<br>800 - 949<br>9500 - 9999</td></tr><tr><td align="center">9939</td><td>Armenia</td><td align="center" nowrap="">0 - 4<br>50 - 79<br>800 - 899<br>9000 - 9999</td></tr><tr><td align="center">9940</td><td>Montenegro</td><td align="center" nowrap="">0 - 1<br>20 - 49<br>500 - 899<br>9000 - 9999</td></tr><tr><td align="center">9941</td><td>Georgia</td><td align="center" nowrap="">0 - 0<br>10 - 39<br>400 - 899<br>9000 - 9999</td></tr><tr><td align="center">9942</td><td>Ecuador</td><td align="center" nowrap="">00 - 89<br>900 - 994<br>9950 - 9999</td></tr><tr><td align="center">9943</td><td>Uzbekistan</td><td align="center" nowrap="">00 - 29<br>300 - 399<br>4000 - 9999</td></tr><tr><td align="center">9944</td><td>Turkey</td><td align="center" nowrap="">0 - 2<br>300 - 499<br>5000 - 5999<br>60 - 89<br>900 - 999</td></tr><tr><td align="center">9945</td><td>Dominican Republic</td><td align="center" nowrap="">00 - 00<br>010 - 079<br>08 - 39<br>400 - 569<br>57 - 57<br>580 - 849<br>8500 - 9999</td></tr><tr><td align="center">9946</td><td>Korea, P.D.R.</td><td align="center" nowrap="">0 - 1<br>20 - 39<br>400 - 899<br>9000 - 9999</td></tr><tr><td align="center">9947</td><td>Algeria</td><td align="center" nowrap="">0 - 1<br>20 - 79<br>800 - 999</td></tr><tr><td align="center">9948</td><td>United Arab Emirates</td><td align="center" nowrap="">00 - 39<br>400 - 849<br>8500 - 9999</td></tr><tr><td align="center">9949</td><td>Estonia</td><td align="center" nowrap="">0 - 0<br>10 - 39<br>400 - 899<br>9000 - 9999</td></tr><tr><td align="center">9950</td><td>Palestine</td><td align="center" nowrap="">00 - 29<br>300 - 840<br>8500 - 9999</td></tr><tr><td align="center">9951</td><td>Kosova</td><td align="center" nowrap="">00 - 39<br>400 - 849<br>8500 - 9999</td></tr><tr><td align="center">9952</td><td>Azerbaijan</td><td align="center" nowrap="">0 - 1<br>20 - 39<br>400 - 799<br>8000 - 9999</td></tr><tr><td align="center">9953</td><td>Lebanon</td><td align="center" nowrap="">0 - 0<br>10 - 39<br>400 - 599<br>60 - 89<br>9000 - 9999</td></tr><tr><td align="center">9954</td><td>Morocco</td><td align="center" nowrap="">0 - 1<br>20 - 39<br>400 - 799<br>8000 - 9999</td></tr><tr><td align="center">9955</td><td>Lithuania</td><td align="center" nowrap="">00 - 39<br>400 - 929<br>9300 - 9999</td></tr><tr><td align="center">9956</td><td>Cameroon</td><td align="center" nowrap="">0 - 0<br>10 - 39<br>400 - 899<br>9000 - 9999</td></tr><tr><td align="center">9957</td><td>Jordan</td><td align="center" nowrap="">00 - 39<br>400 - 699<br>70 - 84<br>8500 - 9999</td></tr><tr><td align="center">9958</td><td>Bosnia and Herzegovina</td><td align="center" nowrap="">0 - 0<br>10 - 49<br>500 - 899<br>9000 - 9999</td></tr><tr><td align="center">9959</td><td>Libya</td><td align="center" nowrap="">0 - 1<br>20 - 79<br>800 - 949<br>9500 - 9999</td></tr><tr><td align="center">9960</td><td>Saudi Arabia</td><td align="center" nowrap="">00 - 59<br>600 - 899<br>9000 - 9999</td></tr><tr><td align="center">9961</td><td>Algeria</td><td align="center" nowrap="">0 - 2<br>30 - 69<br>700 - 949<br>9500 - 9999</td></tr><tr><td align="center">9962</td><td>Panama</td><td align="center" nowrap="">00 - 54<br>5500 - 5599<br>56 - 59<br>600 - 849<br>8500 - 9999</td></tr><tr><td align="center">9963</td><td>Cyprus</td><td align="center" nowrap="">0 - 2<br>30 - 54<br>550 - 749<br>7500 - 9999</td></tr><tr><td align="center">9964</td><td>Ghana</td><td align="center" nowrap="">0 - 6<br>70 - 94<br>950 - 999</td></tr><tr><td align="center">9965</td><td>Kazakhstan</td><td align="center" nowrap="">00 - 39<br>400 - 899<br>9000 - 9999</td></tr><tr><td align="center">9966</td><td>Kenya</td><td align="center" nowrap="">00 - 69<br>7000 - 7499<br>750 - 959<br>9600 - 9999</td></tr><tr><td align="center">9967</td><td>Kyrgyzstan</td><td align="center" nowrap="">00 - 39<br>400 - 899<br>9000 - 9999</td></tr><tr><td align="center">9968</td><td>Costa Rica</td><td align="center" nowrap="">00 - 49<br>500 - 939<br>9400 - 9999</td></tr><tr><td align="center">9970</td><td>Uganda</td><td align="center" nowrap="">00 - 39<br>400 - 899<br>9000 - 9999</td></tr><tr><td align="center">9971</td><td>Singapore</td><td align="center" nowrap="">0 - 5<br>60 - 89<br>900 - 989<br>9900 - 9999</td></tr><tr><td align="center">9972</td><td>Peru</td><td align="center" nowrap="">00 - 09<br>1<br>200 - 249<br>2500 - 2999<br>30 - 59<br>600 - 899<br>9000 - 9999</td></tr><tr><td align="center">9973</td><td>Tunisia</td><td align="center" nowrap="">0 - 05<br>060 - 089<br>0900 - 0999<br>10 - 69<br>700 - 969<br>9700 - 9999</td></tr><tr><td align="center">9974</td><td>Uruguay</td><td align="center" nowrap="">0 - 2<br>30 - 54<br>550 - 749<br>7500 - 9499<br>95 - 99</td></tr><tr><td align="center">9975</td><td>Moldova</td><td align="center" nowrap="">0 - 0<br>100 - 399<br>4000 - 4499<br>45 - 89<br>900 - 949<br>9500 - 9999</td></tr><tr><td align="center">9976</td><td>Tanzania</td><td align="center" nowrap="">0 - 5<br>60 - 89<br>900 - 989<br>9990 - 9999</td></tr><tr><td align="center">9977</td><td>Costa Rica</td><td align="center" nowrap="">00 - 89<br>900 - 989<br>9900 - 9999</td></tr><tr><td align="center">9978</td><td>Ecuador</td><td align="center" nowrap="">00 - 29<br>300 - 399<br>40 - 94<br>950 - 989<br>9900 - 9999</td></tr><tr><td align="center">9979</td><td>Iceland</td><td align="center" nowrap="">0 - 4<br>50 - 64<br>650 - 659<br>66 - 75<br>760 - 899<br>9000 - 9999</td></tr><tr><td align="center">9980</td><td>Papua New Guinea</td><td align="center" nowrap="">0 - 3<br>40 - 89<br>900 - 989<br>9900 - 9999</td></tr><tr><td align="center">9981</td><td>Morocco</td><td align="center" nowrap="">00 - 09<br>100 - 159<br>1600 - 1999<br>20 - 79<br>800 - 949<br>9500 - 9999</td></tr><tr><td align="center">9982</td><td>Zambia</td><td align="center" nowrap="">00 - 79<br>800 - 989<br>9900 - 9999</td></tr><tr><td align="center">9983</td><td>Gambia</td><td align="center" nowrap="">80 - 94<br>950 - 989<br>9900 - 9999</td></tr><tr><td align="center">9984</td><td>Latvia</td><td align="center" nowrap="">00 - 49<br>500 - 899<br>9000 - 9999</td></tr><tr><td align="center">9985</td><td>Estonia</td><td align="center" nowrap="">0 - 4<br>50 - 79<br>800 - 899<br>9000 - 9999</td></tr><tr><td align="center">9986</td><td>Lithuania</td><td align="center" nowrap="">00 - 39<br>400 - 899<br>9000 - 9399<br>940 - 969<br>97 - 99</td></tr><tr><td align="center">9987</td><td>Tanzania</td><td align="center" nowrap="">00 - 39<br>400 - 879<br>8800 - 9999</td></tr><tr><td align="center">9988</td><td>Ghana</td><td align="center" nowrap="">0 - 2<br>30 - 54<br>550 - 749<br>7500 - 9999</td></tr><tr><td align="center">9989</td><td>Macedonia</td><td align="center" nowrap="">0 - 0<br>100 - 199<br>2000 - 2999<br>30 - 59<br>600 - 949<br>9500 - 9999</td></tr><tr><td align="center">99901</td><td>Bahrain</td><td align="center" nowrap="">00 - 49<br>500 - 799<br>80 - 99</td></tr><tr><td align="center">99902</td><td>Gabon - no ranges fixed yet</td><td align="center" nowrap=""></td></tr><tr><td align="center">99903</td><td>Mauritius</td><td align="center" nowrap="">0 - 1<br>20 - 89<br>900 - 999</td></tr><tr><td align="center">99904</td><td>Netherlands Antilles; Aruba, Neth. Ant</td><td align="center" nowrap="">0 - 5<br>60 - 89<br>900 - 999</td></tr><tr><td align="center">99905</td><td>Bolivia</td><td align="center" nowrap="">0 - 3<br>40 - 79<br>800 - 999</td></tr><tr><td align="center">99906</td><td>Kuwait</td><td align="center" nowrap="">0 - 2<br>30 - 59<br>600 - 699<br>70 - 89<br>9 - 9</td></tr><tr><td align="center">99908</td><td>Malawi</td><td align="center" nowrap="">0 - 0<br>10 - 89<br>900 - 999</td></tr><tr><td align="center">99909</td><td>Malta</td><td align="center" nowrap="">0 - 3<br>40 - 94<br>950 - 999</td></tr><tr><td align="center">99910</td><td>Sierra Leone</td><td align="center" nowrap="">0 - 2<br>30 - 89<br>900 - 999</td></tr><tr><td align="center">99911</td><td>Lesotho</td><td align="center" nowrap="">00 - 59<br>600 - 999</td></tr><tr><td align="center">99912</td><td>Botswana</td><td align="center" nowrap="">0 - 3<br>400 - 599<br>60 - 89<br>900 - 999</td></tr><tr><td align="center">99913</td><td>Andorra</td><td align="center" nowrap="">0 - 2<br>30 - 35<br>600 - 604</td></tr><tr><td align="center">99914</td><td>Suriname</td><td align="center" nowrap="">0 - 4<br>50 - 89<br>900 - 949</td></tr><tr><td align="center">99915</td><td>Maldives</td><td align="center" nowrap="">0 - 4<br>50 - 79<br>800 - 999</td></tr><tr><td align="center">99916</td><td>Namibia</td><td align="center" nowrap="">0 - 2<br>30 - 69<br>700 - 999</td></tr><tr><td align="center">99917</td><td>Brunei Darussalam</td><td align="center" nowrap="">0 - 2<br>30 - 89<br>900 - 999</td></tr><tr><td align="center">99918</td><td>Faroe Islands</td><td align="center" nowrap="">0 - 3<br>40 - 79<br>800 - 999</td></tr><tr><td align="center">99919</td><td>Benin</td><td align="center" nowrap="">0 - 2<br>40 - 69<br>900 - 999</td></tr><tr><td align="center">99920</td><td>Andorra</td><td align="center" nowrap="">0 - 4<br>50 - 89<br>900 - 999</td></tr><tr><td align="center">99921</td><td>Qatar</td><td align="center" nowrap="">0 - 1<br>20 - 69<br>700 - 799<br>8 - 8<br>90 - 99</td></tr><tr><td align="center">99922</td><td>Guatemala</td><td align="center" nowrap="">0 - 3<br>40 - 69<br>700 - 999</td></tr><tr><td align="center">99923</td><td>El Salvador</td><td align="center" nowrap="">0 - 1<br>20 - 79<br>800 - 999</td></tr><tr><td align="center">99924</td><td>Nicaragua</td><td align="center" nowrap="">0 - 2<br>30 - 79<br>800 - 999</td></tr><tr><td align="center">99925</td><td>Paraguay</td><td align="center" nowrap="">0 - 3<br>40 - 79<br>800 - 999</td></tr><tr><td align="center">99926</td><td>Honduras</td><td align="center" nowrap="">0 - 0<br>10 - 59<br>600 - 999</td></tr><tr><td align="center">99927</td><td>Albania</td><td align="center" nowrap="">0 - 2<br>30 - 59<br>600 - 999</td></tr><tr><td align="center">99928</td><td>Georgia</td><td align="center" nowrap="">0 - 0<br>10 - 79<br>800 - 999</td></tr><tr><td align="center">99929</td><td>Mongolia</td><td align="center" nowrap="">0 - 4<br>50 - 79<br>800 - 999</td></tr><tr><td align="center">99930</td><td>Armenia</td><td align="center" nowrap="">0 - 4<br>50 - 79<br>800 - 999</td></tr><tr><td align="center">99931</td><td>Seychelles</td><td align="center" nowrap="">0 - 4<br>50 - 79<br>800 - 999</td></tr><tr><td align="center">99932</td><td>Malta</td><td align="center" nowrap="">0 - 0<br>10 - 59<br>600 - 699<br>7 - 7<br>80 - 99</td></tr><tr><td align="center">99933</td><td>Nepal</td><td align="center" nowrap="">0 - 2<br>30 - 59<br>600 - 999</td></tr><tr><td align="center">99934</td><td>Dominican Republic</td><td align="center" nowrap="">0 - 1<br>20 - 79<br>800 - 999</td></tr><tr><td align="center">99935</td><td>Haiti</td><td align="center" nowrap="">0 - 2<br>7 - 8<br>30 - 59<br>600 - 699<br>90 - 99</td></tr><tr><td align="center">99936</td><td>Bhutan</td><td align="center" nowrap="">0 - 0<br>10 - 59<br>600 - 999</td></tr><tr><td align="center">99937</td><td>Macau</td><td align="center" nowrap="">0 - 1<br>20 - 59<br>600 - 999</td></tr><tr><td align="center">99938</td><td>Srpska</td><td align="center" nowrap="">0 - 1<br>20 - 59<br>600 - 899<br>90 - 99</td></tr><tr><td align="center">99939</td><td>Guatemala</td><td align="center" nowrap="">0 - 5<br>60 - 89<br>900 - 999</td></tr><tr><td align="center">99940</td><td>Georgia</td><td align="center" nowrap="">0 - 0<br>10 - 69<br>700 - 999</td></tr><tr><td align="center">99941</td><td>Armenia</td><td align="center" nowrap="">0 - 2<br>30 - 79<br>800 - 999</td></tr><tr><td align="center">99942</td><td>Sudan</td><td align="center" nowrap="">0 - 4<br>50 - 79<br>800 - 999</td></tr><tr><td align="center">99943</td><td>Alsbania</td><td align="center" nowrap="">0 - 2<br>30 - 59<br>600 - 999</td></tr><tr><td align="center">99944</td><td>Ethiopia</td><td align="center" nowrap="">0 - 4<br>50 - 79<br>800 - 999</td></tr><tr><td align="center">99945</td><td>Namibia</td><td align="center" nowrap="">0 - 5<br>60 - 89<br>900 - 999</td></tr><tr><td align="center">99946</td><td>Nepal</td><td align="center" nowrap="">0 - 2<br>30 - 59<br>600 - 999</td></tr><tr><td align="center">99947</td><td>Tajikistan</td><td align="center" nowrap="">0 - 2<br>30 - 69<br>700 - 999</td></tr><tr><td align="center">99948</td><td>Eritrea</td><td align="center" nowrap="">0 - 4<br>50 - 79<br>800 - 999</td></tr><tr><td align="center">99949</td><td>Mauritius</td><td align="center" nowrap="">0 - 1<br>20 - 89<br>900 - 999</td></tr><tr><td align="center">99950</td><td>Cambodia</td><td align="center" nowrap="">0 - 4<br>50 - 79<br>800 - 999</td></tr><tr><td align="center">99951</td><td>Congo - no ranges fixed yet</td><td align="center" nowrap=""></td></tr><tr><td align="center">99952</td><td>Mali</td><td align="center" nowrap="">0 - 4<br>50 - 79<br>800 - 999</td></tr><tr><td align="center">99953</td><td>Paraguay</td><td align="center" nowrap="">0 - 2<br>30 - 79<br>800 - 999</td></tr><tr><td align="center">99954</td><td>Bolivia</td><td align="center" nowrap="">0 - 2<br>30 - 69<br>700 - 999</td></tr><tr><td align="center">99955</td><td>Srpska</td><td align="center" nowrap="">0 - 1<br>20 - 59<br>600 - 899<br>90 - 99</td></tr><tr><td align="center">99956</td><td>Albania</td><td align="center" nowrap="">00 - 59<br>600 - 999</td></tr><tr><td align="center">99957</td><td>Malta</td><td align="center" nowrap="">0 - 1<br>20 - 79<br>800 - 999</td></tr><tr><td align="center">99958</td><td>Bahrain</td><td align="center" nowrap="">0 - 4<br>50 - 94<br>950 - 999</td></tr><tr><td align="center">99959</td><td>Luxembourg</td><td align="center" nowrap="">0 - 2<br>30 - 59<br>600 - 999</td></tr><tr><td align="center">99960</td><td>Malawi</td><td align="center" nowrap="">0 - 0<br>10 - 94<br>950 - 999</td></tr></tbody></table><br><br><br></body></html>P¢‘_WebResourceResponse_7http://www.isbn-international.org/converter/isbngen.cssO¬bplist00‘	
+X$versionT$topY$archiverX$objects Ü†—_WebResourceResponseÄ_NSKeyedArchiverØ&,-345IJKLMNOPQRSTUVW[\U$null› !"#$%V$classR$3R$8S$10S$11R$5R$6R$4R$7R$2R$9R$0R$1ÄÄÄ ÄÄÄÄÄ ”'()$+WNS.base[NS.relativeÄÄ Ä_7http://www.isbn-international.org/converter/isbngen.css“./01X$classesZ$classname¢12UNSURLXNSObject#A¨o_≥√C»”6789AWNS.keysZNS.objectsÄß:;<=>?@Ä	Ä
+ÄÄÄÄÄßBCDEFGHÄÄÄÄÄÄÄ]Accept-Ranges\Content-TypeVServer^Content-LengthTDateTEtag]Last-ModifiedUbytesXtext/css_Microsoft-IIS/6.0T2196_Wed, 23 Jul 2008 18:28:41 GMT_"c9ec915dca4c61:25a"_Tue, 11 Jul 2006 11:20:59 GMT“./XY£YZ2_NSMutableDictionary\NSDictionaryî“./]^£^_2_NSHTTPURLResponse]NSURLResponse     ) 2 7 : P R d Å á ¢ © ¨ Ø ≥ ∑ ∫ Ω ¿ √ ∆ … Ã œ — ” ’ ◊ Ÿ € › ﬂ · „ Â Á Ó ˆBGP[^dmvxáíîúû†¢§¶®™≤¥∂∏∫ºæ¿Œ€‚Òˆ˚	,1Qhàçëß¥∑º¿‘             `              ‚Xtext/cssOî/* isbngen.css - stylesheet for ISBN Generator */
+
+.framecont {
+	overflow: visible;
+	width: 535px;
+	background-color:#FFFFFF;
+	}
+
+.frcont {
+	overflow: visible;
+	}
+
+.frobj, #frobj {
+	border-width: 0px;
+	background-color: #FFCC99;
+	overflow: visible;
+	
+	}
+
+/* ---- TEXT STYLES ---- */
+/* Text styles are applied to all text, not to table/body or other tags, to assure browser compatability */
+.isbngen-normal, input, select, td, body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: normal;
+	font-style: normal;
+}
+.isbngen-petit {
+	font-size: 8pt;
+}
+.isbngen-bold {
+	font-weight: bold;
+}
+.isbngen-italic {
+	font-style: italic;
+}
+
+body {
+}
+/* --- SCREEN AREAS --- */
+
+/* All of ISBN Generator is encapsulated in this area */
+#isbngen-mainarea {
+	display: block;
+	border: 1px none yellow;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+}
+/* Error Information */
+#isbngen-errorarea {
+	display: none;
+	background-color: yellow;
+	font-weight: bold;
+	padding: 0.5em;
+	border: 1px solid black;
+}
+.isbngen-intro {
+	display: block;
+	border: 1px solid gray;
+	margin: 0em 0em 0em 0em;
+	padding: 10px;
+	background-color: #F4F4F4;
+}
+.explain-below {
+	font-style: italic;
+	font-size: 8pt;
+	border-top: 0px none lightgrey;
+	border-right: 1px solid lightgrey;
+	border-bottom: 1px solid lightgrey;
+	border-left: 1px solid lightgrey;
+	padding: 0em 0.2em 0.2em 0.2em;
+}
+.inputbox {
+	border: 1px solid gray;
+	margin-bottom: 4pt;
+ margin-top: 8pt;
+	padding: 3pt;
+}
+.buttonsmall {
+font-style: normal;
+font-size: 7pt;
+background-color: #EDEDED;
+}
+.admin {
+	border: 1px solid gray;
+	margin-bottom: 4pt;
+ margin-top: 12pt;
+	padding: 3pt;
+	background-color: lightblue;
+}
+
+
+@media print {
+body {
+	font-size: 9pt;
+	font-family: sans-serif;
+	margin-right: 0cm;
+	margin-left: 0cm;
+}
+.isbngen-normal, input, select, td, body {
+	font-family: sans-serif;
+	font-size: 9pt;
+	font-weight: normal;
+	font-style: normal;
+}
+.isbngen-petit {font-size: 8pt}
+isbngen-bold {font-weight: bold}
+isbngen-italic {font-style: italic}
+tr {page-break-inside: avoid}
+td {page-break-inside: avoid}
+}‘_5http://www.isbn-international.org/converter/ranges.jsO‘bplist00‘	
+X$versionT$topY$archiverX$objects Ü†—_WebResourceResponseÄ_NSKeyedArchiverØ&,-345IJKLMNOPQRSTUVW[\U$null› !"#$%V$classR$3R$8S$10S$11R$5R$6R$4R$7R$2R$9R$0R$1ÄÄÄ ÄÄÄÄÄ ”'()$+WNS.base[NS.relativeÄÄ Ä_5http://www.isbn-international.org/converter/ranges.js“./01X$classesZ$classname¢12UNSURLXNSObject#A¨o_≤61»”6789AWNS.keysZNS.objectsÄß:;<=>?@Ä	Ä
+ÄÄÄÄÄßBCDEFGHÄÄÄÄÄÄÄ]Accept-Ranges\Content-TypeVServer^Content-LengthTDateTEtag]Last-ModifiedUbytes_application/x-javascript_Microsoft-IIS/6.0U27934_Wed, 23 Jul 2008 18:28:40 GMT_"fc49728a5dacc81:25a"_Fri, 02 May 2008 14:05:13 GMT“./XY£YZ2_NSMutableDictionary\NSDictionarym“./]^£^_2_NSHTTPURLResponse]NSURLResponse     ) 2 7 : P R d Å á ¢ © ¨ Ø ≥ ∑ ∫ Ω ¿ √ ∆ … Ã œ — ” ’ ◊ Ÿ € › ﬂ · „ Â Á Ó ˆ@ENY\bktv}Öêíöúû†¢§¶®∞≤¥∂∏∫ºæÃŸ‡ÔÙ˘(<Bbzöü£π∆…Œ“Ê             `              Ù_application/x-javascriptOm/*
+ Range definitions.
+ Every valid group number must be included in the Array of gi.idarr
+ and has its object containing the text and the valid ranges
+
+ Be sure to save a backup of the old version before doing any changes
+ Note your changes in revision history
+
+--------------------------------------------------------------------------------------
+Revision history:
+
+-----
+02.05.2008; Added Malawi (99960)  Proposal to develop OPLE Release Version 1.0
+28.04.2008; Added Luxembourg (99959)  "0-2;30-59;600 999"
+01.04.2008; Changed Ukraine (966) "00-14;1500-1699;170-199;2000-2999;300-699;7000-8999;90000-99999"
+06.03.2008; Added Latvia (9934) "0-0;10-49;500-799;8000-9999"
+27.02.2008; Changed Colombia (958) 57-59 becomes 57000-59999 i.e."00-56;57000-59999;600-799;8000-9499;95000-99999"
+25.02.2008; Added Lithuania (609) "00-39;400-799;8000-9499;95000-99999"
+05.02.2008; Added Macedonia (608) "0-0;10-19;200-449;4500-6499;65000-69999;7-9 in reserve"
+30.01.2008; Changed Germany (3) 9540000-9699999 changed to "95400-96999; 9700000-9899999; 99000-99499;99500-99999"
+30.01.2008; Added Netherlands (94) "000-599; 6000-8999;90000-99999"
+18.01.2008; Added Iceland (9935) "0-0;10-39;400-899;9000-9999"
+16.01.2008; Added Afghanistan (9936) "0-1;20-39;400-799;8000-9999"
+04.01.2008; Changed Ukraine (966) "00-14;1500-2999;300-699;7000-8999;90000-99999"
+4.12.2007;  Changed Singapore (981) "00-11;120-299;3000-9999"
+3.12.2007;  Added Bahrain (99958) "0-4;50-94;950-999"
+20.11.2007; Added Mexico (607) "00-39;400-749;7500-9499;95000-99999"
+8.11.2007; Added Malta (99957) "0-1;20-79;800-999"
+31.10.2007; Added Romania (606) "0-0;10-49;500-799;8000-9199;92000-99999"
+21.09.2007; Changed Russia (5) "421-429; 421-439; 441-449 " to "4210-4299; 4310-4399; 4410-4499"
+29.08.2007; Added Turkey (605) "00-09;100;399;4000-5999;60000-89999"
+11.07.2007; Added Nepal (9937) "0-2;30-49;500-799;8000-9999"
+26.06.2007; Added Vietnam (604) "0-4;50-89;900-979;9800-9999"
+05.06.2007; Added Saudi Arabia (603) "00-04;500-799;8000-8999;90000-99999"
+31.05.2007; Added Tunisia (9938) "00-79;800-949;9500-9999"
+31.05.2007  Changed Tunisia (9973) "0-0" changed to "00-05;060-089;0900-0999"
+18.05.2007; Changed Hong Kong (988) "00-19 change to 00-16, 17000-19999"
+16.05.2007; Added Armenia (9939)  "0-4;50-79;800-899;9000-9999"
+20.03.2007; Added Albania (99956)  "00-59;600-999"
+13.03.2007; Added Indonesia (602) "00-19;200-799;8000-9499;95000-99999"
+08.03.2007; Changed Malaysia (983) "00-01;020-199;2000-3999;40000-44999;45-49;50-79;800-899;9000-9899;99000-99999"
+08.03.2007; Changed Malaysia (967) "00-29;300-499;5000-5999;60-89;900-989;9900-9989;99900-99999"
+21.02.2007; Changed Zambia (9982) "00-79;800-989;9900-9999"
+20.02.2007; Added Kazakhstan (601) "00-19;200-699;7000-7999;80000-84999;85-99"
+01.02.2007; Changed Jordan (9957) "00-39;400-699;70-84;8500-9999"
+09.01.2007; Changed Iceland (9979) "0-4;50-64;650-659;66-75;760-899;9000-9999"
+05.01.2007; Changed Croatia (953) "0-0;10-14;150-549;55000-59999;6000-9499;95000-99999"
+22.12.2006; Changed Dominican Republic (9945) "00-00;010-079;08-39;400-569;57-57;580-849;8500-9999";
+20.12.2006; Added ranges for Palestine (9950) "00-29;300-840;8500-9999"
+11.12.2006; Changed Serbia (86) "00-09;10-29;300-599;6000-7999;80000-89999;900000-999999";)
+05.12.2006; Added Iran (600) 00-09;100-499;5000-8999;90000-99999
+05.12.2006; Added Montenegro (9940) 0-1;20-49;500-899;9000-9999 
+05.12.2006; Added Georgia (9941) 0-0;10-39;400-899;9000-9999 
+20.11.2006; Changed Haiti (99935) 0-2;7-8;30-59;600-699;90-99
+02.11.2006; Changed Ukraine (966) 00-19;2000-2999;300-699;700-8999;90000-99999
+12.10.2006; Changed Turkey (9944) 0-2;300-499;5000-5999;60-89;900-999
+11.10.2006; Corrected Nicaragua (99924) from 800 - 900 to 800-999
+22.09.2006; Added Ecuador (9942) 00-89; 900-994; 9950-9999
+15.09.2006; Added Uzbekistan (9943) 00-29; 300-399; 4000-9999
+14.09.2006; Corrected Russia (5) 9909999 etc
+07.09.2006: Corrected Greece (960) adding 7000-8499
+21.08.2006: Altered Armenia (99941): 30-79; 800-999  
+30.07.2006: Altered Romania (973) 100-169;1700-1999
+30.05.2006: Added: Bolivia (99954); 0-2;30-69;700-999; Srpska (99955); 0-1; 20-59;600-899;90-99
+03.05.2006: Changed all 00-nn ranges to 00-09;10-nn
+24.01.2006: Altered: Iran (964); 00-14;150-249;2500-2999; Moldova (9975) 0;100-399;4000-4499;45-89
+23.01.2006: Added: Turkey (9944) 0-5; 60-89: 900-999; Paraguay (99953) 0-2; 30-79; 800-999; Altered: Romania (973) 0; 100-199
+16.01.2006: Added: Algeria (9961) 0-2
+Altered:gi.area9961.pubrange="0-2;11.01.2006: Added: Indonesia (979) 000-099;1000-1499;15000-19999
+21.11.2005: Added: Mali (99952) 0-4;50-79;800-999
+16.11.2005: Altered: Romania (973) 85000-88999; 8900-9499; Added: Tajikistan (99947) 0-2; 30-69; 700-999
+14.11.2005: Altered: Srpska (99938) 0-1;20-59; Added: Mongolia (99929) 0-4; 50-79; 800-999
+26.10.2005: Altered: Botswana (99912) 0-3;400-599
+24.8.2005: Corrected: Finland (952) 80-94
+17.8.2005: Added: South Pacific (982) 00-09
+12.8.2005: Added:
+Cambodia (99950) 0-4, 50-79, 800-999
+Altered:Srpska (99938) 600-999 changed to 600-899, 90-99
+18.7.2005: Altered:
+Italy (88) 900000-999999 changed to 900000-949999, 95000-99999
+23.6.2005: Added / altered:
+Russia (5) 9910-9999
+Turkey (975) 00000 - 00999, 990-999 (& changed 00-24 to 01-24)
+Argentina (987) 00-09
+Kuwait (99906) 0-2, 70-89, 9-9
+
+22.6.2005: Version delivered by Leitess
+-----
+*/
+
+
+
+// ID List:
+gi = new Object;
+gi.idarr  = new Array(0,1,2,3,4,5,600,601,602,603,604,605,606,607,608,609,7,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,950,951,952,953,954,955,956,957,958,959,960,961,962,963,964,965,966,967,968,969,970,971,972,973,974,975,976,977,978,979,980,981,982,983,984,985,986,987,988,989,9934,9935,9936,9937,9938,9939,9940,9941,9942,9943,9944,9945,9946,9947,9948,9949,9950,9951,9952,9953,9954,9955,9956,9957,9958,9959,9960,9961,9962,9963,9964,9965,9966,9967,9968,9970,9971,9972,9973,9974,9975,9976,9977,9978,9979,9980,9981,9982,9983,9984,9985,9986,9987,9988,9989,99901,99902,99903,99904,99905,99906,99908,99909,99910,99911,99912,99913,99914,99915,99916,99917,99918,99919,99920,99921,99922,99923,99924,99925,99926,99927,99928,99929,99930,99931,99932,99933,99934,99935,99936,99937,99938,99939,99940,99941,99942,99943,99944,99945,99946,99947,99948,99949,99950,99951,99952,99953,99954,99955, 99956, 99957, 99958, 99959, 99960);
+gi.idlist = ',' + gi.idarr.toString() + ',';
+
+// ID objects:
+
+gi.area0 = new Object;
+gi.area0.text="English speaking area";
+gi.area0.pubrange="00-19;200-699;7000-8499;85000-89999;900000-949999;9500000-9999999";
+
+gi.area1 = new Object;
+gi.area1.text="English speaking area";
+gi.area1.pubrange="00-09;100-399;4000-5499;55000-86979;869800-998999";
+
+gi.area2 = new Object;
+gi.area2.text="French speaking area";
+gi.area2.pubrange="00-19;200-349;35000-39999;400-699;7000-8399;84000-89999;900000-949999;9500000-9999999";
+
+gi.area3 = new Object;
+gi.area3.text="German speaking area";
+gi.area3.pubrange="00-02;030-033;0340-0369;03700-03999;04-19;200-699;7000-8499;85000-89999;900000-949999;9500000-9539999;95400-96999;9700000-9899999;99000-99499;99500-99999;";
+
+gi.area4 = new Object;
+gi.area4.text="Japan";
+gi.area4.pubrange="00-19;200-699;7000-8499;85000-89999;900000-949999;9500000-9999999";
+
+gi.area5 = new Object;
+gi.area5.text="Russian Federation";
+gi.area5.pubrange="00-19;200-420;4210-4299;430-430;4310-4399;440-440;4410-4499;450-699;7000-8499;85000-89999;900000-909999;91000-91999;9200-9299;93000-94999;9500-9799;98000-98999;9900000-9909999;9910-9999";
+
+gi.area600 = new Object;
+gi.area600.text = "Iran"
+gi.area600.pubrange="00-09;100-499;5000-8999;90000-99999";
+
+gi.area601 = new Object;
+gi.area601.text = "Kazakhstan"
+gi.area601.pubrange="00-19;200-699;7000-7999;80000-84999;85-99";
+
+gi.area602 = new Object;
+gi.area602.text = "Indonesia"
+gi.area602.pubrange="00-19;200-799;8000-9499;95000-99999";
+
+gi.area603 = new Object;
+gi.area603.text = "Saudi Arabia"
+gi.area603.pubrange="00-04;500-799;8000-8999;90000-99999";
+
+gi.area604 = new Object;
+gi.area604.text = "Vietnam"
+gi.area604.pubrange="0-4;50-89;900-979;9800-9999"
+
+gi.area605 = new Object;
+gi.area605.text = "Turkey"
+gi.area605.pubrange="00-09;100-399;4000-5999;60000-89999"
+
+gi.area606 = new Object;
+gi.area606.text = "Romania"
+gi.area606.pubrange="0-0;10-49;500-799;8000-9199;92000-99999"
+
+gi.area607 = new Object;
+gi.area607.text = "Mexico"
+gi.area607.pubrange="00-39;400-749;7500-9499;95000-99999"
+
+gi.area608 = new Object;
+gi.area608.text = "Macedonia"
+gi.area608.pubrange="0-0;10-19;200-449;4500-6499;65000-69999;7-9"
+
+gi.area609 = new Object;
+gi.area609.text = "Lithuania"
+gi.area609.pubrange="00-39;400-799;8000-9499;95000-99999"
+
+gi.area7 = new Object;
+gi.area7.text="China, People's Republic";
+gi.area7.pubrange="00-09;100-499;5000-7999;80000-89999;900000-999999";
+
+gi.area80 = new Object;
+gi.area80.text="Czech Republic; Slovakia";
+gi.area80.pubrange="00-19;200-699;7000-8499;85000-89999;900000-999999";
+
+gi.area81 = new Object;
+gi.area81.text="India";
+gi.area81.pubrange="00-19;200-699;7000-8499;85000-89999;900000-999999";
+
+gi.area82 = new Object;
+gi.area82.text="Norway";
+gi.area82.pubrange="00-19;200-699;7000-8999;90000-98999;990000-999999";
+
+gi.area83 = new Object;
+gi.area83.text="Poland";
+gi.area83.pubrange="00-19;200-599;60000-69999;7000-8499;85000-89999;900000-999999";
+
+gi.area84 = new Object;
+gi.area84.text="Spain";
+gi.area84.pubrange="00-19;200-699;7000-8499;85000-89999;9000-9199;920000-923999;92400-92999;930000-949999;95000-96999;9700-9999";
+
+gi.area85 = new Object;
+gi.area85.text="Brazil";
+gi.area85.pubrange="00-19;200-599;60000-69999;7000-8499;85000-89999;900000-979999;98000-99999";
+
+gi.area86 = new Object;
+gi.area86.text="Serbia and Montenegro";
+gi.area86.pubrange="00-29;300-599;6000-7999;80000-89999;900000-999999";
+
+gi.area87 = new Object;
+gi.area87.text="Denmark";
+gi.area87.pubrange="00-29;400-649;7000-7999;85000-94999;970000-999999";
+
+gi.area88 = new Object;
+gi.area88.text="Italian speaking area";
+gi.area88.pubrange="00-19;200-599;6000-8499;85000-89999;900000-949999;95000-99999";
+
+gi.area89 = new Object;
+gi.area89.text="Korea";
+gi.area89.pubrange="00-24;250-549;5500-8499;85000-94999;950000-999999";
+
+gi.area90 = new Object;
+gi.area90.text="Netherlands, Belgium (Flemish)";
+gi.area90.pubrange="00-19;200-499;5000-6999;70000-79999;800000-849999;8500-8999;900000-909999;940000-949999";
+
+gi.area91 = new Object;
+gi.area91.text="Sweden";
+gi.area91.pubrange="0-1;20-49;500-649;7000-7999;85000-94999;970000-999999";
+
+gi.area92 = new Object;
+gi.area92.text="International Publishers (Unesco, EU), European Community Organizations";
+gi.area92.pubrange="0-5;60-79;800-899;9000-9499;95000-98999;990000-999999";
+
+gi.area93 = new Object;
+gi.area93.text="India - no ranges fixed yet";
+gi.area93.pubrange="";
+
+gi.area94 = new Object;
+gi.area94.text="Netherlands";
+gi.area94.pubrange="000-599;6000-8999;90000-99999";
+
+gi.area950 = new Object;
+gi.area950.text="Argentina";
+gi.area950.pubrange="00-49;500-899;9000-9899;99000-99999";
+
+gi.area951 = new Object;
+gi.area951.text="Finland";
+gi.area951.pubrange="0-1;20-54;550-889;8900-9499;95000-99999";
+
+gi.area952 = new Object;
+gi.area952.text="Finland";
+gi.area952.pubrange="00-19;200-499;5000-5999;60-65;6600-6699;67000-69999;7000-7999;80-94;9500-9899;99000-99999";
+
+gi.area953 = new Object;
+gi.area953.text="Croatia";
+gi.area953.pubrange="0-0;10-14;150-549;55000-59999;6000-9499;95000-99999";
+
+gi.area954 = new Object;
+gi.area954.text="Bulgaria";
+gi.area954.pubrange="00-29;300-799;8000-8999;90000-92999;9300-9999";
+
+gi.area955 = new Object;
+gi.area955.text="Sri Lanka";
+gi.area955.pubrange="0-0;1000-1999;20-54;550-799;8000-9499;95000-99999";
+
+gi.area956 = new Object;
+gi.area956.text="Chile";
+gi.area956.pubrange="00-19;200-699;7000-9999";
+
+gi.area957 = new Object;
+gi.area957.text="Taiwan, China";
+gi.area957.pubrange="00-02;0300-0499;05-19;2000-2099;21-27;28000-30999;31-43;440-819;8200-9699;97000-99999";
+
+gi.area958 = new Object;
+gi.area958.text="Colombia";
+gi.area958.pubrange="00-56;57000-59999;600-799;8000-9499;95000-99999";
+
+gi.area959 = new Object;
+gi.area959.text="Cuba";
+gi.area959.pubrange="00-19;200-699;7000-8499";
+
+gi.area960 = new Object;
+gi.area960.text="Greece";
+gi.area960.pubrange="00-19;200-659;6600-6899;690-699;7000-8499;85000-99999";
+
+gi.area961 = new Object;
+gi.area961.text="Slovenia";
+gi.area961.pubrange="00-19;200-599;6000-8999;90000-94999";
+
+gi.area962 = new Object;
+gi.area962.text="Hong Kong";
+gi.area962.pubrange="00-19;200-699;7000-8499;85000-86999;8700-8999;900-999";
+
+gi.area963 = new Object;
+gi.area963.text="Hungary";
+gi.area963.pubrange="00-19;200-699;7000-8499;85000-89999;9000-9999";
+
+gi.area964 = new Object;
+gi.area964.text="Iran";
+gi.area964.pubrange="00-14;150-249;2500-2999;300-549;5500-8999;90000-96999;970-989;9900-9999";
+
+gi.area965 = new Object;
+gi.area965.text="Israel";
+gi.area965.pubrange="00-19;200-599;7000-7999;90000-99999";
+
+gi.area966 = new Object;
+gi.area966.text="Ukraine";
+gi.area966.pubrange="00-14;1500-1699;170-199;2000-2999;300-699;7000-8999;90000-99999";
+
+gi.area967 = new Object;
+gi.area967.text="Malaysia";
+gi.area967.pubrange="00-29;300-499;5000-5999;60-89;900-989;9900-9989;99900-99999";
+
+gi.area968 = new Object;
+gi.area968.text="Mexico";
+gi.area968.pubrange="01-39;400-499;5000-7999;800-899;9000-9999";
+
+gi.area969 = new Object;
+gi.area969.text="Pakistan";
+gi.area969.pubrange="0-1;20-39;400-799;8000-9999";
+
+
+gi.area970 = new Object;
+gi.area970.text="Mexico";
+gi.area970.pubrange="01-59;600-899;9000-9099;91000-96999;9700-9999";
+
+gi.area971 = new Object;
+gi.area971.text="Philippines";
+gi.area971.pubrange="000-019;02-02;0300-0599;06-09;10-49;500-849;8500-9099;91000-99999";
+
+gi.area972 = new Object;
+gi.area972.text="Portugal";
+gi.area972.pubrange="0-1;20-54;550-799;8000-9499;95000-99999";
+
+gi.area973 = new Object;
+gi.area973.text="Romania";
+gi.area973.pubrange="0-0;100-169;1700-1999;20-54;550-759;7600-8499;85000-88999;8900-9499;95000-99999";
+
+gi.area974 = new Object;
+gi.area974.text="Thailand";
+gi.area974.pubrange="00-19;200-699;7000-8499;85000-89999;90000-94999;9500-9999";
+
+gi.area975 = new Object;
+gi.area975.text="Turkey";
+gi.area975.pubrange="00000-00999;01-24;250-599;6000-9199;92000-98999;990-999";
+
+gi.area976 = new Object;
+gi.area976.text="Caribbean Community";
+gi.area976.pubrange="0-3;40-59;600-799;8000-9499;95000-99999";
+
+gi.area977 = new Object;
+gi.area977.text="Egypr";
+gi.area977.pubrange="00-19;200-499;5000-6999;700-999";
+
+gi.area978 = new Object;
+gi.area978.text="Nigeria";
+gi.area978.pubrange="000-199;2000-2999;30000-79999;8000-8999;900-999";
+
+gi.area979 = new Object;
+gi.area979.text="Indonesia";
+gi.area979.pubrange="000-099;1000-1499;15000-19999;20-29;3000-3999;400-799;8000-9499;95000-99999";
+
+gi.area980 = new Object;
+gi.area980.text="Venezuela";
+gi.area980.pubrange="00-19;200-599;6000-9999";
+
+gi.area981 = new Object;
+gi.area981.text="Singapore";
+gi.area981.pubrange="00-11;120-299;3000-9999";
+
+gi.area982 = new Object;
+gi.area982.text="South Pacific";
+gi.area982.pubrange="00-09;100-699;70-89;9000-9999";
+
+gi.area983 = new Object;
+gi.area983.text="Malaysia";
+gi.area983.pubrange="00-01;020-199;2000-3999;40000-44999;45-49;50-79;800-899;9000-9899;99000-99999";
+
+gi.area984 = new Object;
+gi.area984.text="Bangladesh";
+gi.area984.pubrange="00-39;400-799;8000-8999;90000-99999";
+
+gi.area985 = new Object;
+gi.area985.text="Belarus";
+gi.area985.pubrange="00-39;400-599;6000-8999;90000-99999";
+
+gi.area986 = new Object;
+gi.area986.text="Taiwan, China";
+gi.area986.pubrange="00-11;120-559;5600-7999;80000-99999";
+
+gi.area987 = new Object;
+gi.area987.text="Argentina";
+gi.area987.pubrange="00-09;1000-1999;20000-29999;30-49;500-899;9000-9499;95000-99999";
+
+gi.area988 = new Object;
+gi.area988.text="Hongkong";
+gi.area988.pubrange="00-16;17000-19999;200-799;8000-9699;97000-99999";
+
+gi.area989 = new Object;
+gi.area989.text="Portugal";
+gi.area989.pubrange="0-1;20-54;550-799;8000-9499;95000-99999";
+
+gi.area9934 = new Object;
+gi.area9934.text="Latvia";
+gi.area9934.pubrange="0-0;10-49;500-799;8000-9999"
+
+gi.area9935 = new Object;
+gi.area9935.text="Iceland";
+gi.area9935.pubrange="0-0;10-39;400-899;9000-9999";
+
+gi.area9936 = new Object;
+gi.area9936.text="Afghanistan";
+gi.area9936.pubrange="0-1;20-39;400-799;8000-9999";
+
+gi.area9937 = new Object;
+gi.area9937.text="Nepal";
+gi.area9937.pubrange="0-2;30-49;500-799;8000-9999";
+
+gi.area9938 = new Object;
+gi.area9938.text="Tunisia";
+gi.area9938.pubrange="00-79;800-949;9500-9999";
+
+gi.area9939 = new Object;
+gi.area9939.text="Armenia";
+gi.area9939.pubrange="0-4;50-79;800-899;9000-9999"
+
+gi.area9940 = new Object;
+gi.area9940.text="Montenegro";
+gi.area9940.pubrange="0-1;20-49;500-899;9000-9999"
+
+gi.area9941 = new Object;
+gi.area9941.text="Georgia";
+gi.area9941.pubrange="0-0;10-39;400-899;9000-9999"
+
+gi.area9942 = new Object;
+gi.area9942.text="Ecuador";
+gi.area9942.pubrange="00-89;900-994;9950-9999";
+
+gi.area9943 = new Object;
+gi.area9943.text="Uzbekistan";
+gi.area9943.pubrange="00-29;300-399;4000-9999";
+
+gi.area9944 = new Object;
+gi.area9944.text="Turkey";
+gi.area9944.pubrange="0-2;300-499;5000-5999;60-89;900-999";
+
+gi.area9945 = new Object;
+gi.area9945.text="Dominican Republic";
+gi.area9945.pubrange="00-00;010-079;08-39;400-569;57-57;580-849;8500-9999";
+
+gi.area9946 = new Object;
+gi.area9946.text="Korea, P.D.R.";
+gi.area9946.pubrange="0-1;20-39;400-899;9000-9999";
+
+gi.area9947 = new Object;
+gi.area9947.text="Algeria";
+gi.area9947.pubrange="0-1;20-79;800-999";
+
+gi.area9948 = new Object;
+gi.area9948.text="United Arab Emirates";
+gi.area9948.pubrange="00-39;400-849;8500-9999";
+
+gi.area9949 = new Object;
+gi.area9949.text="Estonia";
+gi.area9949.pubrange="0-0;10-39;400-899;9000-9999";
+
+gi.area9950 = new Object;
+gi.area9950.text="Palestine";
+gi.area9950.pubrange="00-29;300-840;8500-9999";
+
+gi.area9951 = new Object;
+gi.area9951.text="Kosova";
+gi.area9951.pubrange="00-39;400-849;8500-9999";
+
+gi.area9952 = new Object;
+gi.area9952.text="Azerbaijan";
+gi.area9952.pubrange="0-1;20-39;400-799;8000-9999";
+
+gi.area9953 = new Object;
+gi.area9953.text="Lebanon";
+gi.area9953.pubrange="0-0;10-39;400-599;60-89;9000-9999";
+
+gi.area9954 = new Object;
+gi.area9954.text="Morocco";
+gi.area9954.pubrange="0-1;20-39;400-799;8000-9999";
+
+gi.area9955 = new Object;
+gi.area9955.text="Lithuania";
+gi.area9955.pubrange="00-39;400-929;9300-9999";
+
+gi.area9956 = new Object;
+gi.area9956.text="Cameroon";
+gi.area9956.pubrange="0-0;10-39;400-899;9000-9999";
+
+gi.area9957 = new Object;
+gi.area9957.text="Jordan";
+gi.area9957.pubrange="00-39;400-699;70-84;8500-9999";
+
+gi.area9958 = new Object;
+gi.area9958.text="Bosnia and Herzegovina";
+gi.area9958.pubrange="0-0;10-49;500-899;9000-9999";
+
+gi.area9959 = new Object;
+gi.area9959.text="Libya";
+gi.area9959.pubrange="0-1;20-79;800-949;9500-9999";
+
+gi.area9960 = new Object;
+gi.area9960.text="Saudi Arabia";
+gi.area9960.pubrange="00-59;600-899;9000-9999";
+
+gi.area9961 = new Object;
+gi.area9961.text="Algeria";
+gi.area9961.pubrange="0-2;30-69;700-949;9500-9999";
+
+gi.area9962 = new Object;
+gi.area9962.text="Panama";
+gi.area9962.pubrange="00-54;5500-5599;56-59;600-849;8500-9999";
+
+gi.area9963 = new Object;
+gi.area9963.text="Cyprus";
+gi.area9963.pubrange="0-2;30-54;550-749;7500-9999";
+
+gi.area9964 = new Object;
+gi.area9964.text="Ghana";
+gi.area9964.pubrange="0-6;70-94;950-999";
+
+gi.area9965 = new Object;
+gi.area9965.text="Kazakhstan";
+gi.area9965.pubrange="00-39;400-899;9000-9999";
+
+gi.area9966 = new Object;
+gi.area9966.text="Kenya";
+gi.area9966.pubrange="00-69;7000-7499;750-959;9600-9999";
+
+gi.area9967 = new Object;
+gi.area9967.text="Kyrgyzstan";
+gi.area9967.pubrange="00-39;400-899;9000-9999";
+
+gi.area9968 = new Object;
+gi.area9968.text="Costa Rica";
+gi.area9968.pubrange="00-49;500-939;9400-9999";
+
+gi.area9970 = new Object;
+gi.area9970.text="Uganda";
+gi.area9970.pubrange="00-39;400-899;9000-9999";
+
+gi.area9971 = new Object;
+gi.area9971.text="Singapore";
+gi.area9971.pubrange="0-5;60-89;900-989;9900-9999";
+
+gi.area9972 = new Object;
+gi.area9972.text="Peru";
+gi.area9972.pubrange="00-09;1;200-249;2500-2999;30-59;600-899;9000-9999";
+
+gi.area9973 = new Object;
+gi.area9973.text="Tunisia";
+gi.area9973.pubrange="0-05;060-089;0900-0999;10-69;700-969;9700-9999";
+
+gi.area9974 = new Object;
+gi.area9974.text="Uruguay";
+gi.area9974.pubrange="0-2;30-54;550-749;7500-9499;95-99";
+
+gi.area9975 = new Object;
+gi.area9975.text="Moldova";
+gi.area9975.pubrange="0-0;100-399;4000-4499;45-89;900-949;9500-9999";
+
+gi.area9976 = new Object;
+gi.area9976.text="Tanzania";
+gi.area9976.pubrange="0-5;60-89;900-989;9990-9999";
+
+gi.area9977 = new Object;
+gi.area9977.text="Costa Rica";
+gi.area9977.pubrange="00-89;900-989;9900-9999";
+
+gi.area9978 = new Object;
+gi.area9978.text="Ecuador";
+gi.area9978.pubrange="00-29;300-399;40-94;950-989;9900-9999";
+
+gi.area9979 = new Object;
+gi.area9979.text="Iceland";
+gi.area9979.pubrange="0-4;50-64;650-659;66-75;760-899;9000-9999";
+
+gi.area9980 = new Object;
+gi.area9980.text="Papua New Guinea";
+gi.area9980.pubrange="0-3;40-89;900-989;9900-9999";
+
+gi.area9981 = new Object;
+gi.area9981.text="Morocco";
+gi.area9981.pubrange="00-09;100-159;1600-1999;20-79;800-949;9500-9999";
+
+gi.area9982 = new Object;
+gi.area9982.text="Zambia";
+gi.area9982.pubrange="00-79;800-989;9900-9999";
+
+gi.area9983 = new Object;
+gi.area9983.text="Gambia";
+gi.area9983.pubrange="80-94;950-989;9900-9999";
+
+gi.area9984 = new Object;
+gi.area9984.text="Latvia";
+gi.area9984.pubrange="00-49;500-899;9000-9999";
+
+gi.area9985 = new Object;
+gi.area9985.text="Estonia";
+gi.area9985.pubrange="0-4;50-79;800-899;9000-9999";
+
+gi.area9986 = new Object;
+gi.area9986.text="Lithuania";
+gi.area9986.pubrange="00-39;400-899;9000-9399;940-969;97-99";
+
+gi.area9987 = new Object;
+gi.area9987.text="Tanzania";
+gi.area9987.pubrange="00-39;400-879;8800-9999";
+
+gi.area9988 = new Object;
+gi.area9988.text="Ghana";
+gi.area9988.pubrange="0-2;30-54;550-749;7500-9999";
+
+gi.area9989 = new Object;
+gi.area9989.text="Macedonia";
+gi.area9989.pubrange="0-0;100-199;2000-2999;30-59;600-949;9500-9999";
+
+gi.area99901 = new Object;
+gi.area99901.text="Bahrain";
+gi.area99901.pubrange="00-49;500-799;80-99";
+
+gi.area99902 = new Object;
+gi.area99902.text="Gabon - no ranges fixed yet";
+gi.area99902.pubrange="";
+
+gi.area99903 = new Object;
+gi.area99903.text="Mauritius";
+gi.area99903.pubrange="0-1;20-89;900-999";
+
+gi.area99904 = new Object;
+gi.area99904.text="Netherlands Antilles; Aruba, Neth. Ant";
+gi.area99904.pubrange="0-5;60-89;900-999";
+
+gi.area99905 = new Object;
+gi.area99905.text="Bolivia";
+gi.area99905.pubrange="0-3;40-79;800-999";
+
+gi.area99906 = new Object;
+gi.area99906.text="Kuwait";
+gi.area99906.pubrange="0-2;30-59;600-699;70-89;9-9";
+
+gi.area99908 = new Object;
+gi.area99908.text="Malawi";
+gi.area99908.pubrange="0-0;10-89;900-999";
+
+gi.area99909 = new Object;
+gi.area99909.text="Malta";
+gi.area99909.pubrange="0-3;40-94;950-999";
+
+gi.area99910 = new Object;
+gi.area99910.text="Sierra Leone";
+gi.area99910.pubrange="0-2;30-89;900-999";
+
+gi.area99911 = new Object;
+gi.area99911.text="Lesotho";
+gi.area99911.pubrange="00-59;600-999";
+
+gi.area99912 = new Object;
+gi.area99912.text="Botswana";
+gi.area99912.pubrange="0-3;400-599;60-89;900-999";
+
+gi.area99913 = new Object;
+gi.area99913.text="Andorra";
+gi.area99913.pubrange="0-2;30-35;600-604";
+
+gi.area99914 = new Object;
+gi.area99914.text="Suriname";
+gi.area99914.pubrange="0-4;50-89;900-949";
+
+gi.area99915 = new Object;
+gi.area99915.text="Maldives";
+gi.area99915.pubrange="0-4;50-79;800-999";
+
+gi.area99916 = new Object;
+gi.area99916.text="Namibia";
+gi.area99916.pubrange="0-2;30-69;700-999";
+
+gi.area99917 = new Object;
+gi.area99917.text="Brunei Darussalam";
+gi.area99917.pubrange="0-2;30-89;900-999";
+
+gi.area99918 = new Object;
+gi.area99918.text="Faroe Islands";
+gi.area99918.pubrange="0-3;40-79;800-999";
+
+gi.area99919 = new Object;
+gi.area99919.text="Benin";
+gi.area99919.pubrange="0-2;40-69;900-999";
+
+gi.area99920 = new Object;
+gi.area99920.text="Andorra";
+gi.area99920.pubrange="0-4;50-89;900-999";
+
+gi.area99921 = new Object;
+gi.area99921.text="Qatar";
+gi.area99921.pubrange="0-1;20-69;700-799;8-8;90-99";
+
+gi.area99922 = new Object;
+gi.area99922.text="Guatemala";
+gi.area99922.pubrange="0-3;40-69;700-999";
+
+gi.area99923 = new Object;
+gi.area99923.text="El Salvador";
+gi.area99923.pubrange="0-1;20-79;800-999";
+
+gi.area99924 = new Object;
+gi.area99924.text="Nicaragua";
+gi.area99924.pubrange="0-2;30-79;800-999";
+
+gi.area99925 = new Object;
+gi.area99925.text="Paraguay";
+gi.area99925.pubrange="0-3;40-79;800-999";
+
+gi.area99926 = new Object;
+gi.area99926.text="Honduras";
+gi.area99926.pubrange="0-0;10-59;600-999";
+
+gi.area99927 = new Object;
+gi.area99927.text="Albania";
+gi.area99927.pubrange="0-2;30-59;600-999";
+
+gi.area99928 = new Object;
+gi.area99928.text="Georgia";
+gi.area99928.pubrange="0-0;10-79;800-999";
+
+gi.area99929 = new Object;
+gi.area99929.text="Mongolia";
+gi.area99929.pubrange="0-4;50-79;800-999";
+
+gi.area99930 = new Object;
+gi.area99930.text="Armenia";
+gi.area99930.pubrange="0-4;50-79;800-999";
+
+gi.area99931 = new Object;
+gi.area99931.text="Seychelles";
+gi.area99931.pubrange="0-4;50-79;800-999";
+
+gi.area99932 = new Object;
+gi.area99932.text="Malta";
+gi.area99932.pubrange="0-0;10-59;600-699;7-7;80-99";
+
+gi.area99933 = new Object;
+gi.area99933.text="Nepal";
+gi.area99933.pubrange="0-2;30-59;600-999";
+
+gi.area99934 = new Object;
+gi.area99934.text="Dominican Republic";
+gi.area99934.pubrange="0-1;20-79;800-999";
+
+gi.area99935 = new Object;
+gi.area99935.text="Haiti";
+gi.area99935.pubrange="0-2;7-8;30-59;600-699;90-99";
+
+gi.area99936 = new Object;
+gi.area99936.text="Bhutan";
+gi.area99936.pubrange="0-0;10-59;600-999";
+
+gi.area99937 = new Object;
+gi.area99937.text="Macau";
+gi.area99937.pubrange="0-1;20-59;600-999";
+
+gi.area99938 = new Object;
+gi.area99938.text="Srpska";
+gi.area99938.pubrange="0-1;20-59;600-899;90-99";
+
+gi.area99939 = new Object;
+gi.area99939.text="Guatemala";
+gi.area99939.pubrange="0-5;60-89;900-999";
+
+gi.area99940 = new Object;
+gi.area99940.text="Georgia";
+gi.area99940.pubrange="0-0;10-69;700-999";
+
+gi.area99941 = new Object;
+gi.area99941.text="Armenia";
+gi.area99941.pubrange="0-2;30-79;800-999";
+
+gi.area99942 = new Object;
+gi.area99942.text="Sudan";
+gi.area99942.pubrange="0-4;50-79;800-999";
+
+gi.area99943 = new Object;
+gi.area99943.text="Alsbania";
+gi.area99943.pubrange="0-2;30-59;600-999";
+
+gi.area99944 = new Object;
+gi.area99944.text="Ethiopia";
+gi.area99944.pubrange="0-4;50-79;800-999";
+
+gi.area99945 = new Object;
+gi.area99945.text="Namibia";
+gi.area99945.pubrange="0-5;60-89;900-999";
+
+gi.area99946 = new Object;
+gi.area99946.text="Nepal";
+gi.area99946.pubrange="0-2;30-59;600-999";
+
+gi.area99947 = new Object;
+gi.area99947.text="Tajikistan";
+gi.area99947.pubrange="0-2;30-69;700-999";
+
+gi.area99948 = new Object;
+gi.area99948.text="Eritrea";
+gi.area99948.pubrange="0-4;50-79;800-999";
+
+gi.area99949 = new Object;
+gi.area99949.text="Mauritius";
+gi.area99949.pubrange="0-1;20-89;900-999";
+
+gi.area99950 = new Object;
+gi.area99950.text="Cambodia";
+gi.area99950.pubrange="0-4;50-79;800-999";
+
+gi.area99951 = new Object;
+gi.area99951.text="Congo - no ranges fixed yet";
+gi.area99951.pubrange="";
+
+gi.area99952 = new Object;
+gi.area99952.text="Mali";
+gi.area99952.pubrange="0-4;50-79;800-999";
+
+gi.area99953 = new Object;
+gi.area99953.text="Paraguay";
+gi.area99953.pubrange="0-2;30-79;800-999";
+
+gi.area99954 = new Object;
+gi.area99954.text="Bolivia";
+gi.area99954.pubrange="0-2;30-69;700-999";
+
+gi.area99955 = new Object;
+gi.area99955.text="Srpska"
+gi.area99955.pubrange="0-1;20-59;600-899;90-99";
+
+gi.area99956 = new Object;
+gi.area99956.text="Albania"
+gi.area99956.pubrange="00-59;600-999";
+
+gi.area99957 = new Object;
+gi.area99957.text="Malta"
+gi.area99957.pubrange="0-1;20-79;800-999";
+
+gi.area99958 = new Object;
+gi.area99958.text="Bahrain"
+gi.area99958.pubrange="0-4;50-94;950-999";
+
+gi.area99959 = new Object;
+gi.area99959.text="Luxembourg"
+gi.area99959.pubrange="0-2;30-59;600-999";
+
+gi.area99960 = new Object;
+gi.area99960.text="Malawi"
+gi.area99960.pubrange="0-0;10-94;950-999";
+    1 < K i  ë ® · Á Òn.n/n2n;nQnãrQrZzÚz˚{3&                           ÏH
