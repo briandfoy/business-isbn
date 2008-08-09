@@ -1,5 +1,5 @@
-# $Revision: 2.15 $
-# $Id: ISBN.pm,v 2.15 2007/10/27 07:43:55 comdog Exp $
+# $Revision: 2.16 $
+# $Id: ISBN.pm,v 2.16 2008/08/09 04:29:55 comdog Exp $
 package Business::ISBN;
 use strict;
 
@@ -12,24 +12,26 @@ Business::ISBN - work with International Standard Book Numbers
 	use Business::ISBN;
 
 	# 10 digit ISBNs
-	$isbn_object = Business::ISBN->new('1565922573');
-	$isbn_object = Business::ISBN->new('1-56592-257-3');
+	$isbn10 = Business::ISBN->new('1565922573');
+	$isbn10 = Business::ISBN->new('1-56592-257-3');
 
 	# 13 digit ISBNs
-	$isbn_object = Business::ISBN->new('978-0-596-52724-2');
+	$isbn13 = Business::ISBN->new('978-0-596-52724-2');
 
 	# convert
-	$isbn10 = $isbn->as_isbn10;    # for the 978 prefixes
+	$isbn10 = $isbn13->as_isbn10;    # for the 978 prefixes
 	
 	$isbn13 = $isbn10->as_isbn13;
 
-
+	# maybe you don't care what it is as long as everything works
+	$isbn = Business::ISBN->new( $ARGV[0] );
+	
 	#print the ISBN with hyphens at usual positions 
-	print $isbn_object->as_string;
+	print $isbn->as_string;
 
 	#print the ISBN with hyphens at specified positions.
 	#this not does affect the default positions
-	print $isbn_object->as_string([]);
+	print $isbn->as_string([]);
 
 	#print the group code or publisher code
 	print $isbn->group_code;
@@ -37,14 +39,14 @@ Business::ISBN - work with International Standard Book Numbers
 	print $isbn->publisher_code;
 
 	#check to see if the ISBN is valid
-	$isbn_object->is_valid;
+	$isbn->is_valid;
 
 	#fix the ISBN checksum.  BEWARE:  the error might not be
 	#in the checksum!
-	$isbn_object->fix_checksum;
+	$isbn->fix_checksum;
 
 	# create an EAN13 barcode in PNG format
-	$isbn_object->png_barcode;
+	$isbn->png_barcode;
 
 =head1 DESCRIPTION
 
