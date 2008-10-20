@@ -456,8 +456,8 @@ Business::ISBN - work with International Standard Book Numbers
 	print $isbn_object->as_string([]);
 
 	#print the country code or publisher code
-	print $isbn->country_code;
-	print $isbn->publisher_code;
+	print $isbn_object->country_code;
+	print $isbn_object->publisher_code;
 
 	#check to see if the ISBN is valid
 	$isbn_object->is_valid;
