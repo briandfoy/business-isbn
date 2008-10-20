@@ -1,7 +1,5 @@
 # $Id: Changes,v 1.20 2007/10/27 18:47:18 comdog Exp $
 
-1.17 - Mon Oct 20 17:24:36 2008
-	* Updated publisher code ranges from Yakov Shafranovich
 
 1.17 - Sat Oct 27 13:47:07 2007
 	* Update to docs to point to latest URL for ISBN International
@@ -37,36 +35,36 @@
 	* added POD coverage test and fixed up the problems it found
 
 1.09 - Tue Dec 14 04:43:32 2004
-* updated the publisher ranges and the country prefixes for the latest
-data as of November 2004.  See http://www.isbn-international.or
-* Added the script I used to take the raw data and turn it into the
-module
-
-* I recommend this update for everyone.  Lots of publisher ranges have
-changed
+	* updated the publisher ranges and the country prefixes for the latest
+	data as of November 2004.  See http://www.isbn-international.or
+	* Added the script I used to take the raw data and turn it into the
+	module
+	* I recommend this update for everyone.  Lots of publisher ranges have
+	changed
 
 1.08 - Fri Oct  8 15:44:38 2004
-* no change in functionality or data: no need to upgrade
-* added strictures to the package
+	* no change in functionality or data: no need to upgrade
+	* added strictures to the package
 
 1.07 - Tue Sep 14 21:16:31 2004
-* distro cleanup:  no need to upgrade
+	* distro cleanup:  no need to upgrade
 
 1.06 - Tue Sep 14 19:52:50 2004
-* small clean-ups for distribution bits---no need to upgrade
+	* small clean-ups for distribution bits---no need to upgrade
 
 1.05 - Thu Nov 27 08:28:44 2003
-	+ updated publisher codes
+	* updated publisher codes
 
 1.05 - Thu Nov 27 08:22:29 2003
-* update publisher ranges
+	* update publisher ranges
 
 1.05 - Thu Nov 27 08:20:28 2003
-* Updated publisher ranges
-
-1.02 - Mon Nov 25 14:13:30 CST 2002
-	+ this is the first release as a separate module
-	+ added additional publishers (4xxx) for english countries
+	* Updated publisher ranges
 
 1.03 - Mon Nov 25 14:24:58 CST 2002
-	+ fixed Makefile to install in right place
+	* fixed Makefile to install in right place
+
+1.02 - Mon Nov 25 14:13:30 CST 2002
+	* this is the first release as a separate module
+	* added additional publishers (4xxx) for english countries
+
