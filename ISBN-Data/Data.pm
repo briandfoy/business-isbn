@@ -3,7 +3,7 @@ package Business::ISBN::Data;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = sprintf "%d.%02d", q$Revision: 1.17 $ =~ m/ (\d+) \. (\d+) /xg;
+$VERSION = '20081020';
 
 =head1 NAME
 
