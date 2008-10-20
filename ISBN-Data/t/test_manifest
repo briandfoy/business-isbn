@@ -2,5 +2,4 @@
 load.t
 pod.t
 pod_coverage.t
-prereq.t
 check_data_structure.t
