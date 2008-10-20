@@ -15,47 +15,47 @@ see L<Business::ISBN>
 
 =head1 DESCRIPTION
 
-This data is current as of November 2004. At that time, the publisher
+This data is current as of October 2008. At that time, the publisher
 codes  9990000-9999999 or 999000-999999 had not been fixed, although
-they had been proposed. I do not include them in the data.
+they had been proposed. I do not include them in the data. Some
+regions, including India (93), Gabon (99902), and Congo (99951) have
+country codes but no publisher codes. They still have entries even
+though you won't be able to validate any ISBNs assigned in those
+regions.
 
 Business::ISBN uses this "data pack" to do its work.  You can update
 Business::ISBN::Data independently of the main module as the various
 ISBN organizations assign new publisher codes.  The ISBN agency lists
-these data at http://www.isbn-international.org/en/identifiers.html . The
-distribution should include the kludegy script I used to extract the
-data and format the data structure.
+these data at http://www.isbn-international.org/converter/ranges.htm .
 
 Note, that as a historical artifact, some countries are actaully
 language areas. For instance, country code 2 is "French", and includes
 several French-speaking countries.
 
-Simply install this module over the previous version.  The module is
-a Perl data structure, so you can install it with CPAN.pm, or simply
+Simply install this module over the previous version.  The module is a
+Perl data structure, so you can install it with CPAN.pm, or simply
 copy it to the right location.
 
 Older versions of this module did not declare a version, and will work
 with whatever version of Business::ISBN you have despite anything the
-Makefile.PL might say.
+Makefile.PL might say. Some versions tracked the version of
+Business::ISBN. Starting in October 2008, the version is the date of
+the module update (as YYYYMMDD).
 
 If you make updates, please send them to me so I can include them in
 future releases.
 
-=head2 Utility functions
-
 =head1 SOURCE AVAILABILITY
 
-This source is part of a SourceForge project which always has the
-latest sources in CVS, as well as all of the previous releases.
+This module lives in the Github repository with Business::ISBN:
 
-	http://sourceforge.net/projects/perl-isbn/
-
-If, for some reason, I disappear from the world, one of the other
-members of the project can shepherd this module appropriately.
+	git://github.com/briandfoy/business--isbn.git
 
 =head1 AUTHOR
 
 brian d foy, C<< <bdfoy@cpan.org> >>
+
+Yakov Shafranovich updated the data in October 2008.
 
 =head1 COPYRIGHT AND LICENSE
 
