@@ -27,7 +27,7 @@ use Carp qw(carp croak cluck);
 
 my $debug = 0;
 
-($VERSION)   = q$Revision: 2.4 $ =~ m/(\d+\.\d+)\s*$/;
+$VERSION   = '2.04';
 
 sub _max_length { 10 }
 
