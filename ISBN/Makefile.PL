@@ -3,7 +3,7 @@ require 5.006;
 
 use ExtUtils::MakeMaker;
 
-eval "use Test::Manifest 1.14";
+eval "use Test::Manifest 1.21";
 	
 WriteMakefile(
     'NAME'  	 	=> 'Business::ISBN',
@@ -13,8 +13,9 @@ WriteMakefile(
  	'AUTHOR'        => 'brian d foy <bdfoy@cpan.org>',
  	
 	'PREREQ_PM'     => {
-    	'Test::More'           => '0',
-    	'Business::ISBN::Data' => '1.15',
+		'Test::More'           => '0',
+		'Business::ISBN::Data' => '20081020',
+		'GD::Barcode::EAN13'   => '0',
     	},
 
 	'PM'            => { 
