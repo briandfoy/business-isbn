@@ -21,7 +21,7 @@ my $PUBLISHER          = "596";
 
 my $BAD_CHECKSUM_ISBN  = "0596527244";
 
-my $BAD_GROUP_ISBN     = "9990222576";
+my $BAD_GROUP_ISBN     = "9997022576";
 
 my $BAD_PUBLISHER_ISBN = "9165022222"; # 91-650-22222-?  Sweden (stops at 649)
 

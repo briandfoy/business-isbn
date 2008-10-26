@@ -1,5 +1,11 @@
 # $Id: Changes,v 1.20 2007/10/27 18:47:18 comdog Exp $
 
+20081020 - Mon Oct 20 17:44:15 2008
+	* Updated publisher codes thanks to Yakov Shafranovich
+	* Version number is now the update date of the module,
+	in YYYYMMDD. This not the date of the ISBN Agency 
+	updates though.
+
 
 1.17 - Sat Oct 27 13:47:07 2007
 	* Update to docs to point to latest URL for ISBN International
