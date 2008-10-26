@@ -27,6 +27,8 @@ else
 		ok( $isbn->is_valid, "Valid ISBN" );
 						
 		my $png  = eval { $isbn->png_barcode };
-		ok( defined $png, "PNG defined" );
+		my $at = $@;
+		ok( defined $png, "PNG defined for $num" );
+		diag( "Eval error for $num: $at" ) if length $at;
 		}
 	}
