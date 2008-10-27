@@ -3,11 +3,18 @@ use strict;
 
 use Test::More;
 
-my $loaded = eval { require GD::Barcode::EAN13 };
+my $loaded  = eval { require GD::Barcode::EAN13 };
+
+my $GD_okay = eval { GD::Font->Small };
 
 unless( $loaded )
 	{
 	plan( skip_all => "You need GD::Barcode::EAN13 to make barcodes" );
+	}
+elsif( not $GD_okay )
+	{
+	# This is something that should be caught in GD::Barcode::EAN13
+	plan( skip_all => "GD is missing GD::Font->Small. Can't continue." );
 	}
 else
 	{
