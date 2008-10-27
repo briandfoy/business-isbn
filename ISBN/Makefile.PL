@@ -1,21 +1,19 @@
-# $Id: Makefile.PL,v 2.5 2007/10/27 07:43:55 comdog Exp $
-require 5.006;
+require 5.008;
 
 use ExtUtils::MakeMaker;
 
 eval "use Test::Manifest 1.21";
 	
 WriteMakefile(
-    'NAME'  	 	=> 'Business::ISBN',
+	'NAME'          => 'Business::ISBN',
 	'ABSTRACT'      => 'Parse and validate ISBNs',
-    'VERSION_FROM' 	=> 'lib/ISBN.pm', 
+	'VERSION_FROM'  => 'lib/ISBN.pm', 
 	'LICENSE'       => 'perl',
- 	'AUTHOR'        => 'brian d foy <bdfoy@cpan.org>',
- 	
+	'AUTHOR'        => 'brian d foy <bdfoy@cpan.org>',
+
 	'PREREQ_PM'     => {
 		'Test::More'           => '0',
 		'Business::ISBN::Data' => '20081020',
-		'GD::Barcode::EAN13'   => '0',
 		},
 
 	'PM'            => { 
@@ -23,6 +21,6 @@ WriteMakefile(
 		'lib/ISBN10.pm' => '$(INST_LIBDIR)/ISBN10.pm',
 		'lib/ISBN13.pm' => '$(INST_LIBDIR)/ISBN13.pm',
 		},
-	
+
 	clean => { FILES => '*.bak Business-*' },
 	);
