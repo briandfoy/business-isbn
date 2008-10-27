@@ -2,6 +2,12 @@ Revision history for Perl extension Business::ISBN.
 $Revision: 2.13 $
 $Id: Changes,v 2.13 2007/10/27 07:48:50 comdog Exp $
 
+2.04 - Mon Oct 27 12:02:19 2008
+	* Undo the GD prereq: it seems a lot of people have out of date
+	installations of GD. Fix up the PNG tests to catch that.
+	* This isn't testing well on 5.6, so I'm bumping the minimum
+	version to 5.8.
+
 2.04 - Sun Oct 26 18:29:20 2008
 	* Fix tests that used 99902 as a bad prefix. That now 
 	belongs to Gabon.
