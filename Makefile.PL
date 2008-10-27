@@ -16,7 +16,7 @@ WriteMakefile(
 		'Test::More'           => '0',
 		'Business::ISBN::Data' => '20081020',
 		'GD::Barcode::EAN13'   => '0',
-    	},
+		},
 
 	'PM'            => { 
 		'lib/ISBN.pm'   => '$(INST_LIBDIR)/ISBN.pm',
