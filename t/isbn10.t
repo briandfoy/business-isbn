@@ -43,7 +43,7 @@ is( $isbn->type,           'ISBN10',          "$GOOD_ISBN has right type");
 is( $isbn->prefix,         '',                "$GOOD_ISBN has right prefix");
 is( $isbn->publisher_code, $PUBLISHER,        "$GOOD_ISBN has right publisher");
 is( $isbn->group_code,     $GROUP_CODE,       "$GOOD_ISBN has right country code");
-is( $isbn->group,          $GROUP,            "$GOOD_ISBN has right country");
+like( $isbn->group,        qr/\Q$GROUP/,      "$GOOD_ISBN has right country");
 is( $isbn->as_string,      $GOOD_ISBN_STRING, "$GOOD_ISBN stringifies correctly");
 is( $isbn->as_string([]),  $GOOD_ISBN,        "$GOOD_ISBN stringifies correctly");
 
@@ -59,7 +59,7 @@ is( $clone->is_valid,       GOOD_ISBN, "$GOOD_ISBN is valid" );
 
 is( $clone->publisher_code, $PUBLISHER,        "$GOOD_ISBN has right publisher");
 is( $clone->group_code,     $GROUP_CODE,       "$GOOD_ISBN has right country code");
-is( $clone->group,          $GROUP,            "$GOOD_ISBN has right country");
+like( $clone->group,        qr/\Q$GROUP/,      "$GOOD_ISBN has right country");
 is( $clone->as_string,      $GOOD_ISBN_STRING, "$GOOD_ISBN stringifies correctly");
 is( $clone->as_string([]),  $GOOD_ISBN,        "$GOOD_ISBN stringifies correctly");
 }
@@ -76,7 +76,7 @@ is( $clone->type,           'ISBN13',          "$GOOD_ISBN has right type");
 is( $clone->prefix,         $PREFIX,           "$GOOD_ISBN has right prefix");
 is( $clone->publisher_code, $PUBLISHER,        "$GOOD_ISBN has right publisher");
 is( $clone->group_code,     $GROUP_CODE,       "$GOOD_ISBN has right country code");
-is( $clone->group,          $GROUP,            "$GOOD_ISBN has right country");
+like( $clone->group,        qr/\Q$GROUP/,      "$GOOD_ISBN has right country");
 is( $clone->as_string,      $GOOD_EAN_STRING,  "$GOOD_ISBN stringifies correctly");
 is( $clone->as_string([]),  $GOOD_EAN,         "$GOOD_ISBN stringifies correctly");
 }

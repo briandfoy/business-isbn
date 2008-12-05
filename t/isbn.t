@@ -24,7 +24,7 @@ is( $isbn->is_valid, Business::ISBN10::GOOD_ISBN, "$GOOD_ISBN is valid" );
 
 is( $isbn->publisher_code, $PUBLISHER,          "$GOOD_ISBN has right publisher");
 is( $isbn->country_code,   $COUNTRY_CODE,       "$GOOD_ISBN has right country code");
-is( $isbn->country,        $COUNTRY,            "$GOOD_ISBN has right country");
+like( $isbn->country,      qr/\Q$COUNTRY/,      "$GOOD_ISBN has right country");
 is( $isbn->as_string,      $GOOD_ISBN_STRING,   "$GOOD_ISBN stringifies correctly");
 is( $isbn->as_string([]),  $GOOD_ISBN,          "$GOOD_ISBN stringifies correctly");
 
