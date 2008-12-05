@@ -22,7 +22,7 @@ Revision history for Perl extension Business::ISBN.
 	say
 
 2.02_04 - Sat Sep  1 14:55:00 2007
-	[BUGFIX] ISBN13 was returing "Bookland" for all groups, but 
+	[BUGFIX] ISBN13 was returning "Bookland" for all groups, but 
 	it shouldn't do that. Now it returns the same thing you'd
 	get from ISBN10 (e.g. "English", "German", ... ).
 
@@ -50,7 +50,7 @@ Revision history for Perl extension Business::ISBN.
 2.01 - Sun Aug 12 22:28:01 2007
 	* Official release of Business::ISBN to handle ISBN-13
 	* Does not handle 979- numbers yet (need publisher data for that)
-	* Does handle 978-numbere, which is the 10 digit ISBN with a 
+	* Does handle 978-numbers, which is the 10 digit ISBN with a 
 	different "country code", so it uses the same publisher data
 	* There are significant API changes to handle the new stuff. It's
 	not so bad, but test it before you rip out the old Business::ISBN
