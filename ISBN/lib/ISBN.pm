@@ -72,7 +72,7 @@ use vars qw( $VERSION @ISA @EXPORT_OK %EXPORT_TAGS $debug %group_data
 use Carp qw(carp croak cluck);
 use base qw(Exporter);
 
-use Business::ISBN::Data 20081020; # now a separate module
+use Business::ISBN::Data 20081208; # now a separate module
 # ugh, hack
 *group_data = *Business::ISBN::country_data;
 sub _group_data { $group_data{ $_[1] } }
@@ -816,7 +816,7 @@ __END__
 =head1 SOURCE AVAILABILITY
 
 This source is part of a SourceForge project which always has the
-latest sources in CVS, as well as all of the previous releases.
+latest sources in SVN, as well as all of the previous releases.
 
 	http://sourceforge.net/projects/perl-isbn/
 
@@ -829,7 +829,7 @@ brian d foy C<< <bdfoy@cpan.org> >>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2001-2007, brian d foy, All Rights Reserved.
+Copyright (c) 2001-2009, brian d foy, All Rights Reserved.
 
 You may redistribute this under the same terms as Perl itself.
 

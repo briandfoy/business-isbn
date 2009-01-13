@@ -1,5 +1,8 @@
 # $Id: Changes,v 1.20 2007/10/27 18:47:18 comdog Exp $
 
+0.00 - Fri Dec  5 12:00:41 2008
+	* Latest data update.
+
 20081020 - Mon Oct 20 17:44:15 2008
 	* Updated publisher codes thanks to Yakov Shafranovich
 	* Version number is now the update date of the module,
