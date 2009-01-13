@@ -13,7 +13,8 @@ WriteMakefile(
 
 	'PREREQ_PM'     => {
 		'Test::More'           => '0',
-		'Business::ISBN::Data' => '20081020',
+		'Business::ISBN::Data' => '20081208',
+		'URI'                  => '0',
 		},
 
 	'PM'            => { 

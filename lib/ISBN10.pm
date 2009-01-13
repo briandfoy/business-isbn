@@ -5,7 +5,6 @@ use strict;
 use base qw(Business::ISBN);
 
 use Business::ISBN qw(:all);
-use Data::Dumper;
 
 use subs qw( 
 	_checksum
@@ -112,7 +111,7 @@ See L<Business::ISBN>
 =head1 SOURCE AVAILABILITY
 
 This source is part of a SourceForge project which always has the
-latest sources in CVS, as well as all of the previous releases.
+latest sources in SVN, as well as all of the previous releases.
 
 	http://sourceforge.net/projects/perl-isbn/
 
@@ -125,7 +124,7 @@ brian d foy C<< <bdfoy@cpan.org> >>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2001-2007, brian d foy, All Rights Reserved.
+Copyright (c) 2001-2009, brian d foy, All Rights Reserved.
 
 You may redistribute this under the same terms as Perl itself.
 
