@@ -110,13 +110,9 @@ See L<Business::ISBN>
 
 =head1 SOURCE AVAILABILITY
 
-This source is part of a SourceForge project which always has the
-latest sources in SVN, as well as all of the previous releases.
+This source is in Github:
 
-	http://sourceforge.net/projects/perl-isbn/
-
-If, for some reason, I disappear from the world, one of the other
-members of the project can shepherd this module appropriately.
+    http://github.com/briandfoy/business--isbn/tree/master
 
 =head1 AUTHOR
 

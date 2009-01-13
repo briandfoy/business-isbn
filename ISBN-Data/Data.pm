@@ -62,7 +62,7 @@ Yakov Shafranovich updated the data in October 2008.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2002-2008, brian d foy, All Rights Reserved.
+Copyright (c) 2002-2009, brian d foy, All Rights Reserved.
 
 You may redistribute this under the same terms as Perl itself.
 
