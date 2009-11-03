@@ -1,5 +1,3 @@
-# $Revision: 2.4 $
-# $Id: ISBN10.pm,v 2.4 2007/08/13 03:15:22 comdog Exp $
 package Business::ISBN10;
 use strict;
 use base qw(Business::ISBN);
@@ -26,7 +24,7 @@ use Carp qw(carp croak cluck);
 
 my $debug = 0;
 
-$VERSION   = '2.05';
+$VERSION   = '2.06';
 
 sub _max_length { 10 }
 

@@ -1,5 +1,3 @@
-# $Revision: 2.16 $
-# $Id: ISBN.pm,v 2.16 2008/08/09 04:29:55 comdog Exp $
 package Business::ISBN;
 use strict;
 
@@ -110,7 +108,7 @@ BEGIN {
 		);
 	};
 	
-$VERSION = "2.04_01";
+$VERSION = "2.06";
 
 sub INVALID_PREFIX         () { -4 };
 sub INVALID_GROUP_CODE     () { -2 };
@@ -159,6 +157,7 @@ sub valid_isbn_checksum
 	my $isbn = shift;
 	
 	my $obj =  Business::ISBN->new( $isbn );
+	return unless defined $obj;
 	
 	return 1 if $obj->is_valid_checksum == GOOD_ISBN;
 	return 0 if $obj->is_valid_checksum == BAD_CHECKSUM;
