@@ -551,7 +551,7 @@ sub _xisbn_url
 	my $self = shift;
 	my $isbn = $self->as_string([]);
 
-	return "http://labs.oclc.org/xisbn/$isbn";
+	return "http://xisbn.worldcat.org/xid/isbn/$isbn";
 	}
 
 =item png_barcode
