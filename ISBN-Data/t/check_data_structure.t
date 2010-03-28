@@ -3,7 +3,7 @@
 use Test::More 'no_plan';
 
 use_ok( 'Business::ISBN::Data' );
-ok( defined %Business::ISBN::country_data );
+ok( %Business::ISBN::country_data );
 
 foreach my $key ( sort { $a <=> $b } keys %Business::ISBN::country_data )
 	{

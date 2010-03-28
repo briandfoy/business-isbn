@@ -6,7 +6,7 @@ require_ok( 'Business::ISBN' );
 
 can_ok( 'Business::ISBN', 'import' );
 
-ok( defined %Business::ISBN::EXPORT_TAGS );
+ok( %Business::ISBN::EXPORT_TAGS );
 ok( exists $Business::ISBN::EXPORT_TAGS{'all'} );
 
 isa_ok( $Business::ISBN::EXPORT_TAGS{'all'}, ref [] );
