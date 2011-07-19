@@ -1,5 +1,3 @@
-# $Id: xisbn.t,v 2.2 2007/03/14 07:31:26 comdog Exp $
-
 use Test::More;
 
 BEGIN {
