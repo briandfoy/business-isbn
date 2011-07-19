@@ -1,5 +1,4 @@
 #!/usr/bin/perl
-# $Revision: 1.1 $
 use strict;
 use warnings;
 
