@@ -1,5 +1,8 @@
 Revision history for Perl extension Business::ISBN.
 
+2.05 - Sun Jan 25 00:00:17 2009
+	* Updated for latest data in Business::ISBN::Data
+
 2.04_01 - Mon Oct 27 12:08:03 2008
 	* Revert the GD prereq. A lot of testers have borked GD 
 	installs.
