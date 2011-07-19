@@ -10,6 +10,7 @@ lib/Business/ISBN13.pm
 LICENSE
 Makefile.PL
 MANIFEST
+MYMETA.yml
 README
 scripts/get_isbn_data.pl
 t/albania.t
