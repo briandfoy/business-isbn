@@ -4,9 +4,9 @@ Changes
 examples/README
 isbn13s.txt
 isbns.txt
-lib/ISBN.pm
-lib/ISBN10.pm
-lib/ISBN13.pm
+lib/Business/ISBN.pm
+lib/Business/ISBN10.pm
+lib/Business/ISBN13.pm
 LICENSE
 Makefile.PL
 MANIFEST
