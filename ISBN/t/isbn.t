@@ -1,5 +1,3 @@
-# $Revision: 2.1 $
-
 use Test::More tests => 22;
 
 use Business::ISBN;

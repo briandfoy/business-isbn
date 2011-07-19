@@ -1,4 +1,3 @@
-# $Revision: 2.4 $
 use strict;
 
 use Test::More 'no_plan';
