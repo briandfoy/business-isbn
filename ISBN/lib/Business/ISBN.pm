@@ -108,7 +108,7 @@ BEGIN {
 		);
 	};
 	
-$VERSION = "2.06";
+$VERSION = "2.05_01";
 
 sub INVALID_PREFIX         () { -4 };
 sub INVALID_GROUP_CODE     () { -2 };
