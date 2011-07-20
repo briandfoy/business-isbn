@@ -1,6 +1,8 @@
 package Business::ISBN;
 use strict;
 
+=encoding utf8
+
 =head1 NAME
 
 Business::ISBN - work with International Standard Book Numbers
@@ -172,20 +174,18 @@ sub valid_isbn_checksum
 
 The constructor accepts a scalar representing the ISBN.
 
-The string representing the ISBN may contain characters
-other than C<[0-9xX]>, although these will be removed in the
-internal representation.  The resulting string must look
-like an ISBN - the first nine characters must be digits and
-the tenth character must be a digit, 'x', or 'X'.
+The string representing the ISBN may contain characters other than
+C<[0-9xX]>, although these will be removed in the internal
+representation.  The resulting string must look like an ISBN - the
+first nine characters must be digits and the tenth character must be a
+digit, 'x', or 'X'.
 
-The constructor attempts to determine the group
-code and the publisher code.  If these data cannot
-be determined, the constructor sets C<$obj-E<gt>is_valid>
-to something other than C<GOOD_ISBN>.
-An object is still returned and it is up to the program
-to check C<$obj-E<gt>is_valid> for one of five values (which
-may be exported on demand). The actual values of these
-symbolic versions are the same as those from previous
+The constructor attempts to determine the group code and the publisher
+code.  If these data cannot be determined, the constructor sets C<<
+$obj->error >> to something other than C<GOOD_ISBN>. An object is
+still returned and it is up to the program to check C<< $obj->error >>
+for one of five values (which may be exported on demand). The actual
+values of these symbolic versions are the same as those from previous
 versions of this module which used literal values.
 
 
@@ -195,28 +195,26 @@ versions of this module which used literal values.
 	Business::ISBN::GOOD_ISBN
 	Business::ISBN::BAD_ISBN
 
-If you have one of these values and want to turn it into
-a string, you can use the %Business::ISBN::ERROR_TEXT hash,
-which is exportable by asking for it explicitly in the import
-list.
+If you have one of these values and want to turn it into a string, you
+can use the C<%Business::ISBN::ERROR_TEXT> hash, which is exportable
+by asking for it explicitly in the import list.
 
 	use Business::ISBN qw(%ERROR_TEXT);
 
-The string passed as the ISBN need not be a valid ISBN as
-long as it superficially looks like one.  This allows one to
-use the C<fix_checksum()> method.  Despite the disclaimer in
-the discussion of that method, the author has found it
-extremely useful.  One should check the validity of the ISBN
-with C<is_valid()> rather than relying on the return value
-of the constructor.  If all one wants to do is check the
-validity of an ISBN, one can skip the object-oriented
-interface and use the C<valid_isbn_checksum()> function
-which is exportable on demand.
+The string passed as the ISBN need not be a valid ISBN as long as it
+superficially looks like one.  This allows one to use the
+C<fix_checksum()> method.  Despite the disclaimer in the discussion of
+that method, the author has found it extremely useful.  One should
+check the validity of the ISBN with C<is_valid()> rather than relying
+on the return value of the constructor.  If all one wants to do is
+check the validity of an ISBN, one can skip the object-oriented
+interface and use the C<valid_isbn_checksum()> function which is
+exportable on demand.
 
-If the constructor decides it cannot create an object, it
-returns C<undef>.  It may do this if the string passed as the
-ISBN cannot be munged to the internal format meaning that it
-does not even come close to looking like an ISBN.
+If the constructor decides it cannot create an object, it returns
+C<undef>.  It may do this if the string passed as the ISBN cannot be
+munged to the internal format meaning that it does not even come close
+to looking like an ISBN.
 
 =cut
 
@@ -824,7 +822,7 @@ brian d foy C<< <bdfoy@cpan.org> >>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2001-2009, brian d foy, All Rights Reserved.
+Copyright (c) 2001-2011, brian d foy, All Rights Reserved.
 
 You may redistribute this under the same terms as Perl itself.
 
