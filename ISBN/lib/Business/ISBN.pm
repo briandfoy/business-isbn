@@ -804,7 +804,6 @@ __END__
 
 =head1 BUGS
 
-* 
 
 =head1 TO DO
 
