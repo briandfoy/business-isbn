@@ -13,5 +13,5 @@ WriteMakefile(
     	'Test::More'       => '0',
     	},
 
-	clean => { FILES => 'Business-ISBN-Data*' },
+	clean => { FILES => 'Business-ISBN-Data* .DS_Store' },
 	);
