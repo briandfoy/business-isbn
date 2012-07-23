@@ -1,4 +1,3 @@
-# $Id: Data.pm,v 1.17 2007/10/27 18:46:39 comdog Exp $
 package Business::ISBN::Data;
 use strict;
 use vars qw($VERSION);
