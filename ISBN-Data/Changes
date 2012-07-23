@@ -1,6 +1,11 @@
-# $Id: Changes,v 1.20 2007/10/27 18:47:18 comdog Exp $
+20120719 - Mon Jul 23 18:02:31 2012
+	* Support data from RangeMessage.xml. You can use the latest
+	data from ISBN without updating this module.
 
-0.00 - Fri Dec  5 12:00:41 2008
+20120718 - Mon Jul 23 12:59:52 2012
+	* Daniel Jakubik updated the data for July 18, 2012
+
+20081208 - Fri Dec  5 12:00:41 2008
 	* Latest data update.
 
 20081020 - Mon Oct 20 17:44:15 2008
