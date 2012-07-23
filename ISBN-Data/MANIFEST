@@ -1,6 +1,7 @@
 Changes
 examples/README
 lib/Business/ISBN/Data.pm
+lib/Business/ISBN/RangeMessage.xml
 LICENSE
 make_data.pl
 Makefile.PL
