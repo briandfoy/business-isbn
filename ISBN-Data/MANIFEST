@@ -1,6 +1,6 @@
 Changes
-Data.pm
 examples/README
+lib/Business/ISBN/Data.pm
 LICENSE
 make_data.pl
 Makefile.PL
