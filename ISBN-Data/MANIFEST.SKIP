@@ -2,7 +2,7 @@
 .cvsignore
 .lwpcookies
 .DS_Store
-Business-*
+Business-.*
 blib/
 hacks/
 CVS
@@ -20,3 +20,5 @@ Makefile$
 \.orig
 \.rej
 \.mine
+MYMETA.*
+\.gitignore
