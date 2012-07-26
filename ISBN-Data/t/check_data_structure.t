@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-use Test::More 'no_plan';
+use Test::More 0.95;
 
 use File::Spec::Functions qw(catfile);
 
@@ -63,3 +63,5 @@ subtest 'current_data' => sub {
 		ok( ($count % 2) == 0, "Even number of elements ($count) for country $key" );
 		}
 	};
+
+done_testing();
