@@ -6,7 +6,7 @@ use Carp qw(carp);
 use File::Basename qw(dirname);
 use File::Spec::Functions qw(catfile);
 
-$VERSION = '20120719';
+$VERSION = '20120719.001';
 
 =head1 NAME
 
