@@ -14,7 +14,6 @@
 	in YYYYMMDD. This not the date of the ISBN Agency 
 	updates though.
 
-
 1.17 - Sat Oct 27 13:47:07 2007
 	* Update to docs to point to latest URL for ISBN International
 
@@ -32,10 +31,6 @@
 	* no code changes, so no need to upgrade
 
 1.12 - Tue Jan  9 23:11:33 2007
-	* updated copyright and license info
-	* no code changes, so no need to upgrade
-
-1.12 - Tue Jan  9 21:46:19 2007
 	* updated copyright and license info
 	* no code changes, so no need to upgrade
 
