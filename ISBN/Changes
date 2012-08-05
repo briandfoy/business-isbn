@@ -1,5 +1,8 @@
 Revision history for Perl extension Business::ISBN.
 
+2.05_03 - Sun Aug  5 14:50:30 2012
+	Fix test with now-valid group code (RT 78671)
+
 2.05_01 - Tue Jul 19 07:12:18 2011
 	* Update the URL for the Worldcat stuff so xisbn works.
 	* Various distro cleanups.
