@@ -1,3 +1,8 @@
+
+20120719.01 - Thu Jul 26 08:57:14 2012
+	Specify the Test::More version so I can use subtest.
+	No code or feature changes
+
 20120719 - Mon Jul 23 18:02:31 2012
 	* Support data from RangeMessage.xml. You can use the latest
 	data from ISBN without updating this module.
