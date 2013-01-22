@@ -5,7 +5,7 @@ use base qw(Business::ISBN);
 use Business::ISBN qw(:all);
 use Data::Dumper;
 
-use subs qw( 
+use subs qw(
 	_checksum
 	INVALID_COUNTRY_CODE
 	INVALID_PUBLISHER_CODE
@@ -13,8 +13,8 @@ use subs qw(
 	GOOD_ISBN
 	BAD_ISBN
 	);
-use vars qw( 
-	$VERSION 
+use vars qw(
+	$VERSION
 	$debug
 	);
 
@@ -26,24 +26,21 @@ $VERSION   = '2.05_03';
 
 sub _max_length { 13 }
 
-sub _set_type     { $_[0]->{type} = 'ISBN13' }
+sub _set_type { $_[0]->{type} = 'ISBN13' }
 
-sub _parse_prefix 
-	{ 
+sub _parse_prefix {
 	my $isbn = $_[0]->isbn; # stupid workaround for 'Can't modify non-lvalue subroutine call'
 	( $isbn =~ /\A(97[89])(.{10})\z/g )[0];
 	}
 
-sub _set_prefix   
-	{ 
+sub _set_prefix {
 	croak "Cannot set prefix [$_[1]] on an ISBN-13"
 		unless $_[1] =~ m/\A97[89]\z/;
-	
+
 	$_[0]->{prefix} = $_[1];
 	}
 
-sub _hyphen_positions 
-	{ 
+sub _hyphen_positions {
 	[
 	$_[0]->_prefix_length,
 	$_[0]->_prefix_length + $_[0]->_group_code_length,
@@ -54,13 +51,12 @@ sub _hyphen_positions
 
 # sub group { 'Bookland' }
 
-sub as_isbn10
-	{
+sub as_isbn10 {
 	my $self = shift;
 
 	return unless $self->prefix eq '978';
 
-	my $isbn10 = Business::ISBN->new( 
+	my $isbn10 = Business::ISBN->new(
 		substr( $self->isbn, 3 )
 		);
 	$isbn10->fix_checksum;
@@ -68,8 +64,7 @@ sub as_isbn10
 	return $isbn10;
 	}
 
-sub as_isbn13
-	{
+sub as_isbn13 {
 	my $self = shift;
 
 	my $isbn13 = Business::ISBN->new( $self->as_string );
@@ -79,8 +74,7 @@ sub as_isbn13
 	}
 
 #internal function.  you don't get to use this one.
-sub _checksum
-	{
+sub _checksum {
 	my $data = $_[0]->isbn;
 
 	return unless defined $data;
@@ -101,7 +95,6 @@ sub _checksum
 
 	return $checksum;
 	}
-
 
 1;
 
@@ -131,7 +124,7 @@ brian d foy C<< <bdfoy@cpan.org> >>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2001-2011, brian d foy, All Rights Reserved.
+Copyright (c) 2001-2013, brian d foy, All Rights Reserved.
 
 You may redistribute this under the same terms as Perl itself.
 
