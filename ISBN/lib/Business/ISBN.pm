@@ -752,6 +752,7 @@ sub _check_validity {
 		defined $self->prefix
 		) {
 	    $self->_set_is_valid( GOOD_ISBN );
+	    return GOOD_ISBN;
 	    }
 	else {
 		$self->_set_is_valid( INVALID_PUBLISHER_CODE )
@@ -760,8 +761,7 @@ sub _check_validity {
 			unless defined $self->group_code;
 		$self->_set_is_valid( INVALID_PREFIX )
 			 unless defined $self->prefix;
-		$self->_set_is_valid( GOOD_ISBN )
-			 unless $self->is_valid_checksum ne GOOD_ISBN;
+		return;
 		}
 	}
 
