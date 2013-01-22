@@ -813,7 +813,7 @@ __END__
 
 This source is in Github:
 
-    http://github.com/briandfoy/business--isbn/tree/master
+    https://github.com/briandfoy/business--isbn
 
 =head1 AUTHOR
 
