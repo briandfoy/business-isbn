@@ -1,5 +1,8 @@
 Revision history for Perl extension Business::ISBN.
 
+2.06 - Fri May 31 15:41:48 2013
+	* Bump to a stable user release. There are no code changes.
+
 2.05_03 - Sun Aug  5 14:50:30 2012
 	Fix test with now-valid group code (RT 78671)
 
