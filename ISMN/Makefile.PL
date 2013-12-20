@@ -1,7 +1,6 @@
-# $Id: Makefile.PL,v 1.8 2007/10/26 02:53:51 comdog Exp $
 use ExtUtils::MakeMaker;
 
-eval "use Test::Manifest 1.14";
+eval "use Test::Manifest 1.21";
 	
 WriteMakefile(
     'NAME'  	 	=> 'Business::ISMN',
