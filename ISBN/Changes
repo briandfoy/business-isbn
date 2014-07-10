@@ -1,5 +1,8 @@
 Revision history for Perl extension Business::ISBN.
 
+2.07 - Fri Jan  3 14:20:04 2014
+	* Get rid of MYMETA
+
 2.06 - Fri May 31 15:41:48 2013
 	* Bump to a stable user release. There are no code changes.
 
