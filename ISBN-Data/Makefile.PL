@@ -1,4 +1,4 @@
-use ExtUtils::MakeMaker;
+use ExtUtils::MakeMaker 6.65;
 
 eval "use Test::Manifest 1.21";
                        
@@ -10,10 +10,24 @@ WriteMakefile(
 	'ABSTRACT'      => 'Data pack for Business::ISBN',
 	
     'PREREQ_PM'     => {
-    	'Test::More'            => '0.95',
 		'Carp'                  => '0',
 		'File::Basename'        => '0',
 		'File::Spec::Functions' => '0',
+		},
+
+	'TEST_REQUIRES' => {
+		'Test::More'            => '0.95',
+		},
+
+	'META_MERGE' => {
+		'meta-spec' => { version => 2 },
+		resources => {
+			repository => {
+				type => 'git',
+				url  => 'git@github.com:briandfoy/business--isbn.git',
+				web  => 'https://github.com/briandfoy/business--isbn',
+				},
+			},
 		},
 
 	clean => { FILES => 'Business-ISBN-Data* .DS_Store' },
