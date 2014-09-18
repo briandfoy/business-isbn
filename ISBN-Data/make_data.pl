@@ -27,7 +27,9 @@ foreach my $group ( sort { $a <=> $b } keys %data ) {
 		print " ] ],\n";
 		next;
 		}
-	
+
+	@$ranges = map { qq('$_') } @$ranges;
+
 	foreach my $i ( 0 .. $#$ranges - 1 ) {
 		print $ranges->[$i], ( " => ", ", " )[$i % 2];
 		}
