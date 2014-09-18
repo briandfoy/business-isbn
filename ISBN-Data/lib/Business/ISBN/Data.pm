@@ -6,7 +6,7 @@ use Carp qw(carp);
 use File::Basename qw(dirname);
 use File::Spec::Functions qw(catfile);
 
-$VERSION = '20120719.001';
+$VERSION = '20140918.001';
 
 =head1 NAME
 
@@ -22,7 +22,7 @@ You don't need to load this module yourself in most cases. C<Business::ISBN>
 will load it when it loads.
 
 These data are generated from the F<RangeMessage.xml> file provided by
-the ISBN Agency. You can retrieve this yourself at L<http://www.isbn-international.org/agency?rmxml=1>.
+the ISBN Agency. You can retrieve this yourself at L<https://www.isbn-international.org/range_file_generation>.
 This file is included as part of the distribution and should be installed
 at F<~lib/Business/ISBN/RangeMessage.xml>.
 
@@ -59,7 +59,7 @@ Daniel Jakubik updated the data in July 2012.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2002-2012, brian d foy, All Rights Reserved.
+Copyright (c) 2002-2014, brian d foy, All Rights Reserved.
 
 You may redistribute this under the same terms as Perl itself.
 
