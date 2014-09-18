@@ -4,58 +4,34 @@ use 5.010;
 use strict;
 use warnings;
 
-use LWP::Simple;
+use lib qw(lib);
 
-my $js_url = 'http://www.isbn-international.org/converter/ranges.js';
-my $js_data = get( $js_url );
-die "Could not fetch $js_url!" unless defined $js_data;
+use Business::ISBN::Data;
 
-$js_data =~ s|.*?// \s+ ID \s+ List: \s+||s;
+my %data = Business::ISBN::Data->_get_data();
 
-my @keys = qw(text ranges);
-my %data;
+foreach my $group ( sort { $a <=> $b } keys %data ) {
+	next if $group =~ /\A_/;
 
-while( $js_data =~
-	/
-		^gi\.area(?<group>\d+)\.text \s* = \s* "(?<text>.*?)" ;?  [\r\n]+
-		^gi\.area(\1)\.pubrange \s* = \s* "(?<ranges>.*?)"    ;?  [\r\n]+
-    /gmx
-    )
-	{
-	@{ $data{ $+{group} } }{ @keys } = @+{ @keys };
-	}
-
-foreach my $group ( sort keys %data )
-	{
-	my $empty = $data{$group}{text} =~ s/\s+-\s+no ranges fixed yet\s*//;
-	my $text  = $data{$group}{text};
+	my $array = $data{$group};
+	my( $group_name, $ranges ) = @$array;
 	
-	$text =~ s/'/\\'/g;
-	
-	printf "%-5s => [%s =>   [",
+	$group_name =~ s/'/\\'/g;
+
+	printf "%-5s => [ %s => [ ",
 		$group,
-		qq|'$text'|;
+		qq|'$group_name'|;
 		;
 	
-	if( $empty )
-		{
-		print "] ],\n";
+	unless( @$ranges ) {
+		print " ] ],\n";
 		next;
 		}
-
-	my @ranges = 
-		map { 
-			if( /-/ ) { map { qq|'$_'| } split /-/, $_ }
-			else      { qq|'$_'|, qq|'$_'| }
-			} 
-		split /;/, $data{$group}{ranges};
-	warn "Odd number of ranges for $text!\n" if @ranges % 2;
 	
-	foreach my $i ( 0 .. $#ranges - 1 )
-		{
-		print $ranges[$i], ( " => ", ", " )[$i % 2];
+	foreach my $i ( 0 .. $#$ranges - 1 ) {
+		print $ranges->[$i], ( " => ", ", " )[$i % 2];
 		}
-	print $ranges[-1], "] ],\n";	
+	print $ranges->[-1], "] ],\n";	
 	}
 
 #     0 => ['English',               ['00' => '19', '200' => '699', '7000' => '8499', '85000' => '89999', '900000' => '949999', '9500000' => '9999999' ] ],
