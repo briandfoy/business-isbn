@@ -12,8 +12,7 @@ WriteMakefile(
 	'AUTHOR'        => 'brian d foy <bdfoy@cpan.org>',
 
 	'PREREQ_PM'     => {
-		'Test::More'           => '0',
-		'Business::ISBN::Data' => '20081208',
+		'Business::ISBN::Data' => '20140910',
 		'URI'                  => '0',
 		},
 
