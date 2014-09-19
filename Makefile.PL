@@ -1,6 +1,6 @@
 require 5.008;
 
-use ExtUtils::MakeMaker;
+use ExtUtils::MakeMaker 6.65;
 
 eval "use Test::Manifest 1.21";
 	
@@ -16,7 +16,12 @@ WriteMakefile(
 		'URI'                  => '0',
 		},
 
-	META_MERGE => {
+	'TEST_REQUIRES' => {
+		'Test::More'  => '0.95',
+		'Test::ISBN'  => '2.0',
+		},
+
+	'META_MERGE' => {
 		'meta-spec' => { version => 2 },
 			resources => {
 				repository => {
