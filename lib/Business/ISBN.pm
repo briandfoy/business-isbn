@@ -900,4 +900,6 @@ and testing.
 Ed Summers C<< <esummers@cpan.org> >> has volunteered to help with
 this module.
 
+Markus Spann C<< <markus_spann@gmx.de> >> added C<increment> and C<decrement>.
+
 =cut
