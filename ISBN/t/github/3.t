@@ -3,7 +3,7 @@ use Test::More 0.95;
 use_ok( 'Business::ISBN' );
 
 subtest good_checksum => sub {
-	my $string = '9789997122575';
+	my $string = '9789990022575';
 	my $isbn = Business::ISBN->new( $string );
 
 	is( $isbn->publisher_code, undef, 'Publisher code is bad' );
@@ -17,7 +17,7 @@ subtest good_checksum => sub {
 	};
 
 subtest bad_checksum => sub {
-	my $string = '9789997122576';
+	my $string = '9789990002576';
 	my $isbn = Business::ISBN->new( $string );
 
 	is( $isbn->is_valid_checksum, Business::ISBN::BAD_CHECKSUM() );
