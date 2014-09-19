@@ -73,7 +73,7 @@ use vars qw( $VERSION @ISA @EXPORT_OK %EXPORT_TAGS $debug %group_data
 use Carp qw(carp croak cluck);
 use base qw(Exporter);
 
-use Business::ISBN::Data 20120719.001; # now a separate module
+use Business::ISBN::Data 20140910.001; # now a separate module
 # ugh, hack
 *group_data = *Business::ISBN::country_data;
 sub _group_data { $group_data{ $_[1] } }
@@ -110,7 +110,7 @@ BEGIN {
 		);
 	};
 
-$VERSION = "2.07";
+$VERSION = "2.08";
 
 sub ARTICLE_CODE_OUT_OF_RANGE () { -5 }
 sub INVALID_PREFIX            () { -4 };
