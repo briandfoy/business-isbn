@@ -27,6 +27,7 @@ t/rt/27107.t
 t/rt/28843.t
 t/rt/29089.t
 t/rt/29292.t
+t/step.t
 t/test_manifest
 t/valid_isbn_checksum.t
 t/xisbn10.t
