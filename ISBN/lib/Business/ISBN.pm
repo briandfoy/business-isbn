@@ -65,6 +65,7 @@ use subs qw(
 	BAD_CHECKSUM
 	GOOD_ISBN
 	BAD_ISBN
+	ARTICLE_CODE_OUT_OF_RANGE
 	);
 use vars qw( $VERSION @ISA @EXPORT_OK %EXPORT_TAGS $debug %group_data
 	$MAX_GROUP_CODE_LENGTH %ERROR_TEXT );
@@ -98,7 +99,7 @@ my $debug = 0;
 BEGIN {
 	@EXPORT_OK = qw(
 		INVALID_GROUP_CODE INVALID_PUBLISHER_CODE
-		BAD_CHECKSUM GOOD_ISBN BAD_ISBN
+		BAD_CHECKSUM GOOD_ISBN BAD_ISBN ARTICLE_CODE_OUT_OF_RANGE
 		INVALID_PREFIX
 		%ERROR_TEXT
 		valid_isbn_checksum
@@ -111,13 +112,13 @@ BEGIN {
 
 $VERSION = "2.07";
 
-sub INVALID_PREFIX         () { -4 };
-sub INVALID_GROUP_CODE     () { -2 };
-sub INVALID_PUBLISHER_CODE () { -3 };
-sub BAD_CHECKSUM           () { -1 };
-sub GOOD_ISBN              () {  1 };
-sub BAD_ISBN               () {  0 };
-
+sub ARTICLE_CODE_OUT_OF_RANGE () { -5 }
+sub INVALID_PREFIX            () { -4 };
+sub INVALID_GROUP_CODE        () { -2 };
+sub INVALID_PUBLISHER_CODE    () { -3 };
+sub BAD_CHECKSUM              () { -1 };
+sub GOOD_ISBN                 () {  1 };
+sub BAD_ISBN                  () {  0 };
 
 %ERROR_TEXT = (
 	 0 => "Bad ISBN",
@@ -126,6 +127,7 @@ sub BAD_ISBN               () {  0 };
 	-2 => "Invalid group code",
 	-3 => "Invalid publisher code",
 	-4 => "Invalid prefix (must be 978 or 979)",
+	-5 => "Incremented article code would be out of range",
 	);
 
 use Business::ISBN10;
@@ -573,6 +575,10 @@ possible ISBN for the publisher.
 	$isbn = Business::ISBN->new('1565922573');  # 1-56592-257-3
 	$next_isbn = $isbn->increment;              # 1-56592-258-1
 
+If the next article code would exceed the maximum possible article
+code (such as incrementing 999 to 1000), this returns ARTICLE_CODE_OUT_OF_RANGE
+as the error.
+
 =cut
 
 sub increment { $_[0]->_step_article_code( +1 ) }
@@ -588,6 +594,10 @@ possible ISBN for the publisher.
 	$isbn = Business::ISBN->new('1565922573');  # 1-56592-257-3
 	$prev_isbn = $isbn->decrement;              # 1-56592-256-5
 
+If the next article code would exceed the maximum possible article
+code (such as incrementing 000 to -1), this returns ARTICLE_CODE_OUT_OF_RANGE
+as the error.
+
 =cut
 
 sub decrement { $_[0]->_step_article_code( -1 ) }
@@ -599,7 +609,7 @@ sub _step_article_code {
 
 	my $next_article_code = int $self->article_code + $step;
 
-	return unless 
+	return ARTICLE_CODE_OUT_OF_RANGE unless
 		$next_article_code >= $self->article_code_min
 			&&
 		$next_article_code <= $self->article_code_max
