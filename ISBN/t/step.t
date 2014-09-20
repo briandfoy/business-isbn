@@ -53,7 +53,7 @@ subtest too_little => sub {
 
 	my $isbn_one_less = $isbn->decrement;
 
-	is( $isbn_one_less, Business::ISBN::ARTICLE_CODE_OUT_OF_RANGE,
+	is( $isbn_one_less, Business::ISBN::ARTICLE_CODE_OUT_OF_RANGE(),
 		'Incrementing below 0 would be out of range' );
 	};
 
@@ -63,7 +63,7 @@ subtest too_much => sub {
 	isa_ok( $isbn, $class );
 
 	my $isbn_one_more = $isbn->increment;
-	is( $isbn_one_more, Business::ISBN::ARTICLE_CODE_OUT_OF_RANGE,
+	is( $isbn_one_more, Business::ISBN::ARTICLE_CODE_OUT_OF_RANGE(),
 		'Incrementing past 9999 would be out of range' );
 	};
 
