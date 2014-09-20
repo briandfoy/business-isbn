@@ -18,7 +18,6 @@ WriteMakefile(
 
 	'TEST_REQUIRES' => {
 		'Test::More'  => '0.95',
-		'Test::ISBN'  => '2.0',
 		},
 
 	'META_MERGE' => {
