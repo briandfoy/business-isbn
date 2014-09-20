@@ -1,5 +1,4 @@
 use Test::More 0.95;
-use Test::ISBN;
 
 use strict;
 use warnings;
@@ -13,7 +12,6 @@ my $isbn;
 subtest setup => sub {
 	use_ok( $class );
 	can_ok( $class, @methods );
-	isbn_ok( $isbn_string );
 	};
 
 subtest make_isbn => sub {
@@ -24,26 +22,26 @@ subtest make_isbn => sub {
 
 subtest one_more => sub {
 	my $isbn     = $class->new( '978-1-4493-9311-3' );
-	isbn_ok( $isbn );
+	isa_ok( $isbn, $class );
 	my $one_more = $class->new( '978-1-4493-9312-3' );
 	$one_more->fix_checksum;
-	isbn_ok( $one_more );
+	isa_ok( $one_more, $class );
 
 	my $isbn_one_more = $isbn->increment;
-	isbn_ok( $isbn_one_more );
+	isa_ok( $isbn_one_more, $class );
 	
 	is( $one_more->as_string, $isbn_one_more->as_string, 'One more matches' );
 	};
 
 subtest one_less => sub {
 	my $isbn     = $class->new( '978-1-4493-9311-3' );
-	isbn_ok( $isbn );
+	isa_ok( $isbn, $class );
 	my $one_less = $class->new( '978-1-4493-9310-3' );
 	$one_less->fix_checksum;
-	isbn_ok( $one_less );
+	isa_ok( $one_less, $class );
 
 	my $isbn_one_less = $isbn->decrement;
-	isbn_ok( $isbn_one_less );
+	isa_ok( $isbn_one_less, $class );
 	
 	is( $one_less->as_string, $isbn_one_less->as_string, 'One less matches' );
 	};
@@ -51,7 +49,7 @@ subtest one_less => sub {
 subtest too_little => sub {
 	my $isbn     = $class->new( '978-1-4493-0000-3' );
 	$isbn->fix_checksum;
-	isbn_ok( $isbn );
+	isa_ok( $isbn, $class );
 
 	my $isbn_one_less = $isbn->decrement;
 
@@ -62,7 +60,7 @@ subtest too_little => sub {
 subtest too_much => sub {
 	my $isbn     = $class->new( '978-1-4493-9999-3' );
 	$isbn->fix_checksum;
-	isbn_ok( $isbn );
+	isa_ok( $isbn, $class );
 
 	my $isbn_one_more = $isbn->increment;
 	is( $isbn_one_more, Business::ISBN::ARTICLE_CODE_OUT_OF_RANGE,

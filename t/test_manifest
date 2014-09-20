@@ -9,6 +9,7 @@ isbn13.t
 valid_isbn_checksum.t
 xisbn10.t
 png_barcode.t
+step.t
 rt/27107.t
 rt/28843.t
 rt/29089.t
