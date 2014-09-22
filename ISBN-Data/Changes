@@ -1,4 +1,9 @@
 
+20140910.02 - Mon Sep 22 14:31:21 2014
+	* Look in the current directory for RangeMessage.xml if it's
+	not in other locations. This can help with various Perl app
+	packagers. (But, also try ISBN_RANGE_MESSAGE env var)
+
 20140910.001 - Thu Sep 18 06:46:01 2014
 	* Update to the latest data (2014-09-10)
 
