@@ -322,7 +322,7 @@ sub _parse_range_message {
 	my( $file ) = @_;
 
 	open my $fh, '<:utf8', $file or do {
-		carp "Could not open $file to get ISBN range data [$!]";
+		carp "Could not open $file to get ISBN range data [$!]\n";
 		return
 		};
 
