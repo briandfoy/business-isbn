@@ -34,7 +34,8 @@ an update to this module.
 
 If the default F<RangeMessage.xml> or your alternate one is not available,
 the module falls back to data included in F<Data.pm>. However, that data
-is likely to be older data.
+is likely to be older data. If it does not find that file, it looks
+for F<RangeMessage.xml> in the current directory.
 
 The data are in C<%Business::ISBN::country_data> (although the "country"
 part is historical). If you want to see where the data are from, check
@@ -304,15 +305,18 @@ sub _get_data {
 # eventually fetch this from the internet
 # http://www.isbn-international.org/agency?rmxml=1
 
-	my $file = do {
-		no warnings 'uninitialized';
-		   if( -e $ENV{ISBN_RANGE_MESSAGE} ) { $ENV{ISBN_RANGE_MESSAGE} }
-		else {
-			my $default = catfile( dirname( __FILE__ ), 'RangeMessage.xml' );
-			}
-		};
+	if( defined $ENV{ISBN_RANGE_MESSAGE} and ! -e $ENV{ISBN_RANGE_MESSAGE} ) {
+		carp "ISBN_RANGE_MESSAGE is set to [$ENV{ISBN_RANGE_MESSAGE}] but that file does not exist!\nTrying to use the default locations\n";
+		}
+	my $file = 'RangeMessage.xml';
+	no warnings 'uninitialized';
+	my @candidates = grep { -e } (
+		$ENV{ISBN_RANGE_MESSAGE},              # env
+		catfile( dirname( __FILE__ ), $file ), # next to the module
+		$file,                                 # current directory
+		);
 
-	my $hash = _parse_range_message( $file );
+	my $hash = _parse_range_message( $candidates[0] );
 
 	if( defined $hash ) { return %$hash   }
 	else                { _default_data() }
