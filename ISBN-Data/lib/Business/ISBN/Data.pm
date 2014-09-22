@@ -57,6 +57,9 @@ Yakov Shafranovich updated the data in October 2008.
 
 Daniel Jakubik updated the data in July 2012.
 
+Markus Spann suggested looking for F<RangeMessage.xml> in the current
+directory to make it work with Perl app bundlers.
+
 =head1 COPYRIGHT AND LICENSE
 
 Copyright (c) 2002-2014, brian d foy, All Rights Reserved.
