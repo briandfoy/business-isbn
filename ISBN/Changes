@@ -1,5 +1,8 @@
 Revision history for Perl extension Business::ISBN.
 
+2.09 - Sat Sep 20 18:15:37 2014
+	* Break circular dependency on Test::ISBN
+
 2.08 - Fri Sep 19 12:53:21 2014
 	* Add increment and decrement to create new article numbers
 	(Markus Spann)
