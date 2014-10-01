@@ -1,4 +1,4 @@
-use ExtUtils::MakeMaker 6.65;
+use ExtUtils::MakeMaker 6.64;
 
 use 5.008;
 
@@ -15,6 +15,10 @@ WriteMakefile(
 		'Carp'                  => '0',
 		'File::Basename'        => '0',
 		'File::Spec::Functions' => '0',
+		},
+
+	'CONFIGURE_REQUIRES' => {
+		'ExtUtils::MakeMaker' => '6.64',
 		},
 
 	'TEST_REQUIRES' => {
