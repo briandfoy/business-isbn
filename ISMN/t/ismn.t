@@ -1,5 +1,3 @@
-# $Revision: 1.3 $
-
 use Test::More tests => 18;
 
 use Business::ISMN;

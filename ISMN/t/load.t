@@ -1,4 +1,3 @@
-# $Id: load.t,v 1.3 2004/09/16 16:02:59 comdog Exp $
 BEGIN {
 	@classes = qw(Business::ISMN Business::ISMN::Data);
 	}
