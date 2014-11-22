@@ -22,7 +22,7 @@ WriteMakefile(
 		},
 
 	'TEST_REQUIRES' => {
-		'Test::More'            => '0.95',
+		'Test::More'          => '0.95',
 		},
 
 	'META_MERGE' => {
