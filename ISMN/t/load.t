@@ -1,10 +1,9 @@
-BEGIN {
-	@classes = qw(Business::ISMN Business::ISMN::Data);
+use Test::More 0.95;
+
+my @classes = qw(Business::ISMN Business::ISMN::Data);
+
+foreach my $class ( @classes ) {
+	use_ok( $class ) or BAILOUT();
 	}
 
-use Test::More tests => scalar @classes;
-	
-foreach my $class ( @classes )
-	{
-	print "bail out! Could not compile $class\n" unless use_ok( $class );
-	}
+done_testing();

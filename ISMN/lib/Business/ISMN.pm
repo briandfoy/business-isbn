@@ -287,8 +287,8 @@ sub _checksum
 	}
 
 #internal function.  you don't get to use this one.
-sub _common_format
-	{
+sub _common_format {
+	no warnings qw(uninitialized);
 	#we want uppercase X's
 	my $data = uc shift;
 
