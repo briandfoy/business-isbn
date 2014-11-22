@@ -61,5 +61,5 @@
 \.travis\.yml
 \.releaserc
 \.lwpcookies
-Business-*
+Business-.*
 hacks/
