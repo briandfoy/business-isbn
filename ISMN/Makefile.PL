@@ -13,7 +13,7 @@ WriteMakefile(
 	
     'PREREQ_PM'     => {
     	'List::Util'       => '0',
-    	'Tie::Cycle'       => '0',
+    	'Tie::Cycle'       => '1.21',
     	},
 
 	'TEST_REQUIRES' => {
