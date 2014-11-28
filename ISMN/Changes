@@ -1,4 +1,8 @@
-# $Id: Changes,v 1.14 2007/10/26 03:02:14 comdog Exp $
+# Changes for Business::ISMN
+
+1.12 - Fri Nov 21 23:06:24 2014
+	* RT #100506 : Fix package name
+	* Modernize distro
 
 1.11 - Thu Oct 25 22:01:29 2007
 	* distro adjustments. no big whoop.
