@@ -24,13 +24,13 @@ Revision history for Perl extension Business::ISBN.
 	* Updated for latest data in Business::ISBN::Data
 
 2.04_01 - Mon Oct 27 12:08:03 2008
-	* Revert the GD prereq. A lot of testers have borked GD 
+	* Revert the GD prereq. A lot of testers have borked GD
 	installs.
 	* Require 5.8. Some of the new stuff isn't playing well with
 	5.6
 
 2.04 - Sun Oct 26 18:29:20 2008
-	* Fix tests that used 99902 as a bad prefix. That now 
+	* Fix tests that used 99902 as a bad prefix. That now
 	belongs to Gabon.
 
 2.03 - Sat Oct 27 02:48:15 2007
@@ -45,7 +45,7 @@ Revision history for Perl extension Business::ISBN.
 	say
 
 2.02_04 - Sat Sep  1 14:55:00 2007
-	[BUGFIX] ISBN13 was returning "Bookland" for all groups, but 
+	[BUGFIX] ISBN13 was returning "Bookland" for all groups, but
 	it shouldn't do that. Now it returns the same thing you'd
 	get from ISBN10 (e.g. "English", "German", ... ).
 
@@ -54,7 +54,7 @@ Revision history for Perl extension Business::ISBN.
 	is the hint that it should be 13. :)
 
 2.02_02 - Sat Aug 25 05:57:22 2007
-	[FEATURE] added exportable function valid_isbn_checksum that 
+	[FEATURE] added exportable function valid_isbn_checksum that
 	takes care of all of the object stuff for you and just gives
 	you the answer. In previous docs, this was called is_valid_checksum
 	even though that conflicted with an object method. It was
@@ -73,7 +73,7 @@ Revision history for Perl extension Business::ISBN.
 2.01 - Sun Aug 12 22:28:01 2007
 	* Official release of Business::ISBN to handle ISBN-13
 	* Does not handle 979- numbers yet (need publisher data for that)
-	* Does handle 978-numbers, which is the 10 digit ISBN with a 
+	* Does handle 978-numbers, which is the 10 digit ISBN with a
 	different "country code", so it uses the same publisher data
 	* There are significant API changes to handle the new stuff. It's
 	not so bad, but test it before you rip out the old Business::ISBN
@@ -117,7 +117,7 @@ Revision history for Perl extension Business::ISBN.
 
 1.77 - Wed Oct 27 02:39:17 2004
 	* removed Business::ISBN::Data, which is now a separate module so
-	you can update the data without updating the rest of the stuff. 
+	you can update the data without updating the rest of the stuff.
 	Previously, CPAN.pm would install Business::ISBN::Data as a
 	prerequisite, and this distribution would come along and overwrite
 	it with old data.  That was a bad thing.
@@ -145,7 +145,7 @@ Revision history for Perl extension Business::ISBN.
 
 1.69	Thu Sep  5 01:18:26 CDT 2002
 	- documentation fixes - that's it
-	
+
 1.68	Wed Sep  4 15:51:29 CDT 2002
 	- converted to Test::More
 	- fixed ean_to_isbn to handle new EAN prefix 979
@@ -191,13 +191,13 @@ Revision history for Perl extension Business::ISBN.
 	- now we have sane version numbers. :)
 
 20001010  Sat Sep  9 00:33:07 EDT 2000
-	- fixed some missing arguments to _is_valid.  
+	- fixed some missing arguments to _is_valid.
 	- updated contact information
 	- added some real tests to test.pl
 	- everyone should update their installations
 
 19990112  Mon Jan 11 18:03:07 EST 1999
-	- added "use Exporter" which was missing.  
+	- added "use Exporter" which was missing.
 
 19980901  Tue Sep 01 15:15:30 1998
 	- added support for EAN-13 (isbn -> ean, ean -> isbn )
