@@ -45,21 +45,21 @@ Revision history for Perl module Business::ISBN
 	say
 
 2.02_04 - Sat Sep  1 14:55:00 2007
-	[BUGFIX] ISBN13 was returning "Bookland" for all groups, but
+	* [BUGFIX] ISBN13 was returning "Bookland" for all groups, but
 	it shouldn't do that. Now it returns the same thing you'd
 	get from ISBN10 (e.g. "English", "German", ... ).
 
 2.02_03 - Sat Sep  1 04:12:49 2007
-	[BUGFIX] RT 29089 - I had the wrong _max_length for ISBN13. That 13
+	* [BUGFIX] RT 29089 - I had the wrong _max_length for ISBN13. That 13
 	is the hint that it should be 13. :)
 
 2.02_02 - Sat Aug 25 05:57:22 2007
-	[FEATURE] added exportable function valid_isbn_checksum that
+	* [FEATURE] added exportable function valid_isbn_checksum that
 	takes care of all of the object stuff for you and just gives
 	you the answer. In previous docs, this was called is_valid_checksum
 	even though that conflicted with an object method. It was
 	documented but never implemented. Now it's there. :)
-	[BUGFIX] now should pass tests under 5.6.2, after a bit of
+	* [BUGFIX] now should pass tests under 5.6.2, after a bit of
 	backporting. Upgrade already people! :)
 
 2.02_01 - Fri Aug 17 14:00:51 2007
@@ -144,66 +144,66 @@ Revision history for Perl module Business::ISBN
 	* removed File::Find::Rule, Test::Pod, Test::Prereq dependencies
 
 1.69	Thu Sep  5 01:18:26 CDT 2002
-	- documentation fixes - that's it
+	* documentation fixes - that's it
 
 1.68	Wed Sep  4 15:51:29 CDT 2002
-	- converted to Test::More
-	- fixed ean_to_isbn to handle new EAN prefix 979
+	* converted to Test::More
+	* fixed ean_to_isbn to handle new EAN prefix 979
 
 1.60	Sun Apr  1 17:06:28 EDT 2001
-	- fixed some POD problems
-	- no changes to the actual code
+	* fixed some POD problems
+	* no changes to the actual code
 
 1.59	Tue Mar 27 11:51:42 EST 2001
-	- fixed some -w dirty internals
-	- clarified documentation for as_string method
+	* fixed some -w dirty internals
+	* clarified documentation for as_string method
 
 1.58	Mon Mar 26 19:47:03 EST 2001
-	- there was an error in test.pl that failed to
+	* there was an error in test.pl that failed to
 	identify a bug. Andy Lester <andy@petdance.com>
 	found it though.  the constructor was always
 	setting $obj->is_valid to BAD_CHECKSUM.  that
 	is fixed.
-	- version 1.57 should not be used at all.  it
+	* version 1.57 should not be used at all.  it
 	is severely broken due to that bug.
 
 1.57	Wed Mar 21 18:07:17 EST 2001
-	- fixed -w dirty line in is_valid_checksum
+	* fixed -w dirty line in is_valid_checksum
 	(identified by Andy Lester <andy@petdance.com>)
 
 1.56	  Mon Mar 12 10:03:37 EST 2001
 	EVERYONE SHOULD UPGRADE TO THIS VERSION
-	- fixed problem parsing ISBNs without valid
+	* fixed problem parsing ISBNs without valid
 	country codes which would cause an infinite
 	loop. (identified by Andy Lester <andy@petdance.com>)
-	- this module is now kept in a local CVS repository
-	- added symbolic constants to replace magic return
+	* this module is now kept in a local CVS repository
+	* added symbolic constants to replace magic return
 	values.  see the docs for details.
-	- fixed is_valid_checksum which would issue warnings
+	* fixed is_valid_checksum which would issue warnings
 	if the string was less than ten characters
 	(identified by Adam Thompson <athompso@athompso.net>)
-	- added a test.pl which still needs more tests to
+	* added a test.pl which still needs more tests to
 	reach all of the code.
 
 1.51      Wed Jan 24 14:22:02 EST 2001
-	- version 1.5 fixed some bugs with checksums
-	- version 1.51 has a few minor doc fixes
-	- now we have sane version numbers. :)
+	* version 1.5 fixed some bugs with checksums
+	* version 1.51 has a few minor doc fixes
+	* now we have sane version numbers. :)
 
 20001010  Sat Sep  9 00:33:07 EDT 2000
-	- fixed some missing arguments to _is_valid.
-	- updated contact information
-	- added some real tests to test.pl
-	- everyone should update their installations
+	* fixed some missing arguments to _is_valid.
+	* updated contact information
+	* added some real tests to test.pl
+	* everyone should update their installations
 
 19990112  Mon Jan 11 18:03:07 EST 1999
-	- added "use Exporter" which was missing.
+	* added "use Exporter" which was missing.
 
 19980901  Tue Sep 01 15:15:30 1998
-	- added support for EAN-13 (isbn -> ean, ean -> isbn )
-	- cleaned up other nagging problems
-	- if you don't want EAN13, then you don't need this update
+	* added support for EAN-13 (isbn -> ean, ean -> isbn )
+	* cleaned up other nagging problems
+	* if you don't want EAN13, then you don't need this update
 
 19980329  Sun Mar 29 03:29:16 1998
-	- original version; created by h2xs 1.18
-	- gutsy enough to actually release it for testing and comments
+	* original version; created by h2xs 1.18
+	* gutsy enough to actually release it for testing and comments
