@@ -2,11 +2,14 @@ require 5.008;
 use strict;
 use warnings;
 
-my $github    = 'https://github.com/briandfoy/';
-my $main_file = 'lib/Business/ISBN.pm';
+use File::Spec::Functions qw(catfile);
+
+my $module    = 'Business::ISBN';
+my $github    = 'https://github.com/briandfoy/business-isbn';
+my $main_file = catfile( 'lib', split /::/, "$module.pm" );
 
 my %WriteMakefile = (
-	'NAME'          => 'Business::ISBN',
+	'NAME'          => $module,
 	'ABSTRACT_FROM' => $main_file,
 	'VERSION_FROM'  => $main_file, 
 	'LICENSE'       => 'perl',
@@ -24,6 +27,8 @@ my %WriteMakefile = (
 		},
 
 	'PREREQ_PM'     => {
+		'Business::ISBN::Data' => '20140910',
+		'URI'                  => '0',
 		},
 
 	'META_MERGE' => {
@@ -38,25 +43,6 @@ my %WriteMakefile = (
 				web    => "$github/issues",
 				},
 			homepage => $github,
-			},
-		},
-	'PREREQ_PM'     => {
-		'Business::ISBN::Data' => '20140910',
-		'URI'                  => '0',
-		},
-
-	'TEST_REQUIRES' => {
-		'Test::More'  => '0.95',
-		},
-
-	'META_MERGE' => {
-		'meta-spec' => { version => 2 },
-			resources => {
-				repository => {
-					type => 'git',
-					url  => 'https://github.com/briandfoy/business--isbn.git',
-					web  => 'https://github.com/briandfoy/business--isbn',
-				},
 			},
 		},
 
