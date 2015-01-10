@@ -49,7 +49,7 @@ my %WriteMakefile = (
 			},
 		},
 
-	clean => { FILES => '*.bak Business-*' },
+	clean => { FILES => "$dist-*" },
 	);
 
 sub arguments { \%WriteMakefile }
