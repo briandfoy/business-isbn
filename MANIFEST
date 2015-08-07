@@ -2,6 +2,7 @@ bad-isbn13s.txt
 bad-isbns.txt
 Changes
 examples/README
+INSTALL.SKIP
 isbn13s.txt
 isbns.txt
 lib/Business/ISBN.pm
