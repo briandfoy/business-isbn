@@ -1,5 +1,8 @@
 Revision history for Perl module Business::ISBN
 
+2.09_02 - Mon Aug 31 02:24:10 2015
+	* Have a simple fallback for parsing XML if Mojo::DOM isn't there
+
 2.09_01 2015-08-31T05:59:56Z
 	* Fix for new xISBN responses that have whitespace inside the
 	opening tag.
