@@ -562,8 +562,6 @@ sub _get_xisbn {
 			}
 		};
 
-	say STDERR $data;
-
 	carp "Could not fetch xISBN data" unless defined $data;
 
 	return $data;
