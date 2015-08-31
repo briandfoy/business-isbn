@@ -20,7 +20,7 @@ Revision history for Perl module Business::ISBN
 	* Bump to a stable user release. There are no code changes.
 
 2.05_03 - 2012-08-05
-	Fix test with now-valid group code (RT 78671)
+	* Fix test with now-valid group code (RT 78671)
 
 2.05_01 - 2011-07-19
 	* Update the URL for the Worldcat stuff so xisbn works.
