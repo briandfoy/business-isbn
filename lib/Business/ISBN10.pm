@@ -89,6 +89,8 @@ sub _checksum {
 
 __END__
 
+=encoding utf8
+
 =head1 NAME
 
 Business::ISBN10 - work with 10 digit International Standard Book Numbers
