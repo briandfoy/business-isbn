@@ -1,5 +1,11 @@
 Revision history for Perl module Business::ISBN
 
+2.09_01 2015-08-31T05:59:56Z
+	* Fix for new xISBN responses that have whitespace inside the
+	opening tag.
+	* Use Mojo::DOM to parse XML and Mojo::UserAgent to fetch xISBN.
+	* You can still use LWP::UserAgent to fetch data.
+
 2.09 - 2014-09-20
 	* Break circular dependency on Test::ISBN
 
