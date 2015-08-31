@@ -527,9 +527,9 @@ sub as_isbn13 {
 =item xisbn
 
 In scalar context, returns an anonymous array of related ISBNs using xISBN.
-In list context, returns a list.
+In list context, returns a list. It does not include the original ISBN.
 
-This feature requires C<LWP::Simple>.
+This feature requires C<LWP::Simple> or C<Mojo::UserAgent>.
 
 =cut
 
@@ -539,7 +539,9 @@ sub xisbn {
 	my $data = $self->_get_xisbn;
 	$data =~ tr/x/X/;
 
-	my @isbns = $data =~ m|<isbn>(.*?)</isbn>|ig;
+	my $dom = Mojo::DOM->new( $data );
+	my @isbns = $dom->find( 'isbn' )->map('text')->each;
+
 	shift @isbns;
 	wantarray ? @isbns : \@isbns;
 	}
@@ -547,10 +549,20 @@ sub xisbn {
 sub _get_xisbn {
 	my $self = shift;
 
-	eval "use LWP::Simple";
-	if( $@ ) { carp "You need LWP::Simple to use xisbn()"; return; }
+	my $data = eval {
+		if( eval "require Mojo::UserAgent; 1" ) {
+			Mojo::UserAgent->new->get( $self->_xisbn_url )->res->text;
+			}
+		elsif( eval "require LWP::Simple; 1" ) {
+			LWP::Simple::get( $self->_xisbn_url );
+			}
+		else {
+			carp "Could not load either Mojo::UserAgent or LWP::Simple to fetch xISBN\n";
+			return;
+			}
+		};
 
-	my $data = LWP::Simple::get( $self->_xisbn_url );
+	say STDERR $data;
 
 	carp "Could not fetch xISBN data" unless defined $data;
 
