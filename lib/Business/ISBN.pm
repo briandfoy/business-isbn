@@ -628,11 +628,11 @@ sub _step_article_code {
 		;
 
 	my $next_isbn = Business::ISBN->new(
-		join('', 
-			$self->prefix, 
-			$self->group_code, 
-			$self->publisher_code, 
-			sprintf( "%0*d", $self->article_code_length, $next_article_code ), 
+		join('',
+			$self->prefix,
+			$self->group_code,
+			$self->publisher_code,
+			sprintf( "%0*d", $self->article_code_length, $next_article_code ),
 			'0'
 			)
 		);
