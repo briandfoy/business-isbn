@@ -94,7 +94,7 @@ sub _publisher_ranges {
 	[ @{ $self->_group_data( $self->group_code )->[1] } ];
 	}
 
-my $debug = 0;
+my $debug = $ENV{BUSINESS_ISBN_DEBUG};
 
 BEGIN {
 	@EXPORT_OK = qw(
