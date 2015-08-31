@@ -539,8 +539,15 @@ sub xisbn {
 	my $data = $self->_get_xisbn;
 	$data =~ tr/x/X/;
 
-	my $dom = Mojo::DOM->new( $data );
-	my @isbns = $dom->find( 'isbn' )->map('text')->each;
+	my @isbns = do {
+		if( eval "require Mojo::DOM; 1" ) {
+			my $dom = Mojo::DOM->new( $data );
+			$dom->find( 'isbn' )->map('text')->each;
+			}
+		else {
+			$data =~ m|<isbn.*?>(.*?)</isbn>|g;
+			}
+		};
 
 	shift @isbns;
 	wantarray ? @isbns : \@isbns;
