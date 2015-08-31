@@ -35,8 +35,7 @@ my $hash = {
 	
 use_ok( "Business::ISBN" );
 	
-foreach my $string ( sort keys %$hash )
-	{
+foreach my $string ( sort keys %$hash ) {
 	local $^W=0;
 	my $isbn = Business::ISBN->new( $string );
 	isa_ok( $isbn, 'Business::ISBN10' );
