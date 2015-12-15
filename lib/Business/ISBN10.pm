@@ -1,5 +1,7 @@
 package Business::ISBN10;
 use strict;
+use warnings;
+
 use base qw(Business::ISBN);
 
 use Business::ISBN qw(:all);
