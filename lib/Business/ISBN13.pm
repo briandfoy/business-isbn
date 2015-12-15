@@ -22,7 +22,7 @@ use Carp qw(carp croak cluck);
 
 my $debug = 0;
 
-$VERSION   = '2.09_02';
+$VERSION   = '2.010';
 
 sub _max_length { 13 }
 
