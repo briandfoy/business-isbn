@@ -1,5 +1,9 @@
 Revision history for Perl module Business::ISBN
 
+2.010 2015-12-15T07:35:57Z
+	* Sync latest dependencies in build and module files
+	* Promote to a developer release
+
 2.09_02 - Mon Aug 31 02:24:10 2015
 	* Have a simple fallback for parsing XML if Mojo::DOM isn't there
 
