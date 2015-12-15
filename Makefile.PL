@@ -65,7 +65,7 @@ my %WriteMakefile = (
 		},
 
 	'PREREQ_PM'     => {
-		'Business::ISBN::Data' => '20140910',
+		'Business::ISBN::Data' => '20140910.002',
 		'Mojo::DOM'            => '0',
 		'Mojo::UserAgent'      => '0',
 		'URI'                  => '0',
