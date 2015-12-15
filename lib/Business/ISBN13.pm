@@ -118,7 +118,7 @@ See L<Business::ISBN>
 
 This source is in Github.
 
-	https://github.com/briandfoy/business--isbn
+	https://github.com/briandfoy/business-isbn
 
 =head1 AUTHOR
 
