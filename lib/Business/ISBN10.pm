@@ -24,7 +24,7 @@ use Carp qw(carp croak cluck);
 
 my $debug = 0;
 
-$VERSION   = '2.010';
+$VERSION   = '2.10';
 
 sub _max_length { 10 }
 
