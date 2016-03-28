@@ -183,10 +183,11 @@ digit, 'x', or 'X'.
 The constructor attempts to determine the group code and the publisher
 code.  If these data cannot be determined, the constructor sets C<<
 $obj->error >> to something other than C<GOOD_ISBN>. An object is
-still returned and it is up to the program to check C<< $obj->error >>
-for one of five values (which may be exported on demand). The actual
+still returned and it is up to the program to check the C<< error >> method
+for one of five values or one of the C<< error_* >> methods to check for
+a particular error. The actual
 values of these symbolic versions are the same as those from previous
-versions of this module which used literal values.
+versions of this module which used literal values:
 
 
 	Business::ISBN::INVALID_PUBLISHER_CODE
@@ -197,9 +198,12 @@ versions of this module which used literal values.
 
 If you have one of these values and want to turn it into a string, you
 can use the C<%Business::ISBN::ERROR_TEXT> hash, which is exportable
-by asking for it explicitly in the import list.
+by asking for it explicitly in the import list:
 
 	use Business::ISBN qw(%ERROR_TEXT);
+
+As of version 2.010_01, you can get this text from C<< error_text >>
+so you don't have to import anything.
 
 The string passed as the ISBN need not be a valid ISBN as long as it
 superficially looks like one.  This allows one to use the
@@ -295,6 +299,34 @@ value is a key in %ERROR_TEXT.
 =cut
 
 sub error { $_[0]->{'valid'} }
+
+=item error_is_bad_group
+
+=item error_is_bad_publisher
+
+=item error_is_article_out_of_range
+
+=item error_is_bad_checksum
+
+Returns true if the ISBN error is that type.
+
+=cut
+
+sub error_is_bad_group {
+	return $isbn->error == INVALID_GROUP_CODE;
+	}
+
+sub error_is_bad_publisher {
+	return $isbn->error == INVALID_PUBLISHER_CODE;
+	}
+
+sub error_is_article_out_of_range {
+	return $isbn->error == ARTICLE_CODE_OUT_OF_RANGE;
+	}
+
+sub error_is_bad_checksum {
+	return $isbn->error == BAD_CHECKSUM;
+	}
 
 =item error_text
 
