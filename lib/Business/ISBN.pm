@@ -313,19 +313,19 @@ Returns true if the ISBN error is that type.
 =cut
 
 sub error_is_bad_group {
-	return $isbn->error == INVALID_GROUP_CODE;
+	return $_[0]->error == INVALID_GROUP_CODE;
 	}
 
 sub error_is_bad_publisher {
-	return $isbn->error == INVALID_PUBLISHER_CODE;
+	return $_[0]->error == INVALID_PUBLISHER_CODE;
 	}
 
 sub error_is_article_out_of_range {
-	return $isbn->error == ARTICLE_CODE_OUT_OF_RANGE;
+	return $_[0]->error == ARTICLE_CODE_OUT_OF_RANGE;
 	}
 
 sub error_is_bad_checksum {
-	return $isbn->error == BAD_CHECKSUM;
+	return $_[0]->error == BAD_CHECKSUM;
 	}
 
 =item error_text
