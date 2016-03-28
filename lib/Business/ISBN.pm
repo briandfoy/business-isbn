@@ -575,6 +575,8 @@ This feature requires C<LWP::Simple> or C<Mojo::UserAgent>.
 
 sub xisbn {
 	my $self = shift;
+	carp "The xisbn service was due to be turned off on March 15, 2016.";
+	carp "The xisbn method is deprecated.";
 
 	my $data = $self->_get_xisbn;
 	$data =~ tr/x/X/;
