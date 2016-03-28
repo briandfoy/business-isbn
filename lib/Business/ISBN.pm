@@ -298,7 +298,7 @@ value is a key in %ERROR_TEXT.
 
 =cut
 
-sub error { $_[0]->{'valid'} }
+sub error { $_[0]->{'valid'} < 1 and $_[0]->{'valid'} }
 
 =item error_is_bad_group
 
