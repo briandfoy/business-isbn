@@ -1,5 +1,13 @@
 Revision history for Perl module Business::ISBN
 
+2.010_01 2016-03-28T03:45:17Z
+	* Had error_* methods to get the error text and check the error 
+	conditions so you don't have to use %ERROR_TEXT or the constants.
+	* Deprecate the xisbn stuff. It's still there, but it should have
+	disappeared about two weeks ago.
+	* Add an example of inserting an unofficial group code for the 
+	Blake and Taylor shenanigans.
+
 2.010 2015-12-15T07:35:57Z
 	* Sync latest dependencies in build and module files
 	* Promote to a developer release
