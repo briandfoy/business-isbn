@@ -296,6 +296,14 @@ value is a key in %ERROR_TEXT.
 
 sub error { $_[0]->{'valid'} }
 
+=item error_text
+
+Returns a text version of the error text
+
+=cut
+
+sub error_text { $ERROR_TEXT{$_[0]->{'valid'}} }
+
 =item is_valid
 
 Return true if the ISBN is valid, meaning that it has a valid prefix
