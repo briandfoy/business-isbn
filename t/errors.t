@@ -7,6 +7,7 @@ can_ok( $class, qw( error_text error ) );
 
 subtest bad_group => sub {
 	can_ok( $class, qw(error_is_bad_group error_text error) );
+	# blake and taylor fake ISBNs for their DVDs
 	my @bad_isbns = qw(9786316294241 6316294247);
 
 	foreach my $try ( @bad_isbns ) {
@@ -28,11 +29,17 @@ subtest bad_group => sub {
 
 subtest bad_publisher => sub {
 	can_ok( $class, qw(error_is_bad_publisher) );
+
+	my @bad_isbns = qw(9656123456);
+
+	foreach my $try ( @bad_isbns ) {
+		my $isbn = $class->new( $try );
+		ok( ! $isbn->is_valid, "ISBN $try is invalid" );
+		ok( $isbn->error, "ISBN $try is an error" );
+		like( $isbn->error_text, qr/publisher/, "ISBN $try error text mentions 'publisher'" );
+		ok( $isbn->error_is_bad_publisher, "ISBN $try has a bad publisher" );
+		}
 	};
 
-subtest blake_and_taylor => sub {
-	can_ok( $class, qw(error_is_bad_checksum) );
-
-	};
 
 done_testing();
