@@ -1,6 +1,7 @@
 bad-isbn13s.txt
 bad-isbns.txt
 Changes
+examples/private_group_code.pl
 examples/README
 INSTALL.SKIP
 isbn13s.txt
@@ -16,6 +17,7 @@ README.pod
 scripts/get_isbn_data.pl
 t/albania.t
 t/constants.t
+t/errors.t
 t/github/3.t
 t/interface.t
 t/isbn10.t
