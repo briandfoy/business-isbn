@@ -5,14 +5,6 @@ use base qw(Business::ISBN);
 use Business::ISBN qw(:all);
 use Data::Dumper;
 
-use subs qw(
-	_checksum
-	INVALID_COUNTRY_CODE
-	INVALID_PUBLISHER_CODE
-	BAD_CHECKSUM
-	GOOD_ISBN
-	BAD_ISBN
-	);
 use vars qw(
 	$VERSION
 	$debug
