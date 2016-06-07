@@ -1,5 +1,8 @@
 Revision history for Perl module Business::ISBN
 
+2.011 2016-06-07T18:20:50Z
+	* bump to stable release
+
 2.010_01 2016-03-28T03:45:17Z
 	* Had error_* methods to get the error text and check the error
 	conditions so you don't have to use %ERROR_TEXT or the constants.
