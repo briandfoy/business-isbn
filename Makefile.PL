@@ -68,7 +68,6 @@ my %WriteMakefile = (
 		'Business::ISBN::Data' => '20140910.002',
 		'Mojo::DOM'            => '0',
 		'Mojo::UserAgent'      => '0',
-		'URI'                  => '0',
 		},
 
 	'META_MERGE' => {
