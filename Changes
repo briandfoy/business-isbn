@@ -1,5 +1,8 @@
 Revision history for Perl module Business::ISBN
 
+2.011_01 2016-07-29T20:50:01Z
+	* Remove the URI prereq
+
 2.011 2016-06-07T18:20:50Z
 	* bump to stable release
 
