@@ -33,5 +33,4 @@ t/rt/29292.t
 t/step.t
 t/test_manifest
 t/valid_isbn_checksum.t
-t/xisbn10.t
 xt/changes.t

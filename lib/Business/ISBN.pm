@@ -564,65 +564,6 @@ sub as_isbn13 {
 	croak "as_isbn13() must be implemented in Business::ISBN subclass"
 	}
 
-=item xisbn
-
-In scalar context, returns an anonymous array of related ISBNs using xISBN.
-In list context, returns a list. It does not include the original ISBN.
-
-This feature requires C<LWP::Simple> or C<Mojo::UserAgent>.
-
-=cut
-
-sub xisbn {
-	my $self = shift;
-	carp "The xisbn service was due to be turned off on March 15, 2016.";
-	carp "The xisbn method is deprecated.";
-
-	my $data = $self->_get_xisbn;
-	$data =~ tr/x/X/;
-
-	my @isbns = do {
-		if( eval "require Mojo::DOM; 1" ) {
-			my $dom = Mojo::DOM->new( $data );
-			$dom->find( 'isbn' )->map('text')->each;
-			}
-		else {
-			$data =~ m|<isbn.*?>(.*?)</isbn>|g;
-			}
-		};
-
-	shift @isbns;
-	wantarray ? @isbns : \@isbns;
-	}
-
-sub _get_xisbn {
-	my $self = shift;
-
-	my $data = eval {
-		if( eval "require Mojo::UserAgent; 1" ) {
-			Mojo::UserAgent->new->get( $self->_xisbn_url )->res->text;
-			}
-		elsif( eval "require LWP::Simple; 1" ) {
-			LWP::Simple::get( $self->_xisbn_url );
-			}
-		else {
-			carp "Could not load either Mojo::UserAgent or LWP::Simple to fetch xISBN\n";
-			return;
-			}
-		};
-
-	carp "Could not fetch xISBN data" unless defined $data;
-
-	return $data;
-	}
-
-sub _xisbn_url {
-	my $self = shift;
-	my $isbn = $self->as_string([]);
-
-	return "http://xisbn.worldcat.org/xid/isbn/$isbn";
-	}
-
 =item increment
 
 Returns the next C<Business::ISBN> by incrementing the article code of
