@@ -1,5 +1,8 @@
 Revision history for Perl module Business::ISBN
 
+3.002 2016-08-10T09:30:21Z
+	* Bump to stable versions
+
 3.001_01 2016-08-06T08:14:59Z
 	* Remove xisbn stuffâit's due to be turned off. 
 	* Bump the major version for the API change
