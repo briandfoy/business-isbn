@@ -2,6 +2,14 @@
 
 =encoding utf8
 
+=for HTML <a href="https://travis-ci.org/briandfoy/Business-ISBN"><img src="https://travis-ci.org/briandfoy/Business-ISBN.svg?branch=master"></a>
+
+=for HTML <a href='https://coveralls.io/github/briandfoy/Business-ISBN?branch=master'><img src='https://coveralls.io/repos/github/briandfoy/Business-ISBN/badge.svg?branch=master' alt='Coverage Status' /></a>
+
+=for HTML <a href="https://github.com/briandfoy/Business-ISBN/blob/master/LICENSE"><img src="https://img.shields.io/cpan/l/Business-ISBN.svg" /></a>
+
+=for HTML <a href="http://www.metacpan.org/module/Business::ISBN"><img src="https://img.shields.io/cpan/v/Business-ISBN.svg" /></A>
+
 =head1 The Business::ISBN module
 
 This is the I<README> for the L<Business::ISBN> Perl module, which
