@@ -71,7 +71,6 @@ sub _checksum {
 
 	return unless defined $data;
 
-	my @digits = split //, $data;
 	my $sum    = 0;
 
 	foreach my $index ( 0, 2, 4, 6, 8, 10 )
