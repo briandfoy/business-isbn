@@ -1,5 +1,11 @@
 Revision history for Perl module Business::ISBN
 
+3.004 2017-04-24T20:02:52Z
+	* Remove Mojo dependencies after splitting out Business::xISBN
+	(Michiel Beijen)
+	* Remove unneeded code from the checksumming stuff (Mike O'Regan)
+	* We now test on Windows through AppVeyor
+
 3.003 2016-09-19T22:03:24Z
 	* Clarify everywhere that I'm using Artistic License 2.0
 
