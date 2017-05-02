@@ -1,5 +1,6 @@
 package Business::ISBN;
 use strict;
+use warnings;
 
 =encoding utf8
 
