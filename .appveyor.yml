@@ -8,4 +8,6 @@ install:
   - cpanm --installdeps .
 build_script:
   - perl Makefile.PL
+  - gmake
+  - dir
   - gmake test
