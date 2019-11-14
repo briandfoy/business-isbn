@@ -73,10 +73,16 @@ use vars qw( $VERSION @ISA @EXPORT_OK %EXPORT_TAGS $debug %group_data
 use Carp qw(carp croak cluck);
 use base qw(Exporter);
 
-use Business::ISBN::Data 20140910.002; # now a separate module
+use Business::ISBN::Data 20191107; # now a separate module
 # ugh, hack
 *group_data = *Business::ISBN::country_data;
-sub _group_data { $group_data{ $_[1] } }
+sub _group_data { 
+  my $isbn_prefix
+    = ref $_[0] eq 'Business::ISBN13'
+    ? $_[0]->prefix
+    : "978";
+  return $group_data{ $isbn_prefix }->{ $_[1] };
+}
 
 sub _max_group_code_length  { $Business::ISBN::MAX_COUNTRY_CODE_LENGTH };
 sub _max_publisher_code_length  {
