@@ -1,5 +1,10 @@
 Revision history for Perl module Business::ISBN
 
+3.005 2019-12-11T20:27:13Z
+	* Peter Williams fixed a big problem with ISBN-13 (GitHub #12)
+	* You'll need to update Business::ISBN::Data too because Peter
+	adjusted the structure of the underlying data structure.
+
 3.004 2017-04-24T20:02:52Z
 	* Remove Mojo dependencies after splitting out Business::xISBN
 	(Michiel Beijen)
