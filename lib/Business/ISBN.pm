@@ -75,7 +75,7 @@ use vars qw(
 	);
 
 use Carp qw(carp croak cluck);
-use base qw(Exporter);
+use Exporter qw(import);
 
 use Business::ISBN::Data 20191107; # now a separate module
 # ugh, hack
