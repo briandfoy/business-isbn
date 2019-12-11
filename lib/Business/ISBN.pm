@@ -80,7 +80,7 @@ use base qw(Exporter);
 use Business::ISBN::Data 20191107; # now a separate module
 # ugh, hack
 *group_data = *Business::ISBN::country_data;
-sub _group_data { 
+sub _group_data {
   my $isbn_prefix
     = ref $_[0] eq 'Business::ISBN13'
     ? $_[0]->prefix
