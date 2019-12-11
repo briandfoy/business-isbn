@@ -67,8 +67,12 @@ use subs qw(
 	BAD_ISBN
 	ARTICLE_CODE_OUT_OF_RANGE
 	);
-use vars qw( $VERSION @ISA @EXPORT_OK %EXPORT_TAGS $debug %group_data
-	$MAX_GROUP_CODE_LENGTH %ERROR_TEXT );
+use vars qw(
+	@EXPORT_OK
+	%EXPORT_TAGS
+	%group_data
+	$MAX_GROUP_CODE_LENGTH
+	);
 
 use Carp qw(carp croak cluck);
 use base qw(Exporter);
@@ -116,7 +120,7 @@ BEGIN {
 		);
 	};
 
-$VERSION   = '3.004';
+our $VERSION   = '3.005';
 
 sub ARTICLE_CODE_OUT_OF_RANGE () { -5 }
 sub INVALID_PREFIX            () { -4 };
@@ -126,7 +130,7 @@ sub BAD_CHECKSUM              () { -1 };
 sub GOOD_ISBN                 () {  1 };
 sub BAD_ISBN                  () {  0 };
 
-%ERROR_TEXT = (
+our %ERROR_TEXT = (
 	 0 => "Bad ISBN",
 	 1 => "Good ISBN",
 	-1 => "Bad ISBN checksum",
