@@ -30,4 +30,4 @@ cover_db/
 inc/
 nytprof.out
 pm_to_blib
-MANIFEST 3
+MANIFEST 3*.icould
