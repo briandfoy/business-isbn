@@ -75,3 +75,6 @@ t/xisbn.t
 
 select_tabledata.pl
 dropbox
+\bMANIFEST\s\d
+\bChanges\s\d
+
