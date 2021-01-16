@@ -77,6 +77,6 @@ select_tabledata.pl
 dropbox
 \bMANIFEST\s\d
 \bChanges\s\d
-
+\.icloud$
 \A\.github\b
 
