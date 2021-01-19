@@ -55,6 +55,11 @@ Business::ISBN - work with International Standard Book Numbers
 This modules handles International Standard Book Numbers, including
 ISBN-10 and ISBN-13.
 
+The data come from L<Business::ISBN::Data>, which means you can update
+the data separately from the code. Also, you can use L<Business::ISBN::Data>
+with whatever F<RangeMessage.xml> you like if you have updated data. See
+that module for details.
+
 =cut
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
