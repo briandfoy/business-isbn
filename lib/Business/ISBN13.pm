@@ -1,3 +1,5 @@
+use 5.008;
+
 package Business::ISBN13;
 use strict;
 use base qw(Business::ISBN);
