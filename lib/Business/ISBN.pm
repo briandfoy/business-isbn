@@ -752,15 +752,13 @@ my @methods = (
 sub _parse_isbn {
 	my $self = shift;
 
-	foreach my $pair ( @methods )
-		{
+	foreach my $pair ( @methods ) {
 		my( $method, $error_code ) = @$pair;
 
 		my $parser = "_parse_$method";
 		my $result = $self->$parser;
 
-		unless( defined $result )
-			{
+		unless( defined $result ) {
 			$self->_set_is_valid( $error_code );
 			#print STDERR "Got bad result for $method [$$self{isbn}]\n";
 			return;
@@ -785,10 +783,8 @@ sub _parse_group_code {
 	my $count = 1;
 
 	GROUP_CODE:
-	while( defined( $trial= substr($self->isbn, $self->_prefix_length, $count++) ) )
-		{
-		if( defined $self->_group_data( $trial ) )
-			{
+	while( defined( $trial= substr($self->isbn, $self->_prefix_length, $count++) ) ) {
+		if( defined $self->_group_data( $trial ) ) {
 			return $trial;
 			last GROUP_CODE;
 			}
