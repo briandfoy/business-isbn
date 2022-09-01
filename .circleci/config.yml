@@ -18,7 +18,7 @@ jobs:
             sudo apt-get update
             sudo apt-get install --assume-yes --quiet       \
               --no-install-suggests --no-install-recommends \
-              perl liblocal-lib-perl cpanminus
+              perl liblocal-lib-perl cpanminus libdevel-cover-perl
       - run:
           name: "Perl version check"
           command: |
@@ -30,7 +30,6 @@ jobs:
       - run:
           name: "Install cpanm and multiple modules"
           command: |
-            echo PERL_LOCAL_LIB_ROOT $PERL_LOCAL_LIB_ROOT
             cpanm --notest --local-lib IO::Socket::SSL App::Cpan HTTP::Tiny
             cpan -I -M https://www.cpan.org -T ExtUtils::MakeMaker Test::Manifest
       - run:
@@ -61,11 +60,12 @@ jobs:
       - run:
           name: "Run coverage tests"
           command: |
-            cpan -M https://www.cpan.org -T Devel::Cover Devel::Cover::Report::Coveralls
             perl Makefile.PL
             cover -test -report coveralls
 
 workflows:
-  say-hello-workflow:
+  perl-workflow:
     jobs:
-      - perl-tests
+      - perl-tests:
+          context:
+            - perl-testing
