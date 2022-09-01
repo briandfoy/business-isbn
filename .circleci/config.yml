@@ -30,6 +30,7 @@ jobs:
       - run:
           name: "Install cpanm and multiple modules"
           command: |
+            echo PERL_LOCAL_LIB_ROOT $PERL_LOCAL_LIB_ROOT
             cpanm --notest --local-lib IO::Socket::SSL App::Cpan HTTP::Tiny
             cpan -I -M https://www.cpan.org -T ExtUtils::MakeMaker Test::Manifest
       - run:
