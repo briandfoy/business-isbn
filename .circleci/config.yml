@@ -1,4 +1,5 @@
 version: 2.1
+# https://github.com/AtomLinter/atom-linter-perlcritic/blob/master/.circleci/config.yml
 
 jobs:
   perl-tests:
@@ -12,20 +13,29 @@ jobs:
           name: "Platform check"
           command: "uname -a"
       - run:
+          name: "Setup apt packages"
+          command: |
+            sudo apt-get update
+            sudo apt-get install --assume-yes --quiet       \
+              --no-install-suggests --no-install-recommends \
+              perl liblocal-lib-perl cpanminus
+      - run:
           name: "Perl version check"
           command: |
             perl -v
-            perl -V
+      - run:
+          name: "Setup local::lib"
+          command: |
+            echo 'eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"' >> ~/.bashrc
       - run:
           name: "Install cpanm and multiple modules"
           command: |
-            curl -L https://cpanmin.us | perl - App::cpanminus
-            cpanm --notest IO::Socket::SSL App::Cpan HTTP::Tiny
-            cpan -M https://www.cpan.org -T ExtUtils::MakeMaker Test::Manifest
+            cpanm --notest --local-lib IO::Socket::SSL App::Cpan HTTP::Tiny
+            cpan -I -M https://www.cpan.org -T ExtUtils::MakeMaker Test::Manifest
       - run:
           name: "Install dependencies"
           command: |
-            cpan -M https://www.cpan.org -T .
+            cpan -I -M https://www.cpan.org -T .
       - run:
           name: "Run tests"
           command: |
@@ -34,7 +44,7 @@ jobs:
       - run:
           name: "Run author tests"
           command: |
-            cpan -M https://www.cpan.org -T Test::CPAN::Changes
+            cpan -I -M https://www.cpan.org -T Test::CPAN::Changes
             prove -r -b xt
       - run:
           name: "Run parallel tests"
