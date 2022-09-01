@@ -4,8 +4,8 @@ jobs:
   say-hello:
     docker:
       - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    environment:
+      PERL_LWP_SSL_VERIFY_HOSTNAME: 0
     steps:
       - checkout
       - run:
@@ -13,7 +13,46 @@ jobs:
           command: "uname -a"
       - run:
           name: "Perl version check"
-          command: "perl -v"
+          command: |
+            perl -v
+            perl -V
+      - run:
+          name: "Install cpanm and multiple modules"
+          command: |
+            curl -L https://cpanmin.us | perl - App::cpanminus
+            cpanm --notest IO::Socket::SSL App::Cpan HTTP::Tiny
+            cpan -M https://www.cpan.org -T ExtUtils::MakeMaker Test::Manifest
+      - run:
+          name: "Install dependencies"
+          command: |
+            cpan -M https://www.cpan.org -T .
+      - run:
+          name: "Run tests"
+          command: |
+            perl Makefile.PL
+            make test
+      - run:
+          name: "Run author tests"
+          command: |
+            cpan -M https://www.cpan.org -T Test::CPAN::Changes
+            prove -r -b xt
+      - run:
+          name: "Run parallel tests"
+          command: |
+            perl Makefile.PL
+            HARNESS_OPTIONS=j10 make test
+      - run:
+          name: "Run dist tests"
+          command: |
+            perl Makefile.PL
+            make disttest
+            make clean
+      - run:
+          name: "Run coverage tests"
+          command: |
+            cpan -M https://www.cpan.org -T Devel::Cover Devel::Cover::Report::Coveralls
+            perl Makefile.PL
+            cover -test -report coveralls
 
 workflows:
   say-hello-workflow:
