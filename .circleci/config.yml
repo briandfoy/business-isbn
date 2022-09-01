@@ -60,6 +60,7 @@ jobs:
       - run:
           name: "Run coverage tests"
           command: |
+            cpan -I -M https://www.cpan.org -T Devel::Cover::Report::Coveralls
             perl Makefile.PL
             cover -test -report coveralls
 
