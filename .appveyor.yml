@@ -15,6 +15,14 @@ branches:
   only:
     - master
     - appveyor
+  except:
+    - gh-pages
+    - /circleci/
+    - /github/
+    - /linux/
+    - /macos/
+    - /notest/
+    - /release/
 
 skip_tags: true
 
