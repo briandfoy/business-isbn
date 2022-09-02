@@ -22,7 +22,9 @@ jobs:
               libtest-yaml-perl libnet-ssleay-perl libextutils-config-perl \
               libextutils-installpaths-perl libio-socket-ssl-perl \
               libtest-differences-perl libtext-diff-perl libtest-manifest-perl \
-              libhttp-tiny-perl
+              libhttp-tiny-perl libtest-pod-coverage-perl libtest-pod-perl \
+              libmodule-build-tiny-perl libextutils-helpers-perl libyaml-perl
+
       - run:
           name: "Perl version check"
           command: |
