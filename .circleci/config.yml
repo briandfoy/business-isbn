@@ -1,0 +1,77 @@
+version: 2.1
+
+jobs:
+  perl-tests:
+    docker:
+      - image: cimg/base:stable
+    environment:
+      PERL_LWP_SSL_VERIFY_HOSTNAME: 0
+    steps:
+      - checkout
+      - run:
+          name: "Platform check"
+          command: "uname -a"
+      - run:
+          name: "Setup apt packages"
+          command: |
+            sudo apt-get update
+            sudo apt-get install --assume-yes --quiet       \
+              --no-install-suggests --no-install-recommends \
+              perl liblocal-lib-perl cpanminus libdevel-cover-perl \
+              libtest-deep-perl libspiffy-perl libyaml-libyaml-perl \
+              libtest-yaml-perl libnet-ssleay-perl libextutils-config-perl \
+              libextutils-installpaths-perl libio-socket-ssl-perl \
+              libtest-differences-perl libtext-diff-perl libtest-manifest-perl \
+              libhttp-tiny-perl libtest-pod-coverage-perl libtest-pod-perl \
+              libmodule-build-tiny-perl libextutils-helpers-perl libyaml-perl
+
+      - run:
+          name: "Perl version check"
+          command: |
+            perl -v
+      - run:
+          name: "Setup local::lib"
+          command: |
+            echo 'eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"' >> $BASH_ENV
+      - run:
+          name: "Install configuration modules"
+          command: |
+            cpan -I -M https://www.cpan.org -T ExtUtils::MakeMaker
+      - run:
+          name: "Install dependencies"
+          command: |
+            cpan -I -M https://www.cpan.org -T .
+      - run:
+          name: "Run tests"
+          command: |
+            perl Makefile.PL
+            make test
+      - run:
+          name: "Run author tests"
+          command: |
+            cpan -I -M https://www.cpan.org -T Test::CPAN::Changes
+            prove -r -b xt
+      - run:
+          name: "Run parallel tests"
+          command: |
+            perl Makefile.PL
+            HARNESS_OPTIONS=j10 make test
+      - run:
+          name: "Run dist tests"
+          command: |
+            perl Makefile.PL
+            make disttest
+            make clean
+      - run:
+          name: "Run coverage tests"
+          command: |
+            cpan -I -M https://www.cpan.org -T Devel::Cover::Report::Coveralls
+            perl Makefile.PL
+            cover -test -report coveralls
+
+workflows:
+  perl-workflow:
+    jobs:
+      - perl-tests:
+          context:
+            - business-isbn
