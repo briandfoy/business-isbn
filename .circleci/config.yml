@@ -24,6 +24,7 @@ jobs:
           sudo apt-get install --assume-yes --quiet       \
             --no-install-suggests --no-install-recommends \
             perl liblocal-lib-perl cpanminus libdevel-cover-perl
+          which cpanm
   "Perl Version Check":
     <<: *common_job_stuff
     steps:
