@@ -34,7 +34,7 @@ jobs:
           command: |
             echo 'eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"' >> $BASH_ENV
       - run:
-          name: "Install cpanm and multiple modules"
+          name: "Install configuration modules"
           command: |
             cpan -I -M https://www.cpan.org -T ExtUtils::MakeMaker
       - run:
