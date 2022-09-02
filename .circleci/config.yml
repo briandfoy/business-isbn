@@ -5,32 +5,7 @@ aliases:
     - docker:
       - image: cimg/base:stable
     - environment:
-      PERL_LWP_SSL_VERIFY_HOSTNAME: 0
-
-workflows:
-  master:
-    jobs:
-      - "Checkout"
-      - "Platform Check"
-      - "apt-get stuff"
-      - "Perl Version Check"
-        requires: "apt-get stuff"
-      - "Setup local::lib"
-        requires: "apt-get stuff"
-      - "Install Perl modules"
-        requires: "Setup local::lib"
-      - "Install dependencies"
-        requires: "Install Perl modules"
-      - "Normal tests"
-        requires: "Install dependencies"
-      - "Author tests"
-        requires: "Install dependencies"
-      - "Parallel tests"
-        requires: "Install dependencies"
-      - "Dist tests"
-        requires: "Install dependencies"
-      - "Coverage tests"
-        requires: "Install dependencies"
+        PERL_LWP_SSL_VERIFY_HOSTNAME: 0
 
 jobs:
   "Checkout":
@@ -99,4 +74,29 @@ jobs:
           cpan -I -M https://www.cpan.org -T Devel::Cover::Report::Coveralls
           perl Makefile.PL
           cover -test -report coveralls
+
+workflows:
+  master:
+    jobs:
+      - "Checkout"
+      - "Platform Check"
+      - "apt-get stuff"
+      - "Perl Version Check"
+        requires: "apt-get stuff"
+      - "Setup local::lib"
+        requires: "apt-get stuff"
+      - "Install Perl modules"
+        requires: "Setup local::lib"
+      - "Install dependencies"
+        requires: "Install Perl modules"
+      - "Normal tests"
+        requires: "Install dependencies"
+      - "Author tests"
+        requires: "Install dependencies"
+      - "Parallel tests"
+        requires: "Install dependencies"
+      - "Dist tests"
+        requires: "Install dependencies"
+      - "Coverage tests"
+        requires: "Install dependencies"
 
