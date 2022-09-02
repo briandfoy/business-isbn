@@ -34,8 +34,7 @@ jobs:
       - run:
           name: "Install cpanm and multiple modules"
           command: |
-            cpanm --notest --local-lib App::Cpan
-            cpan -I -M https://www.cpan.org -T ExtUtils::MakeMaker Test::Manifest
+            cpan -I -M https://www.cpan.org -T ExtUtils::MakeMaker
       - run:
           name: "Install dependencies"
           command: |
