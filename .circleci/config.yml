@@ -12,24 +12,24 @@ workflows:
     jobs:
       - "Checkout"
       - "Platform Check"
-      - "apt-get stuff":
+      - "apt-get stuff"
       - "Perl Version Check"
         requires: "apt-get stuff"
-      - "Setup local::lib":
+      - "Setup local::lib"
         requires: "apt-get stuff"
-      - "Install Perl modules":
+      - "Install Perl modules"
         requires: "Setup local::lib"
-      - "Install dependencies":
+      - "Install dependencies"
         requires: "Install Perl modules"
-      - "Normal tests":
+      - "Normal tests"
         requires: "Install dependencies"
-      - "Author tests":
+      - "Author tests"
         requires: "Install dependencies"
-      - "Parallel tests":
+      - "Parallel tests"
         requires: "Install dependencies"
-      - "Dist tests":
+      - "Dist tests"
         requires: "Install dependencies"
-      - "Coverage tests":
+      - "Coverage tests"
         requires: "Install dependencies"
 
 jobs:
