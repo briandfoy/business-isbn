@@ -1,5 +1,4 @@
 version: 2.1
-# https://github.com/AtomLinter/atom-linter-perlcritic/blob/master/.circleci/config.yml
 
 jobs:
   perl-tests:
