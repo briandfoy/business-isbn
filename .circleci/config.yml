@@ -15,7 +15,7 @@ jobs:
   "Platform Check":
     <<: *common_job_stuff
     steps:
-      - uname -a
+      - run: uname -a
   "apt-get stuff":
     <<: *common_job_stuff
     steps:
@@ -27,11 +27,11 @@ jobs:
   "Perl Version Check":
     <<: *common_job_stuff
     steps:
-      - perl -v
-  "Setup local::lib":
+      - run: perl -v
+  "Setup local-lib":
     <<: *common_job_stuff
     steps:
-      - echo 'eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"' >> $BASH_ENV
+      - run: echo 'eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"' >> $BASH_ENV
   "Install Perl modules":
     <<: *common_job_stuff
     steps:
@@ -41,7 +41,7 @@ jobs:
   "Install dependencies":
     <<: *common_job_stuff
     steps:
-      - cpan -I -M https://www.cpan.org -T .
+      - run: cpan -I -M https://www.cpan.org -T .
   "Normal tests":
     <<: *common_job_stuff
     steps:
@@ -76,27 +76,27 @@ jobs:
           cover -test -report coveralls
 
 workflows:
-  master:
+  version: 2
+  perl-testing:
     jobs:
       - "Checkout"
       - "Platform Check"
       - "apt-get stuff"
-      - "Perl Version Check"
-        requires: "apt-get stuff"
-      - "Setup local::lib"
-        requires: "apt-get stuff"
-      - "Install Perl modules"
-        requires: "Setup local::lib"
-      - "Install dependencies"
-        requires: "Install Perl modules"
-      - "Normal tests"
-        requires: "Install dependencies"
-      - "Author tests"
-        requires: "Install dependencies"
-      - "Parallel tests"
-        requires: "Install dependencies"
-      - "Dist tests"
-        requires: "Install dependencies"
-      - "Coverage tests"
-        requires: "Install dependencies"
-
+      - "Perl Version Check":
+          requires: ["apt-get stuff"]
+      - "Setup local-lib":
+          requires: ["apt-get stuff"]
+      - "Install Perl modules":
+          requires: [ "Setup local-lib" ]
+      - "Install dependencies":
+          requires: [ "Install Perl modules" ]
+      - "Normal tests":
+          requires: [ "Install Perl modules" ]
+      - "Author tests":
+          requires: [ "Install Perl modules" ]
+      - "Parallel tests":
+          requires: [ "Install Perl modules" ]
+      - "Dist tests":
+          requires: [ "Install Perl modules" ]
+      - "Coverage tests":
+          requires: [ "Install Perl modules" ]
