@@ -17,7 +17,12 @@ jobs:
             sudo apt-get update
             sudo apt-get install --assume-yes --quiet       \
               --no-install-suggests --no-install-recommends \
-              perl liblocal-lib-perl cpanminus libdevel-cover-perl
+              perl liblocal-lib-perl cpanminus libdevel-cover-perl \
+              libtest-deep-perl libspiffy-perl libyaml-libyaml-perl \
+              libtest-yaml-perl libnet-ssleay-perl libextutils-config-perl \
+              libextutils-installpaths-perl libio-socket-ssl-perl \
+              libtest-differences-perl libtext-diff-perl libtest-manifest-perl \
+              libhttp-tiny-perl
       - run:
           name: "Perl version check"
           command: |
@@ -29,7 +34,7 @@ jobs:
       - run:
           name: "Install cpanm and multiple modules"
           command: |
-            cpanm --notest --local-lib IO::Socket::SSL App::Cpan HTTP::Tiny
+            cpanm --notest --local-lib App::Cpan
             cpan -I -M https://www.cpan.org -T ExtUtils::MakeMaker Test::Manifest
       - run:
           name: "Install dependencies"
