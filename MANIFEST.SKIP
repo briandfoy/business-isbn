@@ -80,3 +80,4 @@ dropbox
 \A\.github\b
 
 \.gitattributes\b
+.circleci/
