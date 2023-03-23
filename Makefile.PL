@@ -65,7 +65,7 @@ my %WriteMakefile = (
 		},
 
 	'PREREQ_PM'     => {
-		'Business::ISBN::Data' => '20191107',
+		'Business::ISBN::Data' => '20230322.001',
 		},
 
 	'META_MERGE' => {
