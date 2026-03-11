@@ -662,14 +662,21 @@ sub png_barcode {
 
 	my $ean = $self->as_isbn13->as_string([]);
 
-	eval "use GD::Barcode::EAN13";
-	if( $@ )
-		{
+	eval { require GD::Barcode::EAN13 };
+	if( $@ ) {
 		carp "Need GD::Barcode::EAN13 to use png_barcode!";
 		return;
 		}
 
-	my $image = GD::Barcode::EAN13->new($ean)->plot->png;
+	my $gd_image = GD::Barcode::EAN13->new($ean)->plot;
+	my $image;
+	if( $gd_image->can('png') ) {
+		$image = GD::Barcode::EAN13->new($ean)->plot->png;
+		}
+	else {
+		carp "Your GD module does not have PNG support";
+		return;
+		}
 
 	return $image;
 	}
